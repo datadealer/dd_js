@@ -1,0 +1,10 @@
+*~
+*.swp
+.DS_Store
+.Trashes
+setup_local.js
+/components/
+/dist/
+/docs/
+/node_modules/
+npm-debug.log
