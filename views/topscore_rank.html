@@ -1,0 +1,15 @@
+<%
+  var data = D.data || {};
+  var type = D.type || 'cash';
+  var rank = data.user_rank;
+  var barwidth = rank * 200;
+  var type_text = data.type_texts_notinranking[type];
+  var rank_parsed = _.span(_.toKSNum(rank*100)+"%");
+  type_text = _.sprintf(type_text, rank_parsed);
+  var type_text_inranking = data.type_texts[type];
+  var rank_text = (data.user_in_top) ? type_text_inranking : type_text;
+%>
+  <div class="TopscoreRankVal"><% print(rank_text); %></div>
+<% if (!data.user_in_top) { %>
+  <div class="TopscoreRankBarWrap"><div class="TopscoreRankBarPerc"><%= _.toKSNum(rank*100) + "%" %></div><div class="TopscoreRankBar" style="width:<%= barwidth %>px;"></div></div>
+<% } %>

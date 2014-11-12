@@ -1,0 +1,80 @@
+<%
+  var data = D.data || {};
+  var sprite = data.popup_sprite || {};
+  var states = D.states || {};
+  var button = D.button || _._('Invest');
+  var pcat = D.pcat || [];
+  var pkey = D.pkey || '';
+  var sTitle = '';
+  if (pkey === 'UpgradePowerup') {
+    sTitle = _._('Buy Upgrade');
+  } else if (pkey === 'AdPowerup') {
+    sTitle = _._('Buy Ad');
+  } else if (pkey === 'TeamMemberPowerup') {
+    sTitle = _._('Hire Team Member');
+  }
+%>
+
+        <div class="Subpop Selector" data-subpop-id="Provided<%= pkey %>">
+          <div class="SubpopClose" data-button-id="CloseSubpop">X</div>
+          <div class="SubpopHeader">
+            <div class="SubpopHeaderTitle"><%= sTitle %></div>
+          </div>
+          <div class="Pagination Selector">
+          <div class="PopupSelector">
+          <div class="PopupPageWrap">
+          <%
+            /* TODO: Pagination, maybe make this _.mixin */
+            var pagesize = 5;
+            var pages = _.range(pcat.provided.length/pagesize);
+            _.each(pages,function(page,k){
+              var pagekeys = _.range(page*pagesize,((page*pagesize)+pagesize > pcat.provided.length) ? pcat.provided.length : (page*pagesize)+pagesize);
+              if (k > 0) {
+                print('<div class="PopupPage PowerupPage hidden" data-page-id="'+page+'">');
+              }
+              else {
+                print('<div class="PopupPage PowerupPage" data-page-id="'+page+'">');
+              }
+              _.each(pagekeys, function(key) {
+                var powerup = pcat.provided[key];
+                print(_.renderView('powerup_provided.html', {
+                  powerup: powerup,
+                  key: 'Provided' + powerup.gestalt,
+                  game_values: D.game_values
+                }));
+              });
+              print('</div>');
+            });
+            print('</div>');
+            print('</div>');
+            if (pages.length > 1) {
+          %>
+          <div class='PopupPageArrowR'></div>
+          <div class='PopupPageArrowL hidden'></div>
+          <%
+            }
+          %>
+        </div>
+        <div class="SubpopButtons">
+          <div class="Button" data-button-id="OKButton">Close</div>
+        </div>
+        </div>
+
+        <%
+        _.each(pcat.provided, function(powerup, key){
+          if (powerup && powerup.data) {
+            print(_.renderView('subpop_powerup_provided.html', {
+              powerup: powerup,
+              key: key,
+              typelower: D.typelower,
+              data: D.data,
+              pkey:pkey,
+              status_icons: D.status_icons,
+              key: 'Provided' + pkey + key
+            }));
+          }
+        });
+        %>
+
+
+

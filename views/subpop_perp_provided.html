@@ -1,0 +1,28 @@
+<%
+var p = D.perp || {};
+var data = p.data || {};
+var button = data.buy_button_text || _._('Buy');
+%>
+<div class="Subpop" data-subpop-id="<%= D.key %>">
+  <div class="SubpopClose" data-button-id="CloseSubpop">X</div>
+  <div class="SubpopLogo"><% print(_.RenderSprite(data.popup_sprite)); %></div>
+  <div class="SubpopTitle"><%= data.title %></div>
+  <div class="PowerupLabelData SubpopLabelData">
+    <% print(_.renderView('values_details.html', { data: data, perp: p })); %>
+  </div>
+  <div class="SubpopText"><%= data.description %></div>
+  <div class="SubpopButtons">
+    <div class="ButtonDecorator Cash">
+      <div class='RenderSprite Tobi'></div>
+      <% print(_.toKSNum(data.price)); %></div>
+    <div class="Button" data-button-id="PerpBuyButton" data-button-gestalt="<%= p.gestalt %>"><%= button %></div>
+  </div>
+
+  <div class="Debug">
+  <%
+  _.each(data,function(v,k){
+    print('<div>',k,': ',v,'</div>');
+  });
+  %>
+  </div>
+</div>

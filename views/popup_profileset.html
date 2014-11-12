@@ -1,0 +1,81 @@
+<%
+  var data = D.data || {};
+  var ps = D.ProfileSet || {};
+  var sprite = data.popup_sprite || {};
+  var states = D.states || {};
+  var button = D.button || _._('Import');
+%>
+<div class="PopupBody">
+  <div class="PopupHeader">
+    <div class="PopupClose">X</div>
+    <div class="PopupLogo"><%= sprite.html %></div>
+    <div class="PopupTitle"><%= _.sprintf(_._('%s Profiles'), _.toKSNum(ps.profiles_value)) %></div>
+    <div class="PopupSubTitle"><%= _.sprintf(_._('Source: %s'), data.title) %></div>
+    <div class="PopupText"><%= _._("All these new profiles need to be integrated into your main database. If you already have information on some of these people, your database will try to identify and update existing profiles using complicated mathematical methods.") %></div>
+  </div>
+  <div class="PopupContent">
+    <div class="PopupTab">
+      <div class="SubpopContainer">
+         <%
+          _.each(ps.tokens_set, function(token, key) {
+            print(_.renderView('subpop_token.html', {
+              token: token,
+              key: key
+            }));
+          });
+        %>
+      </div>
+      <div class="Debug"><% _.each(states,function(v,k){ print(k,':',v,'<br />') }); %></div>
+      <div class="Debug"><% _.each(data,function(v,k){ print(k,':',v,'<br />') }); %></div>
+      <div class="Pagination">
+      <div class="PopupTokens">
+        <div class="PopupPageWrap">
+        <%
+          /* TODO: Pagination, maybe make this _.mixin */
+          var pagesize = 12;
+          var pages = _.range(ps.tokens_set.length/pagesize);
+          _.each(pages,function(page,k){
+            var pagetokenkeys = _.range(page*pagesize,((page*pagesize)+pagesize > ps.tokens_set.length) ? ps.tokens_set.length : (page*pagesize)+pagesize);
+            if (k > 0) {
+              print('<div class="PopupPage hidden" data-page-id="'+page+'">');
+            }
+            else {
+              print('<div class="PopupPage" data-page-id="'+page+'">');
+            }
+            _.each(pagetokenkeys, function(key) {
+              var token = ps.tokens_set[key];
+              print(_.renderView('token.html', {
+                token: token,
+                key: key
+              }));
+            });
+            print('</div>');
+          });
+          print('</div>');
+        print('</div>');
+          if (pages.length > 1) {
+        %>
+        <div class='PopupPageArrowR'></div>
+        <div class='PopupPageArrowL hidden'></div>
+        <%
+          }
+        %>
+      </div>
+
+      <div class="PopupSummary">
+        <div class="PopupSummaryItem Profiles">
+          <div class='RenderSprite Tobi'></div>
+          <% print(_.toKSNum(ps.profiles_value)); %>
+        </div>
+      </div>
+
+      <div class="PopupButtons">
+        <div class="ButtonDecorator AP">
+          <div class='RenderSprite Tobi'></div>
+          1
+        </div>
+        <div class="Button" data-button-id="MainButton"><%= button %></div>
+      </div>
+    </div>
+  </div>
+</div>

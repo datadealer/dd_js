@@ -1,0 +1,93 @@
+<%
+  var data = D.data || {};
+  var sprite = data.popup_sprite || {};
+  var states = D.states || {};
+  var button = D.button || _._('Close');
+  var loading = D.loading || false;
+%>
+<div class="PopupBody">
+  <div class="PopupHeader">
+    <div class="PopupClose">X</div>
+    <% if (data.mainsprites_class) { %>
+    <div class="PopupLogo"><div class="MainSpritesPopup <%= data.mainsprites_class %>"></div></div>
+    <% } else { %>
+    <div class="PopupLogo"><%= sprite.html %></div>
+    <% } %>
+    <div class="PopupTitle"><%= data.title %></div>
+    <div class="PopupSubTitle"><%= data.subtitle %></div>
+    <div class="PopupText"><%= data.description %></div>
+  </div>
+  <div class="PopupContent">
+    <div class="PopupTab">
+      <div class="SubpopContainer">
+         <% 
+          _.each(data.providedPerps, function(perp, key){
+            print(_.renderView('subpop_perp_provided.html', {
+              perp: perp,
+              key: key
+            }));
+          });
+        %>
+      </div>
+
+      <div class="Pagination Selector standalone">
+      <% if (data.selectortitle) { %>
+        <div class="SubpopHeader">
+          <div class="SubpopHeaderTitle"><%= data.selectortitle %></div>
+        </div>
+      <% } %>
+
+        <div class="PopupSelector">
+
+          <div class="PopupPageWrap">
+
+          <%
+            /* TODO: Pagination, maybe make this _.mixin */
+            var providedPerps = data.providedPerps;
+            var pagesize = 5;
+            var pages = _.range(data.providedPerps.length/pagesize);
+          
+            if (data.providedPerps.length) {
+
+              _.each(pages,function(page,k){
+                var pagekeys = _.range(page*pagesize,((page*pagesize)+pagesize > providedPerps.length) ? providedPerps.length : (page*pagesize)+pagesize);
+                if (k > 0) {
+                  print('<div class="PopupPage PerpPage hidden" data-page-id="'+page+'">');
+                }
+                else {
+                  print('<div class="PopupPage PerpPage" data-page-id="'+page+'">');
+                }
+                _.each(pagekeys, function(key) {
+                  var perp = providedPerps[key];
+                  print(_.renderView('perp.html', {
+                    perp: perp,
+                    key: key,
+                    Caller:D
+                  }));
+                });
+                print('</div>');
+              });
+
+            } else {
+              print(_.renderView('noitems.html', {loading:loading}));
+            }
+
+
+          print('</div>');
+        print('</div>');
+            if (pages.length > 1) {
+          %>
+          <div class='PopupPageArrowR standalone'></div>
+          <div class='PopupPageArrowL standalone hidden'></div>
+          <%
+            }
+          %>
+        </div>
+
+      <div class="Debug"><%  _.each(data,function(v,k){ print(k,':',v,'<br />') }); %></div>
+      <div class="PopupButtons">
+        <div class="Button" data-button-id="MainButton"><%= button %></div>
+      </div>
+    </div>
+  </div>
+</div>

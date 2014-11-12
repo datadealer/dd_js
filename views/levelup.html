@@ -1,0 +1,26 @@
+<%
+  var data = D.data || {};
+  var game = _.game();
+  var button = _._('levelup button');
+  var says = _._('Mark sagt:');
+  var text = _.sprintf(_._("levelup level %s! %s XP to level %s. %s energy"), 
+    _.toKSNum(game.xp_level.number),
+    _.toKSNum(game.xp_level.xp_max - game.xp_value),
+    _.toKSNum(game.xp_level.number + 1),
+    _.toKSNum(game.xp_level.ap_max)
+  );
+%>
+<div class="PopupBody TutorialBody">
+  <div class="TutorialContent">
+    <div class="NotificationBubble">
+      <div class="NotificationAvatar"></div>
+      <div class="NotificationSays"><%= says %></div>
+      <div class="NotificationText">
+        <%= text  %>
+      </div>
+    </div>
+    <div class="PopupButtons TutorialButtons">
+      <div class="Button" data-button-id="MainButton"><%= button %></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<%
+  /* FIXME THIS SHOULD BE HERE IN A TEMPLATE MOVE THIS TO GAME!!! */
+  var data = D.data;
+  var game = _.game();
+  var goal = D.goal || {};
+  var text = data.goals_texts[goal.workflow];
+  var goal_amount = goal.amount || 1;
+  var current_amount = goal.current_amount || 0;
+  
+  var target_title;
+  var target_sprite;
+  if (goal.project) {
+    var ptype = game.getType(goal.project) || {};
+    var pdata = ptype.type_data || {};
+    var project_title = pdata.title;
+    project_title = _.span(project_title);
+    var powerupdata =  { title: goal.target };
+    if (ptype[goal.target]) {
+      powerupdata = ptype[goal.target].type_data;
+    }
+    target_sprite = powerupdata.popup_sprite;
+    target_title = powerupdata.title;
+
+  } else {
+    var tdata = game.getTypeData(goal.target) || {};
+    target_title = tdata.title;
+    target_sprite = tdata.popup_sprite;
+  }
+  target_title = _.span(target_title);
+
+  if (_.contains(['buy_perp'], goal.workflow)) {
+    /* target only */
+    text = tdata.mgoal_text;
+    text = _.sprintf(text, target_title);
+  } 
+  else if (_.contains(['buy_powerup'], goal.workflow)) {
+    /* target and source */
+    text = powerupdata.mgoal_text;
+    text = _.sprintf(text, target_title, project_title);
+  }
+  else if (_.contains(['charge_perp'], goal.workflow)) {
+    /* target */
+    text = tdata.mgoal_text_charge_perp;
+    text = _.sprintf(text, target_title);
+  }
+  else if (_.contains(['upgrade_token'], goal.workflow)) {
+    /* target */
+    text = tdata.mgoal_text_collect_perp;
+    text = _.sprintf(text, target_title);
+  }
+  else if (_.contains(['collect_cash','collect_profiles','integrate_profiles'], goal.workflow)) {
+    /* atmount and target */
+    text = _.sprintf(text, _.span(_.toKSNum(goal.amount)), target_title);
+  }
+
+%>
+<div class="MissionGoal<%= (goal.complete) ? ' complete' : "" %>"> 
+  <div class="MissionGoalSprite"><%= _.RenderSprite(target_sprite) %></div>
+  <div class="MissionGoalText"><% print(text); %></div>
+  <div class="MissionGoalProgress"><% print(_.toKSNum(current_amount) + " / " + _.span(_.toKSNum(goal_amount), "highlight")); %></div>
+  <div class="MissionGoalStatus"></div>
+</div>
+
+

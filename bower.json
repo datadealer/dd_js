@@ -1,0 +1,31 @@
+{
+  "name": "Data Dealer Front End",
+  "version": "1.0.0",
+  "main": ["./dist/css/dd_js.min.css", "./dist/scripts/dd_js.min.js"],
+  "dependencies": {
+    "almond": "0.2.5",
+    "EaselJS": "release_v0.6.1",
+    "jquery": "2.0.3",
+    "jquery.cookie": "1.3.1",
+    "jquery-jsonrpcjs": "https://raw.github.com/datagraph/jquery-jsonrpc/6f6af4120d8417a55610b30d9ab108ef34772028/jquery.jsonrpc.js",
+    "jquery-message-queuing": "https://raw.githubusercontent.com/cowboy/jquery-message-queuing/514f091e0fad742ed3d96c909dc3217951e530b3/jquery.ba-jqmq.min.js",
+    "jquery-migrate": "1.2.1",
+    "jquery-mobile": "1.3.2",
+    "json2": "https://raw.github.com/douglascrockford/JSON-js/e39db4b7e6249f04a195e7dd0840e610cc9e941e/json2.js",
+    "native-console": "latest",
+    "numeral": "1.4.5",
+    "PreloadJS": "release_v0.3.1",
+    "qunit": "1.12.0",
+    "requirejs": "latest",
+    "requirejs-text": "2.0.9",
+    "requirejs-tpl-dawsontoth": "https://raw.github.com/dawsontoth/requirejs-tpl/374b6858672cbf32881c950ebe52650dee1b98b3/tpl.js",
+    "routie": "0.3.2",
+    "sockjs": "0.3.4",
+    "SoundJS": "release_v0.4.1",
+    "sprintf": "https://raw.github.com/alexei/sprintf.js/192bc6069ceb0175a98fab67a848568aded77c88/src/sprintf.js",
+    "TweenJS": "release_v0.4.1",
+    "underscore": "1.5.1",
+    "zynga-animate": "https://raw.github.com/zynga/scroller/7d460ea2403e45e88a5980b55da760a0b78d6c6a/src/Animate.js",
+    "zynga-scroller": "https://raw.github.com/zynga/scroller/dadd850722ad2be9a865e4d84cb76c0197b68734/src/Scroller.js"
+  }
+}

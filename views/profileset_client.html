@@ -1,0 +1,129 @@
+<%
+  var data = D.data || {};
+  var ps = data.ProfileSet || {tokens_set: []};
+  var cps = data.ConsumedProfileSet || {tokens_set: []};
+  var sprite = data.popup_sprite || {};
+  var summary_class = "Cash";
+  var penalty = (data.karma_penalty);
+  if (penalty) {
+    summary_class = "Penalty";
+  }
+%>
+      <div class="SubpopContainer">
+         <%
+          _.each(ps.tokens_set, function(token, key){
+            print(_.renderView('subpop_token.html', {
+              token: token,
+              key: key,
+              collect_amount: data.collect_amount
+            }));
+          });
+          _.each(cps.tokens_set, function(token, key){
+            print(_.renderView('subpop_token.html', {
+              token: token,
+              key: key,
+              collect_amount: data.collect_amount
+            }));
+          });
+
+        %>
+      </div>
+
+      <div class="Pagination half small">
+
+
+      <div class="PopupTokens provided">
+        <div class="PopupPageWrap">
+        <%
+          var pagesize = 7;
+          var pages = _.range(ps.tokens_set.length/pagesize);
+          _.each(pages,function(page,k){
+            var pagetokenkeys = _.range(page*pagesize,((page*pagesize)+pagesize > ps.tokens_set.length) ? ps.tokens_set.length : (page*pagesize)+pagesize);
+            if (k > 0) {
+              print('<div class="PopupPage hidden" data-page-id="'+page+'">');
+            }
+            else {
+              print('<div class="PopupPage" data-page-id="'+page+'">');
+            }
+            _.each(pagetokenkeys, function(key) {
+              var token = ps.tokens_set[key];
+              print(_.renderView('token.html', {
+                token: token,
+                matching:true,
+                key: key
+              }));
+            });
+            print('</div>');
+          });
+        %>
+        </div>
+      </div>
+        <%
+          if (pages.length > 1) {
+        %>
+        <div class='PopupPageArrowR'></div>
+        <div class='PopupPageArrowL hidden'></div>
+        <%
+          }
+        %>
+      </div>
+      <div class="ClientDivider">
+        <%
+
+          var cd = (ps.tokens_set.length < 8) ? ps.tokens_set.length : 7;
+
+          _.each(_.range(cd),function(v,k){
+            print('<div class="ClientDividerItem"></div>');
+          });
+        %>
+      </div>
+      <div class="Pagination half">
+      <div class="PopupTokens consumed">
+
+        <div class="PopupPageWrap">
+        <%
+          var pagesize = 6;
+          var pages = _.range(cps.tokens_set.length/pagesize);
+          _.each(pages,function(page,k){
+            var pagetokenkeys = _.range(page*pagesize,((page*pagesize)+pagesize > cps.tokens_set.length) ? cps.tokens_set.length : (page*pagesize)+pagesize);
+            if (k > 0) {
+              print('<div class="PopupPage hidden" data-page-id="'+page+'">');
+            }
+            else {
+              print('<div class="PopupPage" data-page-id="'+page+'">');
+            }
+            _.each(pagetokenkeys, function(key) {
+              var token = cps.tokens_set[key];
+              print(_.renderView('token_consumed.html', {
+                token: token,
+                key: key
+              }));
+            });
+            print('</div>');
+          });
+        %>
+        </div>
+      </div>
+        <%
+          if (pages.length > 1) {
+        %>
+        <div class='PopupPageArrowR'></div>
+        <div class='PopupPageArrowL hidden'></div>
+        <%
+          }
+        %>
+      </div>
+      <div class="PopupSummary">
+        <div class="PopupSummaryItem <%= summary_class %>">
+          <div class='RenderSprite Tobi'></div>
+          <%
+            if (!penalty) {
+              print(_.toKSNum(data.income));
+            } else {
+              print(_.span(_.toKSNum(data.income),"penalty"));
+              print(" / ");
+              print(_.toKSNum(data.income_nopenalty));
+            }
+          %>
+        </div>
+      </div>

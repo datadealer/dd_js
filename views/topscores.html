@@ -1,0 +1,29 @@
+<%
+  var game = _.game();
+  var data = D.gameNode.data;
+  var type_titles = data.type_titles;
+  var type_ = data.type_titles;
+  var regex = new RegExp(/^Data Dealer [0-9abcdef]+$/);
+  var show_form = regex.test(game.data.user.display_name);
+%>
+
+<div class="TopscoreHeader">
+  <% if (show_form) { %> 
+  <div class="TopscoreDiv DisplayNameOnce">
+    <div class="PopupTitle"><% print(_._('Setting your Nickname?')); %></div>
+    <div class="PopupText"><% print(_._('Please choose a Nickname under which you will be know to other Data Dealers')); %></div>
+    <%
+        print(_.renderView('form_displayname.html', {
+          D: D
+        }));
+    %>
+  </div>
+  <% } %>
+
+ <div class="ViewTabMenu">
+  <% _.each(type_titles, function(title, type){ %>
+   <div class="ViewTabMenuButton" data-button-id="ViewTabMenuButton" data-button-gestalt="<%= type %>"><%= title %></div>
+  <% }); %>
+ </div>
+</div>
+

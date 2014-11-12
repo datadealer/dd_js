@@ -1,0 +1,37 @@
+<%
+
+  /* FIXME THIS SHOULD BE HERE IN A TEMPLATE MOVE THIS TO GAME!!! */
+  var data = D.data;
+  var game = _.game();
+  var goal = D.goal || {};
+  var text = data.goals_texts[goal.workflow];
+  /* FIXME: make proper amount values not stored in DB */
+  var goal_amount = goal.amount || 1;
+  var current_amount = goal.current_amount || 0;
+  if (goal.project) {
+    var ptype = game.getType(goal.project) || {};
+    var pdata = ptype.type_data || {};
+    var project_title = pdata.title;
+    project_title = _.span(project_title);
+    var powerupdata =  { title: goal.target };
+    if (ptype[goal.target]) {
+      powerupdata = ptype[goal.target].type_data;
+    }
+    var target_sprite = powerupdata.popup_sprite;
+    var target_title = powerupdata.title;
+
+  } else {
+    var tdata = game.getTypeData(goal.target) || {};
+    var target_title = tdata.title;
+    var target_sprite = tdata.popup_sprite;
+  }
+  target_title = _.span(target_title);
+
+%>
+<div class="MissionGoal small<%= (goal.complete) ? ' complete' : "" %>"> 
+  <div class="MissionGoalSprite"><%= _.RenderSprite(target_sprite) %></div>
+  <div class="MissionGoalProgress"><% print(_.toKSNum(current_amount) + " / " + _.span(_.toKSNum(goal_amount), "highlight")); %></div>
+  <div class="MissionGoalStatus"></div>
+</div>
+
+

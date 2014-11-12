@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base href='..'>
+  <title>Datadealer Front-End Test Suite</title>
+  <link rel="stylesheet" href="../components/qunit/qunit.css" media="screen">
+  <script src="../components/qunit/qunit.js"></script>
+  <script src='../components/requirejs/require.js'></script>
+  <script>
+  QUnit.config.autostart = true;
+  require.config({
+    baseUrl: 'scripts',
+    paths: {
+      test: '../test'
+    }
+  });
+  require(['test/dd_js_test_example']);
+  </script>
+</head>
+<body>
+  <h1 id="qunit-header">Datadealer Front-End Test Suite</h1>
+  <h2 id="qunit-banner"></h2>
+  <div id="qunit-testrunner-toolbar"></div>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <div id="qunit-fixture">
+     <input type='checkbox' id='checkbox'>
+  </div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<%  
+  var game = _.game();
+  var logoclass = game.setup.locale;
+%>
+  <div class="RenderSprite MainMenuLogo <%= logoclass %>"></div>
+  <div class="UserActions">
+    <div id="UserData" class="UserButton"><%= D.userdata.auth_username %></div>
+    <div id="Logout" class="UserButton"><% print(_._('Log Out')); %></div>
+  </div>
+  <div id="MainMenuButtons" class="MainMenuButtons">
+    <% _.each(D.buttons, function(button) { %> <div class="MainMenuButton<% if (button.states.active) { print(' active') }; %>" data-button-id="<%= button.id %>"><%= button.label %></div> <% }); %>
+  </div>

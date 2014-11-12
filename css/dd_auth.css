@@ -1,0 +1,311 @@
+#dd_auth {
+  width: 100%;
+  height: 100%;
+  margin: 0px auto;
+  color: #009fd9;
+  font-family: Bowlby;
+  font-weight: normal !important;
+  line-height: 18px;
+}
+
+#loadertext {
+  font-family:Bowlby;
+  font-size:20px;
+  color:#FFF;
+}
+
+.DDAuthHeader {
+  height: 176px;
+  margin: 16px auto;
+  width: 580px;
+  position: relative;
+}
+.DDAuthLogo,
+#dd_auth .DDAuthLogo,
+#dd_auth a.DDAuthLogo,
+#dd_auth a.DDAuthLogo:hover {
+  background: url(../img/dd_auth_logo.png) no-repeat;
+  width: 520px;
+  height: 160px;
+  margin: 0 auto;
+  border:none;
+  text-decoration:none;
+  display:block;
+  overflow:hidden;
+  color:transparent;
+  text-shadow:none;
+  cursor:hand;
+  cursor:pointer;
+}
+
+.DDAuthHeader h1 {
+  opacity:0;
+  margin:0px;
+  padding:0px;
+}
+
+.DDAuthContent {
+  width: 520px;
+  margin: 16px auto 2px auto;
+  padding: 16px 32px 32px 32px;
+  background: #bfe7f5;
+  background: #FFF;
+  color: #009fd9;
+  font-family: Bowlby;
+  font-weight: normal !important;
+  border-radius:12px 12px 0px 0px;
+  line-height:18px;
+  border:#009fd9;
+}
+
+.DDAuthFooter {
+  margin: 2px auto 16px auto;
+  width: 520px;
+  position: relative;
+  text-align: center;
+  padding: 16px 32px;
+  border-radius: 0px 0px 12px 12px;
+  background: rgba(255,255,255,0.2);
+  line-height: 22px;
+  font-size: 16px;
+  color: #FFF;
+}
+#dd_auth .DDAuthFooter a.important {
+  display: block;
+  padding: 8px;
+  border-radius: 12px;
+  color: #FFF!important;
+  text-shadow: 2px 2px 0px #000;
+  background: #009fd9;
+  font-size:18px;
+}
+
+#dd_auth .DDAuthFooter a.important:hover {
+  box-shadow:0px 0px 16px #FFF;
+}
+#dd_auth .DDAuthFooter a {
+  font-size:16px;
+}
+
+#dd_auth .FormField {
+  padding:4px;
+  margin:0px -1px 14px -4px;
+  position:relative;
+  border-radius:12px;
+}
+
+#dd_auth .FormField.error {
+  border-color:#E40;
+  background:#FFa;
+}
+#dd_auth .FormField.remember {
+  display:none;
+}
+
+#dd_auth .forgotpwd {
+  margin:0.5em;
+}
+
+#dd_auth a {
+  color: #f19200;
+  text-shadow: 1px 1px #000;
+  text-decoration: none;
+  font-size:20px;
+  cursor:hand;
+  cursor:pointer;
+  font-family:Bowlby;
+  font-weight:normal;
+}
+
+#dd_auth a:hover {
+  text-shadow: 1px 1px #000, 0px 0px 6px #f19200;
+}
+#dd_auth a:focus {
+  text-shadow: 1px 1px #000, 0px 0px 6px #f19200;
+  outline:none;
+}
+
+#dd_auth label {
+  display: block;
+}
+
+#dd_auth input[type*="text"],
+#dd_auth input[type*="password"] {
+  width: 40%;
+}
+.ViewTab input[type*="text"],
+.PopupContent input[type*="text"],
+#dd_auth input {
+  border-radius:6px;
+  font-size:16px;
+  font-family:Tahoma, Arial, Helvetica, sans-serif;
+  padding:4px 8px;
+  border:2px solid #009fd9;
+}
+.PopupContent input[type*="text"]:focus,
+#dd_auth input:focus {
+  border-color:#f19200;
+  box-shadow:0px 0px 16px #f19200;
+  outline: none;
+}
+
+#dd_auth .socialaccount_providers {
+  list-style:none;
+  padding:0;
+}
+#dd_auth .socialaccount_providers li {
+  height:64px;
+  margin:8px;
+  float:left;
+}
+
+#dd_auth .login-or {
+  clear:both;
+}
+
+#dd_auth .socialaccount_providers a, 
+#dd_auth .Button,
+#dd_auth input[type*="submit"],
+#dd_auth .primaryAction {
+  font-family:Bowlby;
+  border:3px solid #009FD9;
+  border-radius:12px;
+  display:inline-block;
+  padding:0 36px;
+  font-size:20px;
+  line-height:36px;
+  color:#009FD9;
+  background:#BFE7F5;
+  box-shadow:3px 3px 0px #009FD9, 3px 3px 8px rgba(0,0,0,0.5);
+  text-align:center;
+  /*text-shadow:2px 2px 1px white,-2px -2px 1px white,2px -2px 1px white,-2px 2px 1px white;*/
+  -webkit-transition: color 0.2s, background 0.2s, border 0.2s, box-shadow 0.2s;
+  -webkit-transform-style:preserve-3d;
+  -moz-transform-style:preserve-3d;
+  text-shadow:0px 0px 0px white, 1px 1px 0px white, 2px 2px 0px white, 3px 3px 0px white;
+  cursor:hand; 
+  cursor:pointer;
+}
+
+#dd_auth .DDAuthLang {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: -28px;
+  color: #FFEA52;
+  text-shadow: 2px 2px 0px #000;
+  font-size: 13px;
+}
+#dd_auth .DDAuthLang .Button,
+#dd_auth .Button.disabled {
+  background:#EDEDED;
+  border-color:#999;
+  color:#999;
+  box-shadow:3px 3px 0px #999, 3px 3px 8px rgba(0,0,0,0.5);
+  cursor:hand;
+  cursor:pointer;
+}
+
+#dd_auth .DDAuthLang .Button.selected {
+  color:#009FD9;
+  border-color:#009FD9;
+  background:#BFE7F5;
+  box-shadow:3px 3px 0px #009FD9, 3px 3px 8px rgba(0,0,0,0.5);
+}
+
+#dd_auth p {
+  font-family:Tahoma, Helvetica, Arial, sans-serif;
+  color:#011;
+}
+#dd_auth h1,
+#dd_auth h2,
+#dd_auth h3,
+#dd_auth h4 {
+  font-weight:normal;
+}
+#dd_auth h1 {
+  color:#f19200;
+}
+#dd_auth h2 {
+  color:#009fd9;
+}
+#dd_auth h3 {
+  color:#f19200;
+}
+
+#dd_auth .DDAuthLang form {
+  background:none;
+  display:inline-block;
+  position:relative;
+  margin:0;
+  padding:0;
+  box-shadow:none;
+  border:none;
+}
+#dd_auth form p,
+#dd_auth form {
+  position:relative;
+}
+#dd_auth form {
+  background: #FFF;
+  padding: 4px 4px 12px 8px;
+  border-radius: 18px;
+  box-shadow: 0px 0px 64px #EEE inset;
+  border: 3px solid #f0f0f0;
+}
+#dd_auth .confirmation_key {
+  display:none !important;
+}
+#dd_auth .DDAuthLang .Button {
+  line-height: 26px;
+  border-radius: 10px;
+  border-width: 2px;
+  font-size: 18px;
+  cursor:hand !important;
+  cursor:pointer !important;
+}
+
+#dd_auth .errorlist {
+  color: #e40;
+  list-style: none;
+  margin: 10px -5px 4px -15px;
+  padding: 2px 5px;
+  position: absolute;
+  width: 270px;
+  right: 8px;
+  top: -7px;
+  min-height: 26px;
+  text-align:right;
+}
+#dd_auth .NonFieldError .errorlist {
+  position: relative;
+  margin: 10px 2px 0px 5px;
+  background: #FFA;
+  padding: 12px;
+  border-radius: 12px;
+  width: 486px;
+}
+
+#id_remember:focus {
+  outline:1px solid #F00;
+}
+
+#dd_auth .socialaccount_providers a:focus, 
+#dd_auth .button.secondaryAction:focus,
+#dd_auth .primaryAction:focus {
+  outline:none;
+  -webkit-transform:scale(1.08,1.08);
+  -moz-transform:scale(1.08,1.08);
+  background:#C6EFFF;
+  box-shadow:3px 3px 0px #009FD9, 3px 3px 8px rgba(0,0,0,0.5), 0px 0px 32px #009FD9;
+}
+
+#dd_auth .socialaccount_providers a:hover, 
+#dd_auth .button.secondaryAction:hover,
+#dd_auth .primaryAction:hover {
+  -webkit-transform:scale(1.08,1.08);
+  -moz-transform:scale(1.08,1.08);
+  background:#C6EFFF;
+}
+
+

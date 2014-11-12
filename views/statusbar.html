@@ -1,0 +1,43 @@
+  <div class="StatusItem Profiles<% if (D.profiles_active > 0.2) { print(' active'); } %>" data-status-id="Profiles">
+    <div class="StatusBackground profiles"></div>
+    <div class="StatusGraph" data-status-id="Profiles" style="width:<%= D.profiles_barsize %>px;"></div>
+    <div class="StatusGraph" data-status-id="Profiles" style="top:25px;left:18px;height:6px;background:#E85E2B; width:<%= D.profiles_crosssum %>px;"></div>
+    <div class="StatusIconFX"><div class="StatusIcon profiles"></div></div>
+    <div class="StatusText" data-status-id="Profiles"><% print(_.toKSNum(D.profiles_val)); %></div>
+    <div class="StatusTextSmall" data-status-id="Profiles"><% print(_.toKSNum(D.profiles_crosssum)); %>% <% print(_.toKSNum(D.profiles_tokenslength)+'/'+_.toKSNum(D.profiles.tokenslengthmax))  %></div>
+  </div>
+  <div class="StatusItem Cash<% if (D.cash_active > 0.2) { print(' active'); } %>" data-status-id="Cash">
+    <div class="StatusBackground"></div>
+    <div class="StatusGraph" data-status-id="Cash"></div>
+    <div class="StatusIconFX"><div class="StatusIcon cash"></div></div>
+    <div class="StatusText" data-status-id="Profiles"><% print(_.toKSNum(D.cash_val)); %></div>
+  </div>
+  <div class="StatusItem AP<% if (D.AP_active > 0.2) { print(' active'); } %>" data-status-id="AP">
+    <div class="StatusBackground"></div>
+    <div class="StatusGraph" data-status-id="AP" style="width:<%= D.AP_barsize %>px;"></div>
+    <div class="StatusIconFX"><div class="StatusIcon ap"></div></div>
+    <div class="StatusText" data-status-id="AP"><% print(Math.round(D.AP_val)) %>/<% print(Math.round(D.AP_max)) %></div>
+    <div class="StatusRemain" data-status-id="AP"></div>
+  </div>
+  <div class="StatusItem Karma<% if (D.karma_active > 0.2) { print(' active'); } %>" data-status-id="karma">
+    <div class="StatusBackground"></div>
+    <% if (D.karma_barsize < 0) { %>
+      <div class="StatusGraph neg" data-status-id="Karma" style="width:<%= Math.abs(D.karma_barsize) %>px;"></div>
+      <div class="StatusIconFX"><div class="StatusIcon karmadown"></div></div>
+      <div class="StatusIconFX"><div class="StatusIcon karmaup_inactive"></div></div>
+    <% } else { %>
+      <div class="StatusGraph pos" data-status-id="Karma" style="width:<%= D.karma_barsize %>px;"></div>
+      <div class="StatusIconFX"><div class="StatusIcon karmadown_inactive"></div></div>
+      <div class="StatusIconFX"><div class="StatusIcon karmaup"></div></div>
+    <% } %>
+    <!--<div class="StatusText" data-status-id="Karma"><% print(Math.round(D.karma_val)); %>%</div>-->
+  </div>
+  </div>
+  <div class="StatusItem XP<% if (D.XP_active > 0.2) { print(' active'); } %>" data-status-id="XP">
+    <div class="StatusBackground"></div>
+    <div class="StatusGraph" data-status-id="XP" style="width:<%= D.XP_barsize %>px;"></div>
+    <div class="StatusIconFX"><div class="StatusIcon xp"></div></div>
+    <div class="StatusText" data-status-id="XP"><% print(Math.round(D.XP_val)); %></div>
+    <div class="StatusTextLevel" data-status-id="XP"><%= D.XP_level %></div>
+  </div>
+

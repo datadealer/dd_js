@@ -1,0 +1,44 @@
+<%
+var data = D.data || {};
+var sprite = data.popup_sprite || {};
+var states = D.states || {};
+var button = data.button_text;
+%>
+ <div class="PopupBody">
+  <div class="PopupHeader">
+    <div class="PopupClose">X</div>
+    <div class="PopupLogo"><%= sprite.html %></div>
+    <div class="PopupTitle"><%= data.title %></div>
+    <div class="PopupText"><%= data.description %></div>
+  </div>
+  <div class="PopupContent">
+    <div class="PopupTab">
+    <%
+          print(_.renderView('profileset_client.html', D));
+    %>
+    </div>
+    
+    <% if (!states.idle && !states.chargeRunning) { %>
+      <div class="PopupButtons">
+        <div class="ButtonDecorator AP">
+          <div class='RenderSprite Tobi'></div>
+          1
+        </div>
+        <div class="Button" data-button-id="CollectButton"><%= _._('Collect') %></div>
+      </div>
+    <% } else { %>
+      <div class="PopupButtons">
+        <div class="ButtonDecorator AP">
+          <div class='RenderSprite Tobi'></div>
+          1
+        </div>
+        <div class="Button <% if (!states.idle) print('disabled') %>" data-button-id="ChargeButton"><%= button %></div>
+        <div class="ButtonDecorator Time">
+          <div class='RenderSprite Tobi'></div>
+          <% print(_.toTime(data.charge_time||6666)) %>
+        </div>
+      </div>
+    <% }  %>
+
+  </div>
+</div>

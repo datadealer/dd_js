@@ -1,0 +1,22 @@
+<%
+  var data = D.data || {};
+  var button = data.button || _._('OK');
+  var says = data.says || _._('Mark sagt:');
+  var text = data.description || "";
+  var title = data.title || "Neuer Kontakt!";
+  var perp = data.perp || undefined;
+%>
+<div class="PopupBody TutorialBody">
+  <div class="TutorialContent">
+    <div class="NotificationBubble">
+      <div class="NotificationAvatar"></div>
+      <div class="NotificationSays"><%= says %></div>
+      <div class="NotificationText">
+        <%= text  %>
+      </div>
+      <div class="PopupButtons TutorialButtons">
+        <div class="Button" data-button-id="MainButton"><%= button %></div>
+      </div>
+    </div>
+  </div>
+</div>

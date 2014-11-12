@@ -1,0 +1,3296 @@
+/* TODO FIXME :
+  - Browser Compatibility
+  - write transforms in all browser prefixes
+*/
+
+#GameContainer,
+.Stage,
+.Stage *,
+.MainMenu,
+.Button {
+  cursor:url(../img/dd.cur),pointer!important;
+}
+
+.Debug, .debug {
+  position:relative;
+  color:#000;
+  background:rgba(255,255,0,0.2);
+  border:1px solid #F00;
+  padding:4px;
+  display:none;
+  z-index:100000;
+}
+
+.debugmode .Debug,
+.debugmode .debug {
+  display:block;
+}
+.Popup .Debug {
+  display:none;
+}
+
+.MainSprites {
+  background: url(../img/MainSprites.png) no-repeat;
+}
+
+.PopupContentLoading {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 202px;
+  width: 100%;
+  text-align: center;
+  font-family: Bowlby;
+  color: #009fd9;
+  font-size: 24px;
+  padding-top: 318px;
+}
+.LoadingSpinner {
+  display: inline-block;
+  background: url(../img/MainSprites.png) no-repeat;
+  width:32px;
+  height:32px;
+  background-position: -329px -860px;
+  -webkit-animation: AniRotate 1s linear infinite;
+  -moz-animation: AniRotate 1s linear infinite;
+  -ms-animation: AniRotate 1s linear infinite;
+  animation: AniRotate 1s linear infinite;
+  margin: 0px 8px -6px 8px;
+}
+
+.UserActions {
+  position:absolute;
+  top:4px;
+  right:6px;
+}
+.UserButton {
+  display: inline-block;
+  border-radius:8px;
+  border:2px solid #C95127;
+  font-family: Bowlby;
+  color: #FCECCC;
+  font-size: 13px;
+  line-height: 20px;
+  text-shadow:2px 2px 0px #963200, -1px -1px 0px #963200, -1px 1px 0px #963200, 1px -1px 0px #963200;
+  background:#E48931;
+  padding:0px 6px;
+  box-shadow:1px 1px 0px #C95127,3px 3px 0px #C95127;
+}
+.UserButton:hover {
+  -webkit-transform: scale(1.1,1.1);
+  -moz-transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  transform: scale(1.1,1.1);
+}
+.Stage {
+  font-family:Voltaire;
+  font-size:11px;
+  background: #999;
+  border:6px solid #000;
+  border-width:0px 6px 6px 6px;
+  border-radius:0px 0px 6px 6px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+.Stage.ActiveImperium {
+  /* box-shadow: rgb(61, 87, 33) 0px 0px 128px; */
+  box-shadow: rgba(152, 170, 177, 0.95) 0px 0px 128px;
+}
+.Stage.ActiveDatabase {
+  box-shadow:rgb(26, 107, 136) 0px 0px 128px;
+}
+.Stage.ActiveMissions {
+  box-shadow:0 0 128px rgba(215, 146, 22, 0.71);
+}
+
+.Node {
+  background:#F00;
+}
+
+
+.Perp {
+ /* outline: 2px solid rgba(0,255,0,0.5);*/
+}
+
+.DatabaseQueue {
+}
+
+.DatabaseQueueConveyor {
+  height: 42px;
+  position: absolute;
+  top: 0px;
+  background: url(../img/MainSprites.png) no-repeat;
+  background-position: 0px -982px;
+  text-align: left;
+  width: 720px;
+}
+
+.DatabaseQueueWrap {
+  width:666px;
+  overflow: hidden;
+  position:absolute;
+  top:-60px;
+  left:0px;
+  height: 102px;
+  z-index:1;
+}
+
+.DatabaseQueueItem {
+  position: absolute;
+  top: 2px;
+  font-family: Bowlby;
+  height: 100px;
+  width: 100px;
+  display: block;
+  text-align: center;
+  background: url(../img/MainSprites.png) no-repeat;
+  background-position: -479px -608px;
+  z-index:1;
+  -webkit-transition: background-position 0.2s, -webkit-transform 0.2s, top 0.2s ease 0.3s;
+  -moz-transition: background-position 0.2s, -moz-transform 0.2s, top 0.2s ease 0.3s;
+  -ms-transition: background-position 0.2s, -ms-transform 0.2s, top 0.2s ease 0.3s;
+  transition: background-position 0.2s, transform 0.2s, top 0.2s ease 0.3s;
+  opacity:1;
+}
+.DatabaseQueuePipe {
+  width: 120px;
+  height: 100px;
+  position: absolute;
+  right: 0px;
+  background: url(../img/MainSprites.png) no-repeat;
+  background-position: -720px -924px;
+  z-index: 100;
+  top: -58px;
+}
+.DatabaseQueuePipeBack {
+  width: 120px;
+  height: 100px;
+  position: absolute;
+  right: 0px;
+  background: url(../img/MainSprites.png) no-repeat;
+  background-position: -840px -924px;
+  z-index: -1;
+  top: -58px;
+}
+
+.DatabaseQueueItem.selected,
+.DatabaseQueueItem:hover {
+  background-position:-479px -630px;
+  -webkit-transform: scale(1.08);
+  -moz-transform: scale(1.08);
+  -ms-transform: scale(1.08);
+  transform: scale(1.08);
+}
+
+.DatabaseQueueItem.merging {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  transition: none;
+  background-position:-579px -630px;
+}
+
+.DatabaseQueueItem.merging div,
+.DatabaseQueueItem.selected div {
+  opacity:0;
+}
+
+.DatabaseQueueItem:hover .DatabaseQueueItemAmount {
+  background:#FFF;
+  box-shadow: 2px 2px 0px #009FD9, 2px 2px 16px #009FD9, 2px 2px 16px #009FD9;
+}
+
+.DatabaseQueueItemAmount {
+  position: relative;
+  top: 50px;
+  text-align: center;
+  background: rgba(255,255,255,0.9);
+  background: #BFE7F5;
+  border-radius: 6px;
+  width: auto;
+  padding: 0px 4px;
+  margin: 0 auto;
+  display: inline-block;
+  color: #009FD9;
+  font-size: 12px;
+  font-weight: normal;
+  border: 2px solid #009FD9;
+  line-height: 16px;
+  box-shadow: 2px 2px 0px #009FD9;
+  text-shadow:2px 2px 0px rgba(255,255,255,0.7);
+}
+.DatabaseQueueItemOrigin {
+  font-family: Bowlby;
+  color: #FFF;
+  height: auto;
+  background: none;
+  text-shadow: 2px 2px 0px #555, -1px 1px 0px #555, 1px -1px 0px #555, -1px -1px 0px #555, 3px 3px 3px rgba(0,0,0,0.5);
+  line-height: 10px;
+  position: absolute;
+  top: 75px;
+  text-align: center;
+  width: 100px;
+}
+
+.Statusbar {
+}
+
+.StatusItem {
+  width: 128px;
+  height: 25px;
+  margin:0;
+  display: inline-block;
+  position: relative;
+}
+
+.StatusBackground {
+  background-image: url(../img/MainSprites.png);
+  width: 131px;
+  height: 28px;
+  background-position: -36px -580px;
+}
+
+.StatusBackground.profiles {
+  background-image: url(../img/MainSprites.png);
+  width: 130px;
+  height: 34px;
+  background-position: -2px -942px;
+}
+.StatusItem.Profiles {
+  width:142px;
+  margin-left:6px;
+}
+.StatusItem.Cash {
+  width:140px;
+}
+.StatusItem.AP {
+  width:144px;
+}
+.StatusItem.Karma {
+  width:130px;
+  margin: 0 6px 0 -7px
+}
+.StatusItem.XP {
+  width:128px;
+}
+.StatusBackground,
+.StatusRemain,
+.StatusText,
+.StatusTextLevel,
+.StatusTextSmall,
+.StatusGraph,
+.StatusIcon {
+ position:absolute;
+ top:0;
+ left:0;
+}
+.StatusRemain,
+.StatusText {
+  font-family: Bowlby;
+  font-size:14px;
+  color:#FFF;
+  line-height:23px;
+  width:128px;
+  text-align:center;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5), -1px -1px 0px rgba(0, 0, 0, 0.5), -1px 1px 0px rgba(0, 0, 0, 0.5), 1px -1px 0px rgba(0, 0, 0, 0.5);
+}
+.StatusTextLevel {
+  font-family: Bowlby;
+  font-size: 12px;
+  color: #666;
+  line-height: 24px;
+  text-align: center;
+  width: 38px;
+  left: 92px;
+}
+.StatusTextSmall {
+  font-family: Bowlby;
+  font-size:11px;
+  color:#FFF;
+  line-height:16px;
+  width:128px;
+  text-align:center;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5), -1px -1px 0px rgba(0, 0, 0, 0.5), -1px 1px 0px rgba(0, 0, 0, 0.5), 1px -1px 0px rgba(0, 0, 0, 0.5);
+  top:21px;
+  left:6px;
+}
+.StatusRemain {
+  position: absolute;
+  font-family: Bowlby;
+  top: 23px;
+  left: 6px;
+  color: #ffd800;
+  background: #6a6a6a;
+  line-height: 14px;
+  padding: 4px 4px 2px 4px;
+  border: 2px solid #404040;
+  font-size: 13px;
+  display: none;
+  border-width: 0px 6px 4px 2px;
+  border-radius: 0px 0px 8px 8px;
+  width: 102px;
+}
+.StatusRemain .highlight {
+  color:#FFF;
+}
+.StatusItem.Profiles .StatusText {
+  text-align:right;
+  width:116px;
+}
+.StatusItem.Cash .StatusText {
+  text-align:right;
+  width:116px;
+}
+.StatusItem.AP .StatusText {
+  text-align: center;
+  width: 122px;
+}
+
+.StatusItem.AP .StatusText {
+}
+.StatusItem.Karma .StatusText {
+}
+.StatusItem.XP .StatusText {
+  width:106px;
+}
+
+.StatusIcon.profiles {
+  background-image: url(../img/MainSprites.png);
+  width: 38px;
+  height: 38px;
+  left: -18px;
+  top: -7px;
+  background-position: -331px -616px;
+}
+.StatusIcon.cash {
+  background-image: url(../img/MainSprites.png);
+  width: 45px; height: 34px; left: -14px; top: -5px; background-position: -369px -616px;
+}
+.StatusIcon.ap {
+  background-image: url(../img/MainSprites.png);
+  width: 32px; height: 38px; left: -12px; top: -7px; background-position: -292px -655px;
+}
+.StatusIcon.karmaup {
+  background-image: url(../img/MainSprites.png);
+  width: 34px; height: 34px; left: 102px; top: -4px; background-position: -374px -689px;
+}
+.StatusIcon.karmaup_inactive {
+  background-image: url(../img/MainSprites.png);
+  width: 34px; height: 34px; left: 102px; top: -4px; background-position: 0px -702px;
+}
+.StatusIcon.karmadown {
+  background-image: url(../img/MainSprites.png);
+  width: 34px; height: 34px; left: -10px; top: -4px; background-position: -374px -655px;
+}
+.StatusIcon.karmadown_inactive {
+  background-image: url(../img/MainSprites.png);
+  width: 34px; height: 34px; left: -10px; top: -4px; background-position: 0px -668px;
+}
+.StatusIcon.xp {
+  background-image: url(../img/MainSprites.png);
+  width: 47px; height: 46px; left: 92px; top: -10px; background-position: -325px -655px;
+}
+
+.StatusItem:hover .StatusTextLevel,
+.StatusItem:hover .StatusIcon {
+  -webkit-transform:scale(1.1,1.1);
+  -moz-transform:scale(1.1,1.1);
+  -ms-transform:scale(1.1,1.1);
+  transform:scale(1.1,1.1);
+}
+
+.StatusIcon.inactive,
+.StatusItem:hover .StatusIcon.inactive,
+.StatusItem.active .StatusIcon.inactive {
+  -webkit-transform:scale(1,1);
+  -moz-transform:scale(1,1);
+  -ms-transform:scale(1,1);
+  transform:scale(1,1);
+}
+
+.StatusItem.active .StatusIcon {
+  -webkit-transform:scale(1.15,1.15);
+  -moz-transform:scale(1.15,1.15);
+  -ms-transform:scale(1.15,1.15);
+  transform:scale(1.15,1.15);
+}
+
+.StatusGraph {
+  width:64px;
+  height:12px;
+  background:#F00;
+  display:block;
+  border-radius:6px;
+  top: 2px;
+  left: 2px;
+  height: 19px;
+  /*-webkit-transition: width 0.5s linear, background 0.5s linear;*/
+}
+
+.StatusItem.Profiles .StatusGraph {
+  background:#009fd9;
+}
+.StatusItem.Profiles.active .StatusGraph {
+  background:#c0e7f5;
+}
+
+.StatusItem.Cash .StatusGraph {
+  background:#5da445;
+  width:120px;
+}
+.StatusItem.Cash.active .StatusGraph {
+  background:#b5d7a8;
+}
+
+.StatusItem.AP .StatusGraph {
+  background:#e48931;
+}
+.StatusItem.AP.active .StatusGraph {
+  background:#ffd800;
+}
+
+.StatusItem.Karma .StatusGraph {
+  background:#cd495d;
+}
+.StatusItem.Karma.active .StatusGraph {
+  background:#ea9999;
+}
+.StatusItem.Karma .StatusGraph.pos {
+  background:#31B6A2;
+}
+.StatusItem.Karma.active .StatusGraph.pos {
+  background:#98DAD0;
+}
+.StatusGraph.neg {
+  left: inherit;
+  right: 67px;
+  border-radius: 6px 0px 0px 6px;
+  border-right:2px solid #FFF;
+}
+.StatusGraph.pos {
+  left: 61px;
+  border-radius: 0px 6px 6px 0px;
+  border-left:2px solid #FFF;
+}
+
+
+.StatusItem.XP .StatusGraph {
+  background:#ffff00;
+}
+.StatusItem.XP.active .StatusGraph {
+  background:#fcfcd4;
+}
+.StatusItem.XP.active .StatusTextLevel {
+  font-size:14px;
+}
+.ViewTab,
+.ViewMap {
+  position:absolute;
+  overflow: hidden;
+  width:100%;
+  height:100%;
+  display:none;
+  box-shadow:0px 0px 64px #333 inset;
+}
+.ViewTab.active,
+.ViewMap.active {
+  display:block;
+}
+.ViewTab {
+  width: 100% !important;
+  height: 100% !important;
+  overflow-y: auto;
+}
+.ViewTab::-webkit-scrollbar {
+  width: 12px;
+}
+.ViewTab::-webkit-scrollbar-track {
+  border-radius: 4px;
+  background: #404040;
+}
+.ViewTab::-webkit-scrollbar-thumb {
+  box-shadow:1px 1px 2px #FCECCC inset;
+  background-color: #E48931;
+  border-radius: 8px;
+  border: 2px solid #C95127;
+}
+.ViewTab::-webkit-scrollbar-thumb:hover {
+  background-color: #E7A96C;
+}
+
+.ViewTab {
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  padding-top:50px;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.ViewTabContainer {
+  margin: 0 auto;
+  position: relative !important;
+  height:auto !important;
+  padding: 16px 0px;
+}
+
+.ViewTabContainer,
+.ViewMapContainer {
+  position:absolute;
+  overflow: hidden;
+  -webkit-transition: opacity 0.2s linear, visibility 0.2s linear;
+  -moz-transition: opacity 0.2s linear, visibility 0.2s linear;
+  -ms-transition: opacity 0.2s linear, visibility 0.2s linear;
+  transition: opacity 0.2s linear, visibility 0.2s linear;
+  width:100%;
+  height:100%;
+}
+.ViewTabContainerImg,
+.ViewMapContainerImg {
+  position: relative;
+  z-index: -2;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.TopscoreDiv .PopupTitle,
+.TopscoreDiv .PopupText {
+  margin-left:0px;
+}
+
+
+.ZoomControls {
+  z-index: 10;
+  display: block;
+  width: 30px;
+  height: 94px;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+.ZoomControls div {
+  display: block;
+  background: url('../img/MainSprites.png') no-repeat;
+  background-position: -257px -703px;
+  width: 29px;
+  height: 29px;
+  margin-top:2px;
+}
+.ZoomControls .ZoomOut {
+  background-position: -286px -703px;
+}
+.ZoomControls .Fullscreen {
+  background-position: -315px -703px;
+}
+
+.ZoomControls div:hover {
+  -webkit-transform: scale(1.1,1.1);
+  -moz-transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  transform: scale(1.1,1.1);
+}
+
+
+.PopupContainer {
+  z-index:100;
+  background:rgba(0,0,0,0);
+  width:inherit;
+  height:inherit;
+  position:absolute;
+  visibility: hidden;
+  top:0px;
+  left:0px;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: background 0.25s linear, visibility 0.25s linear, box-shadow 0.25s;
+  -moz-transition: background 0.25s linear, visibility 0.25s linear, box-shadow 0.25s;
+  -ms-transition: background 0.25s linear, visibility 0.25s linear, box-shadow 0.25s;
+  transition: background 0.25s;
+}
+.PopupContainer.lockOn {
+  display:block;
+  background: transparent;
+  visibility: visible;
+  box-shadow: 0px 0px 256px #000 inset;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  transition: none;
+}
+.PopupContainer.Top {
+  z-index:100000;
+}
+.PopupContainer.lockOn.Alert {
+  background: rgba(255, 0, 0, 0.4);
+  box-shadow: 0px 0px 256px #000 inset;
+}
+.PopupContainer.lockOn.NewItems {
+  background: transparent;
+  box-shadow: 0px 0px 256px #000 inset;
+}
+.PopupContainer.lockOn.Tutorial {
+}
+.PopupContainer.lockOn.LevelUp {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 256px #009fd9 inset;
+}
+.PopupContainer.lockOn.Mission {
+  background: transparent;
+  box-shadow: 0px 0px 256px #000 inset;
+}
+.PopupContainer.lockOn.Alert,
+.PopupContainer.lockOn.Tutorial,
+.PopupContainer.lockOn.NewItems,
+.PopupContainer.lockOn.Mission,
+.PopupContainer.lockOn.LevelUp {
+  transition: background 0.15s linear, visibility 0.15s linear, box-shadow 0.15s;
+  -moz-transition: background 0.15s linear, visibility 0.15s linear, box-shadow 0.15s;
+  -webkit-transition: background 0.15s linear, visibility 0.15s linear, box-shadow 0.15s;
+  -ms-transition: background 0.15s linear, visibility 0.15s linear, box-shadow 0.15s;
+}
+
+.MainMenu {
+  overflow:hidden;
+  margin:0 auto;
+  border:6px solid #000;
+  border-width:6px 6px 0px 6px;
+  border-radius:6px 6px 0px 0px;
+  background: #001111;
+  background: -moz-linear-gradient(top,  #001111 0%, #06546c 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#001111), color-stop(100%,#06546c));
+  background: -webkit-linear-gradient(top,  #001111 0%,#06546c 100%);
+  background: -o-linear-gradient(top,  #001111 0%,#06546c 100%);
+  background: -ms-linear-gradient(top,  #001111 0%,#06546c 100%);
+  background: linear-gradient(to bottom,  #001111 0%,#06546c 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001111', endColorstr='#06546c',GradientType=0 );
+}
+.MainMenuLogo,
+.MainMenuLogo.en_US {
+  position:absolute;
+  top:0;
+  left:0;
+  background-image: url(../img/MainSprites.png);
+  width: 222px;
+  height: 40px;
+  background-position: -1px -819px;
+}
+.MainMenuLogo.de_AT {
+  background-position: -225px -819px;
+}
+.MainMenuButtons {
+  height: 39px;
+  padding-left:228px;
+  border-bottom: 3px solid #16A3D7;
+}
+.ViewTabMenuButton,
+.MainMenuButton {
+  display:inline-block;
+  position:relative;
+  top:13px;
+  font-family:Bowlby;
+  color: #009FD9;
+  font-size: 16px;
+  background: #B7DDED;
+  line-height: 24px;
+  border: 3px solid #009FD9;
+  border-radius: 8px;
+  padding: 2px 16px 8px 16px;
+  margin-right: 8px;
+  box-shadow:3px 3px 0px #009FD9;
+  -webkit-transition: top 0.2s linear;
+  -moz-transition: top 0.2s linear;
+  -ms-transition: top 0.2s linear;
+  transition: top 0.2s linear;
+  text-shadow:0px 0px 0px white, 1px 1px 0px white, 2px 2px 0px white, 3px 3px 0px white;
+}
+
+.ViewTabMenuButton.active,
+.MainMenuButton.active {
+  -webkit-transition: top 0 linear;
+  -moz-transition: top 0 linear;
+  -ms-transition: top 0 linear;
+  transition: top 0 linear;
+  background:#ECF8FC;
+  color: #E48931;
+  top:9px;
+}
+
+.ViewTabMenuButton:hover,
+.MainMenuButton:hover {
+  background:#ECF8FC;
+}
+
+.ViewTabMenu {
+  width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  height: 30px;
+}
+
+.Text {
+  font-family:Bowlby;
+  font-size:12px;
+  text-align:center;
+  width:auto;
+  height:auto;
+  top:0px;
+  left:0px;
+}
+
+.Text.ErrorBling {
+  font-size:36px;
+  line-height:52px;
+  color:#CC0000;
+  text-shadow:2px 2px 0px #FFF, -2px 2px 0px #FFF, 2px -2px 0px #FFF, -2px -2px 0px #FFF;
+}
+
+.Text.ClientBling {
+  font-size:36px;
+  line-height:52px;
+  color:#E85E2B;
+  text-shadow:2px 2px 0px #FFF, -2px 2px 0px #FFF, 2px -2px 0px #FFF, -2px -2px 0px #FFF;
+}
+
+.Text.ProfileBlingNew {
+  font-size:28px;
+  line-height:32px;
+  color:#009FD9;
+  text-shadow:2px 2px 0px #FFF, -2px 2px 0px #FFF, 2px -2px 0px #FFF, -2px -2px 0px #FFF;
+}
+.Text.ProfileBlingUpdated {
+  font-size:28px;
+  line-height:32px;
+  color:#E85E2B;
+  text-shadow:2px 2px 0px #FFF, -2px 2px 0px #FFF, 2px -2px 0px #FFF, -2px -2px 0px #FFF;
+}
+.Text.KarmaUpBling {
+  font-size:60px;
+  line-height:44px;
+  color: #31B6A2;
+  text-shadow:2px 2px 0px #FFF, -2px 2px 0px #FFF, 2px -2px 0px #FFF, -2px -2px 0px #FFF;
+}
+.Text.LevelUpBling {
+  font-size:60px;
+  line-height:160px;
+  color: #009fD9;
+  text-shadow:2px 2px 0px #FFF, -2px 2px 0px #FFF, 2px -2px 0px #FFF, -2px -2px 0px #FFF;
+}
+.Text.LevelUpBlingBig {
+  font-size:120px;
+  line-height:200px;
+  color: #009fD9;
+  text-shadow:2px 2px 0px #FFF, -2px 2px 0px #FFF, 2px -2px 0px #FFF, -2px -2px 0px #FFF;
+}
+.Text.ProfileBling {
+  font-size:36px;
+  line-height:52px;
+  color:#009FD9;
+  text-shadow:2px 2px 0px #FFF, -2px 2px 0px #FFF, 2px -2px 0px #FFF, -2px -2px 0px #FFF;
+}
+.Text.ProfileBlingSmall {
+  font-size:30px;
+  line-height:82px;
+  color:#009FD9;
+  text-shadow:2px 2px 0px #FFF, -2px 2px 0px #FFF, 2px -2px 0px #FFF, -2px -2px 0px #FFF;
+}
+
+.Text.MoneyBling {
+  font-size:52px;
+  line-height:52px;
+  color:#5eA447;
+  text-shadow:2px 2px 0px #FFF, -2px 2px 0px #FFF, 2px -2px 0px #FFF, -2px -2px 0px #FFF;
+}
+
+.DecoratorAmount {
+  position:absolute;
+}
+.DecoratorAmountValue {
+  /*background: #009FD9;
+  background: #BFE7F5;*/
+  background: #E85E2B;
+  height: 10px;
+  position: absolute;
+  top: 3px;
+  left: 9px;
+  height: 6px;
+  border-radius: 2px;
+}
+.DecoratorAmountUpgrade {
+  /*background: #009FD9;
+  background: #BFE7F5;*/
+  background: #FF0;
+  height: 10px;
+  position: absolute;
+  top: 3px;
+  left: 9px;
+  height: 6px;
+  border-radius: 2px;
+}
+
+.hasUpgrade .DecoratorAmountValue {
+  border-radius: 2px 0px 0px 2px;
+}
+.hasUpgrade .DecoratorAmountUpgrade {
+  border-radius: 0px 2px 2px 0px;
+}
+
+.DecoratorAmountNum {
+  position: absolute;
+  top: -1px;
+  left: 0px;
+  text-align: center;
+  width: 76px;
+  color: #FFF;
+  text-shadow: 1px 1px 1px #004761;
+  font-size: 11px;
+  font-family: Numbers;
+}
+.hasUpgrade .DecoratorAmountNum {
+  color:#FF0;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.zoomHide2 .DecoratorLabel,
+.zoomHide1 .DecoratorAmountNum {
+  display:none!important;
+}
+
+.DecoratorAmount.consumed .DecoratorAmountValue {
+  background: #009fd9;
+}
+.DecoratorLabel {
+  font-family:Bowlby;
+  text-align:center;
+  color:#FFF;
+  height:auto;
+  background:none;
+  text-shadow:2px 2px 0px #009FD9, -1px 1px 0px #009FD9, 1px -1px 0px #009FD9, -1px -1px 0px #009FD9, 3px 3px 3px rgba(0,0,0,0.5);
+  line-height:12px;
+}
+.DecoratorLabel.client {
+  text-shadow:2px 2px 0px #da4910, -1px 1px 0px #da4910, 1px -1px 0px #da4910, -1px -1px 0px #da4910, 3px 3px 3px rgba(0,0,0,0.5);
+}
+
+.DecoratorNew {
+  font-family:Bowlby;
+  text-align:center;
+  height:auto;
+  line-height:14px;
+  font-size: 14px;
+  color: #FF0;
+  text-shadow: 2px 2px 0px #f00, 0px 0px 2px #f00;
+}
+.DecoratorNewArrow {
+  background: url(../img/MainSprites.png) no-repeat;
+  background-position: -571px -776px;
+  width: 29px;
+  height: 43px;
+  display:inline-block;
+  position: relative;
+  z-index:-1;
+  -webkit-animation: AniJump 6s linear infinite normal;
+  -moz-animation: AniJump 6s linear infinite normal;
+  -ms-animation: AniJump 6s linear infinite normal;
+  animation: AniJump 6s linear infinite normal;
+}
+
+.DecoratorReadyText {
+  font-family: Bowlby;
+  font-size: 13px;
+  position: absolute;
+  top: -15px;
+  width: 64px;
+  left: -10px;
+  text-align: center;
+  color: #009fd9;
+  text-shadow: 1px 1px 0px #FFF, -1px -1px 0px #FFF, -1px 1px 0px #FFF, 1px -1px 0px #FFF;
+}
+
+.DecoratorReadyText.Cash {
+  left: -6px;
+  color: #5da445;
+}
+
+.DecoratorTimerText {
+  font-family:Bowlby;
+  color:#7F3287;
+  text-shadow:1px 1px 0px #F8E6F2, -1px 1px 0px #F8E6F2, 1px -1px 0px #F8E6F2, -1px -1px 0px #F8E6F2, 2px 2px 0px #F8E6F2;
+  font-size:12px;
+  display:none;
+  text-align:center;
+  position:absolute;
+  top:-22px;
+  left:-18px;
+  width:80px;
+  line-height:12px;
+}
+.Popup {
+  border:6px solid rgba(64,64,64,0.5);
+  background:transparent;
+  border-radius:22px;
+  position:relative;
+  z-index:1000;
+  -webkit-transform-origin:50% 50% !important;
+  -moz-transform-origin:50% 50% !important;
+  -ms-transform-origin:50% 50% !important;
+  transform-origin:50% 50% !important;
+  height:auto;
+  width:600px;
+}
+.Popup.close {
+  border:6px solid rgba(64,64,64,0);
+  box-shadow:none;
+  -webkit-transition: visibility 0.2s;
+  -moz-transition: visibility 0.2s;
+  -ms-transition: visibility 0.2s;
+  transition: visibility 0.2s;
+  visibility:hidden;
+}
+.Popup.close .PopupBody {
+  transition: transform 0.2s;
+  -webkit-transition: -webkit-transform 0.2s;
+  -webkit-transform:scale(2,0) !important;
+  -webkit-transform-origin:50% 50% !important;
+  -moz-transform:scale(2,0) !important;
+  -moz-transition: -moz-transform 0.2s;
+  -ms-transition: -ms-transform 0.2s;
+  -ms-transform:scale(2,0) !important;
+  -ms-transform-origin:50% 50% !important;
+  transition: transform 0.2s;
+  transform:scale(2,0) !important;
+  transform-origin:50% 50% !important;
+
+  background:#FFF;
+}
+.Popup.close .PopupBody * {
+  display:none;
+}
+
+.PopupHeader,
+.SubpopContainer,
+.PopupContent {
+  background: #ffffff;
+  background: -moz-linear-gradient(left,  #ffffff 0%, #eeeeee 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(100%,#eeeeee));
+  background: -webkit-linear-gradient(left,  #ffffff 0%,#eeeeee 100%);
+  background: -o-linear-gradient(left,  #ffffff 0%,#eeeeee 100%);
+  background: -ms-linear-gradient(left,  #ffffff 0%,#eeeeee 100%);
+  background: linear-gradient(to right,  #ffffff 0%,#eeeeee 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee',GradientType=1 );
+}
+
+
+
+.PopupContentText {
+  padding:12px 16px 0px 16px;
+}
+.PopupContentText .PopupTitle {
+  margin-left:0px;
+}
+.PopupContentText .PopupParagraph {
+  font-family: Voltaire;
+  font-size: 15px;
+  color: #333;
+  line-height: 19px;
+}
+.PopupContentText .PopupList {
+  font-family:Bowlby;
+  font-size:16px;
+  color: #333;
+}
+.PopupContentText .PopupList .highlight {
+  color:#009fd9;
+}
+
+.Pagination {
+  position:relative;
+}
+
+.PopupPageWrap {
+  width:4000px;
+  position:relative;
+  -webkit-transition: left 0.4s ease-out;
+  -moz-transition: left 0.4s ease-out;
+  -ms-transition: left 0.4s ease-out;
+  transition: left 0.4s ease-out;
+}
+.PopupPage {
+  display:block;
+  float:left;
+  width: 540px;
+  height: 254px;
+  -webkit-transition: opacity 0.4s ease-out, -webkit-transform 0.4s ease-out;
+  -moz-transition: opacity 0.4s ease-out, -moz-transform 0.4s ease-out;
+  -ms-transition: opacity 0.4s ease-out, -ms-transform 0.4s ease-out;
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+.Pagination.half .PopupPage {
+  height: 127px;
+}
+
+
+.SuperToken .Pagination.half .PopupTokens {
+  height: 134px;
+  padding-top: 20px;
+}
+
+.PopupPage.hidden {
+  display:block;
+  opacity:0;
+  -webkit-transform: scale(0.5);
+  -moz-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+  transform: scale(0.5);
+}
+.PopupPage.PerpPage,
+.PopupPage.PowerupPage {
+  height:280px;
+}
+.PopupPage.PowerupPage.hidden {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+
+.PopupPageArrowR {
+  font-family:Bowlby;
+  color:#FFF;
+  text-align:center;
+  line-height:50px;
+  font-size:15px;
+  position: absolute;
+  top: 115px;
+  right: -24px;
+  background: url(../img/MainSprites.png) no-repeat;
+  background-position: -518px -737px;
+  width: 52px;
+  height: 52px;
+}
+.PopupPageArrowL {
+  font-family:Bowlby;
+  color:#FFF;
+  text-align:center;
+  line-height:50px;
+  font-size:15px;
+  position: absolute;
+  top: 115px;
+  left: -24px;
+  width: 52px;
+  height: 52px;
+  background: url(../img/MainSprites.png) no-repeat;
+  background-position: -466px -737px;
+}
+
+.PopupPageArrowR:hover,
+.PopupPageArrowL:hover {
+  background-position-y: -789px;
+  font-size:17px;
+  line-height:50px;
+}
+
+.Pagination.half .PopupPageArrowR {
+  top:54px;
+  right:-24px;
+}
+.Pagination.half .PopupPageArrowL {
+  top:54px;
+  left:-24px;
+}
+.Pagination.half.small .PopupPageArrowR {
+  top:28px;
+  right:-24px;
+}
+.Pagination.half.small .PopupPageArrowL {
+  top:28px;
+  left:-24px;
+}
+.Selector .PopupPageArrowR.standalone {
+  top: 135px;
+  right: -24px;
+}
+.Selector .PopupPageArrowL.standalone {
+  top:135px;
+  left:-24px;
+}
+
+
+.PopupTokens {
+  position:relative;
+  background: white;
+  border-radius: 16px;
+  margin: 20px 12px;
+  border: 6px solid #BFE7F5;
+  padding: 12px 0px;
+  box-shadow: 0px 0px 128px #BDE7F5 inset, 0px 0px 6px #009FD9;
+  height: 242px;
+  width: 540px;
+  overflow:hidden;
+  text-align:center;
+}
+.PopupTokens.consumed {
+  border: 6px solid #FCECCC;
+  box-shadow: 0px 0px 128px #FCECCC inset, 0px 0px 6px #E95E2B;
+  border-radius: 0px 0px 16px 16px;
+}
+
+.ClientDivider {
+  position: relative;
+  text-align: center;
+  width: 540px;
+  left: 18px;
+  height: 0px;
+  z-index: 10;
+}
+.ClientDividerItem {
+  display: inline-block;
+  background: url(../img/MainSprites.png) no-repeat;
+  width: 27px;
+  height: 26px;
+  background-position: -414px -632px;
+  margin: 0px 25px 0px 25px;
+}
+
+.Pagination.half .PopupTokens {
+  height: 128px;
+  margin-bottom:-18px;
+  padding-top:8px;
+}
+.Pagination.half.small .PopupTokens {
+  height: 68px;
+  margin-bottom: -8px;
+  border-radius: 16px 16px 0px 0px;
+  padding-top:12px;
+}
+.Pagination.half .PopupToken {
+  margin: 0px 4px 0px 4px;
+}
+
+.Requires {
+  color: #FFF;
+  border-width: 1px 0px 1px 0px;
+  padding: 6px 2px;
+  font-size: 14px;
+  line-height: 15px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 0px 0px 12px 12px;
+  height: auto;
+  width: 96px;
+  margin: 0px auto 0px auto;
+  position: absolute;
+  bottom: -26px;
+  left: 0px;
+}
+.RequiresLevel {
+  color: #FF0;
+  font-size:16px;
+  line-height:17px;
+}
+.RequiresProviders {
+  color: #FF0;
+  font-size:14px;
+  line-height:16px;
+}
+
+.SelectorNoItems {
+  position: absolute;
+  left: 0px;
+  top: 95px;
+  height: 26px;
+  width: 540px;
+  font-size: 18px;
+  text-align: center;
+  font-family: Bowlby;
+  color: #009fd9;
+  text-shadow: 2px 2px 0px #fff;
+}
+
+.PopupToken {
+  position:relative;
+  display:inline-block;
+  width:80px;
+  height:110px;
+  margin: 4px 4px 0px 4px;
+}
+
+.PopupToken.locked {
+  opacity:0.3;
+}
+
+.PowerupPerp .new,
+.PopupToken .new {
+  position: absolute;
+  top: -9px;
+  left: 0;
+  width: 70px;
+  font-family: Bowlby;
+  font-size: 14px;
+  color: #FF0;
+  z-index: 10;
+  text-align: center;
+  text-shadow: 2px 2px 0px #f00, 0px 0px 2px #f00;
+}
+.PowerupPerp .new {
+  top:0px;
+  width:100px;
+}
+
+#Missions {
+}
+
+.MissionPerp {
+  font-family:Bowlby;
+  color:#009fd9;
+  font-size:16px;
+  width: 570px;
+  height: auto;
+  padding:2px 6px 0px 6px;
+  display: inline-block;
+  background: #ECF8FC;
+  margin: 12px auto;
+  border-radius:12px;
+  border:3px solid #009fd9;
+  box-shadow: 4px 4px 0px #009fd9, 4px 4px 15px #000;
+  overflow: hidden;
+}
+.MissionPerp:hover {
+  background:#C6EFFF;
+  box-shadow:4px 4px 0px #009fd9, 4px 4px 16px #009fd9;
+}
+
+.MissionPerp.active {
+}
+.MissionPerp.complete {
+  color:#333;
+  background:#EEE;
+  border-color:#aaa;
+  box-shadow:4px 4px 0px #aaa, 4px 4px 15px #000;
+}
+.MissionPerp.complete:hover {
+  background:#FFF;
+  box-shadow:4px 4px 0px #aaa, 4px 4px 16px #009fd9;
+}
+
+.Mission .PopupTitle {
+  color: #009fd9;
+  margin: 0px 50px 0px 16px;
+  padding: 14px 0px 0px 0px;
+}
+
+.MissionGoals .Cash {
+  color:#5da445;
+}
+
+.MissionGoals {
+  margin: 0px 16px;
+}
+
+.MissionGoalsTitle {
+  font-family: Bowlby;
+  font-size: 18px;
+  color:#009fd9;
+  color:#E95E2B;
+  margin: 0px;
+  text-shadow:2px 2px 0px #FFF;
+}
+.MissionGoal {
+  position: relative;
+  font-family: Bowlby;
+  font-size: 15px;
+  margin: 0px 0px 4px 0px;
+  color: #333;
+  border: 4px solid #E95E2B;
+  line-height: 17px;
+  border-radius: 16px;
+  background: #FFF;
+  padding-left: 70px;
+  height:58px;
+}
+
+.MissionGoal.complete {
+  border: 4px solid #009fd9;
+  background: #FFF;
+}
+
+.MissionGoal.small {
+  height:38px;
+  width:234px;
+  display:inline-block;
+  padding-left: 40px;
+}
+
+.MissionGoal.small .MissionGoalProgress {
+  font-size: 15px;
+  line-height: 15px;
+  padding: 6px 6px 0px 0px;
+  overflow: hidden;
+  height: 34px;
+}
+
+.MissionGoal.small .MissionGoalSprite {
+  -webkit-transform: scale(0.25);
+  -moz-transform: scale(0.25);
+  -ms-transform: scale(0.25);
+  transform: scale(0.25);
+}
+
+.MissionGoalSprite {
+  -webkit-transform: scale(0.4);
+  -moz-transform: scale(0.4);
+  -ms-transform: scale(0.4);
+  transform: scale(0.4);
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  width: 180px;
+  height: 180px;
+  -webkit-transform-origin: 0px 0px;
+  -moz-transform-origin: 0px 0px;
+  -ms-transform-origin: 0px 0px;
+  transform-origin: 0px 0px;
+}
+
+.MissionLabel {
+  padding: 0px 0px 4px 0px;
+  font-size:18px;
+}
+
+.MissionGoalStatus {
+  background: url(../img/MainSprites.png) no-repeat;
+  background-position: -601px -776px;
+  width: 48px;
+  height: 64px;
+  position: absolute;
+  top: -20px;
+  right: -8px;
+}
+
+.MissionGoal.small .MissionGoalStatus {
+  -webkit-transform: scale(0.75);
+  -moz-transform: scale(0.75);
+  -ms-transform: scale(0.75);
+  -o-transform: scale(0.75);
+  transform: scale(0.75);
+}
+
+.MissionGoal.complete .MissionGoalStatus {
+  background-position: -650px -776px;
+}
+
+
+.MissionGoalText {
+  padding: 3px 45px 3px 3px;
+}
+.MissionGoal.complete .MissionGoalProgress {
+  color:#009fd9;
+}
+.MissionGoalProgress {
+  padding: 0px 3px;
+  font-size: 15px;
+  color: #E48931;
+  color: #E95E2B;
+  line-height: 15px;
+}
+
+.MissionRewards {
+  position: relative;
+  background: #EEE;
+  border-radius: 16px;
+  margin: 16px 16px 22px 16px;
+  padding: 4px 0px 9px 12px;
+  box-shadow: -4px -4px 0px #ccc inset;
+  border: 3px solid #ccc;
+  width: auto;
+  display: block;
+  height:30px;
+}
+.MissionBody.Complete .MissionRewards {
+  background: #BFE7F5;
+  border: 3px solid #009fd9;
+  box-shadow: -4px -4px 0px #009fd9 inset;
+}
+.MissionBody.Complete .MissionReward .RenderSprite {
+  -webkit-animation: AniNew 0.3s linear infinite alternate;
+  -moz-animation: AniNew 0.3s linear infinite alternate;
+  -ms-animation: AniNew 0.3s linear infinite alternate;
+  animation: AniNew 0.3s linear infinite alternate;
+}
+.MissionBody.Complete .MissionReward.Cash .RenderSPrite {
+  -webkit-animation: AniNew 0.3s linear infinite alternate;
+  -moz-animation: AniNew 0.3s linear infinite alternate;
+  -ms-animation: AniNew 0.3s linear infinite alternate;
+  animation: AniNew 0.3s linear infinite alternate;
+}
+.MissionBody.Complete .MissionReward.Risk .RenderSprite {
+  -webkit-animation: AniNew 0.31s linear infinite alternate;
+  -moz-animation: AniNew 0.31s linear infinite alternate;
+  -ms-animation: AniNew 0.31s linear infinite alternate;
+  animation: AniNew 0.31s linear infinite alternate;
+}
+.MissionBody.Complete .MissionReward.Profiles .RenderSprite {
+  -webkit-animation: AniNew 0.32s linear infinite alternate;
+  -moz-animation: AniNew 0.32s linear infinite alternate;
+  -ms-animation: AniNew 0.32s linear infinite alternate;
+  animation: AniNew 0.32s linear infinite alternate;
+}
+.MissionBody.Complete .MissionReward.XP .RenderSprite {
+  -webkit-animation: AniNew 0.33s linear infinite alternate;
+  -moz-animation: AniNew 0.33s linear infinite alternate;
+  -ms-animation: AniNew 0.33s linear infinite alternate;
+  animation: AniNew 0.33s linear infinite alternate;
+}
+
+
+
+.MissionRewardsTitle {
+  font-family: Bowlby;
+  font-size: 18px;
+  color: #009fd9;
+  margin: 0px 12px 0px 0px;
+  text-shadow: 2px 2px 0px #FFF;
+  display:inline;
+}
+
+.MissionBody.Complete .MissionReward {
+  opacity:1;
+}
+.MissionReward {
+  font-family: Bowlby;
+  font-size: 14px;
+  display: inline-block;
+  padding:4px;
+  margin:4px;
+  background:#FFF;
+  opacity:0.7;
+}
+.MissionReward.PopupSummaryItem {
+
+}
+
+.MissionGoal .highlight {
+  color:#009fd9;
+}
+
+#DisplayName.error {
+  -webkit-animation: AniErrorText 0.4s linear;
+  -moz-animation: AniErrorText 0.4s linear;
+  -ms-animation: AniErrorText 0.4s linear;
+  animation: AniErrorText 0.4s linear;
+}
+
+.TopscoreDiv,
+.TopscorePerp {
+  font-family:Bowlby;
+  color:#009fd9;
+  font-size:16px;
+  width: 570px;
+  height: auto;
+  padding:2px 6px 0px 6px;
+  background: #ECF8FC;
+  margin: 12px auto;
+  border-radius:12px;
+  border:3px solid #009fd9;
+  box-shadow: 4px 4px 0px #009fd9, 4px 4px 10px #000;
+  overflow: hidden;
+  color:#333;
+  background:#EEE;
+  border-color:#aaa;
+  box-shadow:4px 4px 0px #aaa, 4px 7px 14px #000;
+  padding: 6px 12px 12px 12px;
+}
+.TopscorePerp:hover {
+}
+.TopscoreRow {
+  position: relative;
+  font-family: Bowlby;
+  font-size: 15px;
+  margin: 0px 0px 4px 0px;
+  color: #333;
+  line-height: 24px;
+  border-radius: 6px;
+  background: #FFF;
+  height: 24px;
+  width: 542px;
+  display: inline-block;
+  padding-left: 32px;
+}
+
+.TopscoreRow.user {
+  background: #FF0;
+  font-size: 18px;
+  line-height: 34px;
+  height: 32px;
+}
+
+.TopscoreDisplayname {
+  color:#009fd9;
+}
+.TopscoreValue {
+  position:absolute;
+  top:0px;
+  right:0px;
+  text-align:right;
+  padding-right:6px;
+}
+.TopscoreNum {
+  width: 24px;
+  position: absolute;
+  top: 0px;
+  left: 2px;
+  text-align: right;
+}
+.TopscoreRankBarPerc {
+  position: absolute;
+  color: #FFF;
+  text-align: center;
+  width: 210px;
+  top: 1px;
+  text-shadow: 0px 0px 4px #000;
+}
+.TopscorePerp .LoadingSpinner {
+  display:none;
+}
+
+.TopscorePerp.loading .LoadingSpinner {
+  display:block;
+  position:absolute;
+  top:0px;
+  right:0px;
+}
+
+.TopscorePerp {
+}
+
+.TopscorePerp.active {
+  display:block;
+}
+
+.TopscoreRankBarWrap {
+  width: 200px;
+  padding: 2px;
+  border-radius: 8px;
+  border: 2px solid #009fd9;
+  background: #FFF;
+  position: relative;
+  margin: 10px auto;
+}
+.TopscoreRankBar {
+  background: #009fd9;
+  height: 22px;
+  border-radius: 4px 0px 0px 4px;
+}
+.TopscoreRankVal {
+  line-height: 19px;
+  text-align:center;
+  margin-bottom: 10px;
+}
+.TopscoreLabel {
+  color: #E48931;
+  font-size: 26px;
+  text-align: center;
+  line-height: 26px;
+  margin: 8px 0px 4px 0px;
+}
+
+.small .PopupToken {
+  width:67px;
+  height:80px;
+}
+
+
+.small .PopupTokenPerp,
+.small .PopupToken.locked:hover .PopupTokenPerp,
+.small .PopupTokenPerp.locked {
+  height: 40px;
+  -webkit-transform: scale(0.6);
+  -moz-transform: scale(0.6);
+  -ms-transform: scale(0.6);
+  transform: scale(0.6);
+  margin-left: -5px;
+  margin-top: -12px;
+  width: 40px;
+  -webkit-transform-origin: 40px 40px;
+  -moz-transform-origin: 40px 40px;
+  -ms-transform-origin: 40px 40px;
+  transform-origin: 40px 40px;
+}
+.small .PopupTokenPerp:hover {
+  -webkit-transform:scale(0.68,0.68);
+  -moz-transform:scale(0.68,0.68);
+  -ms-transform:scale(0.68,0.68);
+  transform:scale(0.68,0.68);
+}
+
+.PopupPerp .RenderSprite,
+.PopupTokenPerp .RenderSprite {
+  position:absolute;
+  top:0!important;
+  left:0!important;
+}
+
+.PopupToken.locked:hover .PopupTokenPerp {
+  -webkit-transform:inherit;
+  -moz-transform:inherit;
+  -ms-transform:inherit;
+  transform:inherit;
+}
+
+.PopupPerp .RenderSprite,
+.PopupTokenPerp {
+  height:80px;
+  -webkit-transform-origin:50% 50%;
+  -moz-transform-origin:50% 50%;
+  -ms-transform-origin:50% 50%;
+  transform-origin:50% 50%;
+}
+
+.PopupTokenPerp:hover {
+  -webkit-transform:scale(1.08,1.08);
+  -moz-transform:scale(1.08,1.08);
+  -ms-transform:scale(1.08,1.08);
+  transform:scale(1.08,1.08);
+}
+
+.PopupPerpLabel,
+.PopupTokenLabel {
+  position:absolute;
+  bottom:0px;
+  left:0px;
+  font-family:Voltaire;
+  font-size:13px;
+  line-height:13px;
+  height:26px;
+  width:100%;
+  text-align:center;
+
+}
+
+.PopupBody {
+  background:rgba(64,64,64,0.9);
+  border-radius:16px;
+  padding:6px;
+  height:auto;
+  width: 588px
+  position: relative;
+}
+.PopupHeader {
+  border:6px solid #DADADA;
+  border-radius:12px;
+  box-shadow:0px 0px 2px #404040 inset;
+  height:155px;
+}
+.PopupContent {
+  border:6px solid #DADADA;
+  border-radius:12px;
+  margin-top:6px;
+  box-shadow:0px 0px 2px #404040 inset;
+  height:322px;
+}
+
+.TokenPerp.SuperToken .PopupHeader {
+  height:224px;
+}
+.TokenPerp.SuperToken .PopupContent {
+  height:220px;
+}
+.TokenPerp .PopupHeader {
+  height:310px;
+}
+.TokenPerp .PopupContent {
+  height:197px;
+}
+
+.SubpopClose,
+.PopupClose {
+  font-family: Bowlby;
+  color: white;
+  background: #C00;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  text-align: center;
+  font-size: 28px;
+  text-shadow: 2px 2px 2px #300, 1px 1px 1px #600, -1px -1px 1px #600, -1px 1px 1px #600, 1px -1px 1px #600;
+  border: 2px solid #700;
+  box-shadow: 2px 2px 0px #700, 0px 2px 8px rgba(0,0,0,0.5);
+  line-height:32px;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  transition: none;
+  z-index: 1000;
+}
+.SubpopClose {
+  top: 6px;
+  right: 8px;
+  top: -20px;
+  right: -18px;
+}
+.SubpopClose:hover,
+.PopupClose:hover {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  transition: none;
+  box-shadow: 2px 2px 0px #700, 0px 2px 8px rgba(0,0,0,0.5), 3px 3px 0px #009FD9, 0px 0px 16px #009FD9, 3px 3px 16px #009FD9;
+  -webkit-transform:scale(1.1,1.1);
+  -moz-transform:scale(1.1,1.1);
+  -ms-transform:scale(1.1,1.1);
+  transform:scale(1.1,1.1);
+}
+.PopupLogo {
+  position:absolute;
+  top:-3px;
+  left:-3px;
+  width:180px;
+  height:180px;
+}
+.PopupTitle, .PopupSubTitle, .PopupText, .SubpopTitle, .SubpopSubTitle, .SubpopText, .SubpopLabelData {
+  margin-left:168px;
+  padding-right:6px;
+}
+.SubpopTitle,
+.PopupTitle {
+  font-family: Bowlby;
+  font-size: 28px;
+  line-height:28px;
+  color: #E48931;
+  margin-top:6px;
+}
+.SubpopTitle {
+  font-size: 24px;
+  line-height:24px;
+}
+.SubpopSubTitle,
+.PopupSubTitle {
+  color: #009FD9;
+  font-family: Bowlby;
+  font-size: 16px;
+  line-height: 17px;
+}
+.SubpopSubTitle {
+  font-size: 15px;
+  line-height: 16px;
+}
+.SubpopText,
+.PopupText {
+  font-family: Voltaire;
+  font-size: 15px;
+  color: #333;
+  line-height: 19px;
+}
+.highlight,
+.PopupText .highlight {
+  color:#009fd9;
+}
+.PopupText.Big {
+  margin-top:8px;
+  font-size:16px;
+}
+.TabSubTitle {
+  font-family: Bowlby;
+  color: #009fd9;
+  font-size: 16px;
+}
+.SubpopHeader {
+  position: absolute;
+  top: -19px;
+  width: 100%;
+  text-align: center;
+  z-index:100;
+}
+.standalone .SubpopHeader {
+ top:9px
+}
+.TokenPerp .SubpopHeader {
+ top:-16px
+}
+
+.SubpopHeaderTitle {
+  font-family:Bowlby;
+  font-size:15px;
+  width:auto;
+  display:inline-block;
+  height:22px;
+  line-height:22px;
+  text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  color: #009FD9;
+  background: #FFF;
+  padding: 0px 8px;
+  border: 3px solid #009FD9;
+  border-radius: 8px;
+}
+.PopupSummary {
+  position: absolute;
+  top: 192px;
+  width: 100%;
+  text-align: center;
+  margin-left: -12px;
+}
+.PopupSummary.half {
+  top:260px;
+}
+
+.PopupSummaryItem.Profiles.consumed {
+  color:#E48931;
+  border-color:#E48931;
+}
+
+
+.PopupSummaryItem .RenderSprite {
+  position:absolute;
+  top:0;
+  left:0;
+}
+.PopupSummaryItem {
+  position:relative;
+  font-family:Bowlby;
+  font-size:15px;
+  width:auto;
+  display:inline-block;
+  height:22px;
+  line-height:22px;
+  color:#404040;
+  padding: 0px 8px 0px 8px;
+  text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  z-index:0;
+  border-radius: 8px;
+  border: 3px solid #404040;
+  background: #FFF;
+}
+.PopupSummaryItem.Profiles {
+  color: #009FD9;
+  background: #FFF;
+  padding: 0px 8px 0px 24px;
+  border: 3px solid #009FD9;
+  margin: 0px 20px 0px 4px;
+}
+.PopupSummaryItem.Risk {
+  color: #cd495d;
+  background: #FFF;
+  padding: 0px 8px 0px 26px;
+  border: 3px solid #cd495d;
+  margin: 0px 18px 0px 4px;
+}
+.PopupSummaryItem.Risk.Up {
+  color: #31B6A2;
+  background: #FFF;
+  padding: 0px 8px 0px 26px;
+  border: 3px solid #31B6A2;
+}
+
+.PopupSummaryItem.Cash {
+  background:#FFF;
+  color: #5CA443;
+  padding: 0px 8px 0px 26px;
+  border: 3px solid #5CA443;
+  border-radius: 8px;
+  margin: 0px 18px 0px 28px;
+}
+.PopupSummaryItem .penalty {
+  color: #cd495d;
+}
+.PopupSummaryItem.XP {
+  background: #FF0;
+  color: #666;
+  padding: 0px 8px 0px 26px;
+  border: 3px solid #666;
+  border-radius: 8px;
+  margin: 0px 6px 0px 18px;
+}
+.PopupSummaryItem.Penalty {
+  background: #FFF;
+  color: #5CA443;
+  padding: 0px 8px 0px 26px;
+  border: 3px solid #cd495d;
+  border-radius: 8px;
+  margin-left:8px;
+}
+.SubpopButtons,
+.PopupButtons {
+  position: absolute;
+  bottom: -10px;
+  width: 100%;
+  text-align: center;
+  margin-left: -12px;
+  height:72px;
+}
+.SubpopButtons .Button,
+.PopupButtons .Button {
+  z-index:100;
+  position:relative;
+}
+.SubpopButtons {
+  /*top:248px;*/
+  bottom:-50px;
+  margin-left: 0px;
+}
+
+.PopupSprite {
+  position:absolute;
+  top:0;
+  left:0;
+  display:block;
+}
+.PopupMenu {
+  position:absolute;
+  top: 152px;
+  left:180px;
+  left: 50px;
+  width: 600px;
+  text-align: center;
+}
+
+.PopupMenuButton {
+  position:relative;
+  top:0;
+  display: inline-block;
+  border-radius:8px;
+  border:2px solid #C95127;
+  font-family: Bowlby;
+  color: #FCECCC;
+  font-size: 15px;
+  line-height: 20px;
+  height:20px;
+  text-shadow:2px 2px 0px #963200, -1px -1px 0px #963200, -1px 1px 0px #963200, 1px -1px 0px #963200;
+  background:#E48931;
+  padding:0px 6px;
+  margin-right:3px;
+  box-shadow:1px 1px 0px #C95127,3px 3px 0px #C95127;
+  border-radius: 8px 8px 0px 0px;
+  border-width: 2px 2px 2px 2px;
+}
+.PopupMenuButton.active {
+  border-color: #0084B5;
+  text-shadow:2px 2px 0px #0084B5, -1px -1px 0px #0084B5, -1px 1px 0px #0084B5, 1px -1px 0px #0084B5;
+  box-shadow:1px 1px 0px #0084B5,3px 3px 0px #0084B5;
+  background:#BFE7F5;
+  color: #009FD9;
+  color: #FFF;
+  top:-4px;
+  height:24px;
+}
+.PopupMenuButton:hover {
+  top:-4px;
+  height:24px;
+}
+
+.PopupMenuButton.TabArrowNew:after {
+  content: "";
+  background: url(../img/MainSprites.png) no-repeat;
+  background-position: -571px -776px;
+  width: 29px;
+  height: 43px;
+  display:inline-block;
+  position: absolute;
+  top: -38px;
+  left: 12px;
+  -webkit-animation: AniJump 6s linear infinite normal;
+  -moz-animation: AniJump 6s linear infinite normal;
+  -ms-animation: AniJump 6s linear infinite normal;
+  animation: AniJump 6s linear infinite normal;
+}
+
+.PopupBody.User .PopupMenu {
+  position: absolute;
+  top: 152px;
+  left: 180px;
+  width: 400px;
+  text-align: left;
+}
+
+.SubpopContainer {
+  position: absolute;
+  visibility:hidden;
+  top: 173px;
+  left: 6px;
+  margin: 12px 6px 6px 6px;
+  width: 576px;
+  height: 322px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 2px #404040 inset;
+  -webkit-transition: opacity 0.2s linear 0.2s, visibility 0.2s;
+  -moz-transition: opacity 0.2s linear 0.2s, visibility 0.2s;
+  -ms-transition: opacity 0.2s linear 0.2s, visibility 0.2s;
+  transition: opacity 0.2s linear 0.2s, visibility 0.2s;
+  opacity:0;
+  z-index:10000;
+}
+.SubpopContainer.half {
+  height:220px;
+  top:242px;
+}
+
+.SubpopContainer.open {
+  visibility:visible;
+  -webkit-transition: opacity 0s;
+  -moz-transition: opacity 0s;
+  -ms-transition: opacity 0s;
+  transition: opacity 0s;
+  opacity:1;
+}
+
+.Selector.hasPopup {
+  display:none;
+}
+.Selector.standalone {
+
+}
+.PopupTab.hasPopup .PopupPageArrowL,
+.PopupTab.hasPopup .PopupPageArrowR {
+  display: none;
+}
+.PopupTab.hasPopup .Selector .PopupPageArrowL,
+.PopupTab.hasPopup .Selector .PopupPageArrowR {
+  display: block;
+}
+.PopupTab.hasPopup .Selector .PopupPageArrowL.hidden,
+.PopupTab.hasPopup .Selector .PopupPageArrowR.hidden {
+  display: none;
+}
+
+.Subpop {
+  display: block;
+  position: absolute;
+  background: #FFF;
+  border: 6px solid #BFE7F5;
+  border-radius: 16px;
+  height: 266px;
+  z-index: 10001;
+  -webkit-transition: -webkit-transform 0.2s;
+  -webkit-transform: scale(0,0);
+  -webkit-transform-origin: 50% 100%;
+  -moz-transition: -moz-transform 0.2s;
+  -moz-transform: scale(0,0);
+  -ms-transition: -ms-transform 0.2s;
+  -ms-transform: scale(0,0);
+  -ms-transform-origin: 50% 100%;
+  transition: transform 0.2s;
+  transform: scale(0,0);
+  transform-origin: 50% 100%;
+  top: 20px;
+  left: 12px;
+  width: 540px;
+  box-shadow: 0px 0px 64px #BDE7F5 inset, 0px 0px 6px #009FD9;
+}
+
+.Subpop.TokenUpgrade {
+  height: 167px;
+  top: 19px;
+}
+.Subpop.TokenUpgrade .SubpopSubTitle {
+  line-height:20px;
+}
+.Subpop.TokenUpgrade .SubpopTitle {
+  font-size:15px;
+  line-height:16px;
+}
+
+.Subpop.TokenUpgrade .UpgradeDone {
+  font-size:14px;
+  background: #E85E2B;
+  border-radius: 6px;
+  padding: 0px 4px;
+  color: #FFF;
+}
+.Subpop.TokenUpgrade .UpgradeTodo {
+  font-size:14px;
+  background: #009fd9;
+  border-radius: 6px;
+  padding: 0px 4px;
+  color: #FF0;
+}
+
+.Subpop.open {
+  -webkit-transition: -webkit-transform 0.1s;
+  -webkit-transform: scale(1,1);
+  -moz-transition: -moz-transform 0.1s;
+  -moz-transform: scale(1,1);
+  -ms-transition: -ms-transform 0.1s;
+  -ms-transform: scale(1,1);
+  transition: transform 0.1s;
+  transform: scale(1,1);
+}
+
+.PopupSelector {
+  background: #BFE7F5;
+  box-shadow: 0px 0px 128px #009FD9 inset;
+  width: 540px;
+  height: 266px;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align:center;
+}
+
+.standalone .PopupSelector {
+  display: block;
+  background: #BFE7F5;
+  position: absolute;
+  border: 6px solid #BFE7F5;
+  border-radius: 16px;
+  height: 266px;
+  top: 20px;
+  left: 12px;
+  width: 540px;
+  box-shadow: 0px 0px 128px #009FD9 inset, 0px 0px 6px #009FD9;
+}
+
+.Selector .PopupPageArrowR {
+  top: 104px;
+  right: -41px;
+}
+.Selector .PopupPageArrowL {
+  top: 104px;
+  left: -41px;
+}
+
+
+.SubpopLogo {
+  position:absolute;
+  top:-16px;
+  left:-16px;
+  width:180px;
+  height:180px;
+}
+.Powerups {
+}
+.PowerupsPage {
+  padding: 32px 0px 0px 22px;
+  overflow:hidden;
+}
+
+.PopupPerp,
+.Powerup {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 130px;
+  margin: 0px 2px 4px 2px;
+  border-radius: 12px;
+  /* background: url(../img/MainSprites.png) rgba(0,0,0,0.05);
+  background-position: -816px 0px; */
+  background: rgba(0,0,0,0.05);
+  font-family: Voltaire;
+  font-size: 13px;
+  line-height: 13px;
+}
+.PowerupSprite,
+.PowerupBackground {
+  position:absolute;
+  top:0;
+  left:0;
+}
+.PopupPerp:hover .RenderPerp,
+.Powerup:hover .PowerupPerp {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+.Powerup.taken:hover .PowerupBackground .RenderSprite {
+  /* background:rgba(0,159,217,1); */
+  background-position:-816px 0px !important;
+}
+.PopupPerp.provided,
+.Powerup.provided {
+  border-radius:12px;
+  background:rgba(0,159,217,0.5);
+  color:#FFF;
+  color:#000;
+  margin-top:18px;
+  height:222px;
+  background:rgba(255,255,255,0.7);
+}
+.PopupPerp.provided:hover,
+.Powerup.provided:hover {
+  background:rgba(255,255,255,1);
+}
+.Powerup.provided.locked,
+.Powerup.provided.locked:hover,
+.PopupPerp.provided.locked,
+.PopupPerp.provided.locked:hover {
+  background:rgba(255,255,255,0.5);
+  background:rgba(0,0,0,0.1);
+  color:rgba(0,0,0,0.4);
+}
+.Powerup.provided.locked .PowerupPerp,
+.PopupPerp.provided.locked .RenderPerp {
+  opacity:0.3;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+
+.PopupPerp.provided.CityPerpSpecial .PerpLabel {
+  top:132px!important;
+}
+.PopupPerp.provided.CityPerpSpecial .RenderPerp {
+  top:-12px!important;
+}
+.PopupPerp.provided.CityPerpSpecial .PerpLabelData {
+  top: 152px;
+  height: 40px;
+}
+
+.PowerupPerp {
+  -webkit-transform-origin:50% 50%;
+  -ms-transform-origin:50% 50%;
+  transform-origin:50% 50%;
+  width:100px;
+  height:100px;
+}
+
+.Powerup.updating .PowerupPerp {
+  -webkit-animation: AniPlugIn2 0.4s linear;
+  -moz-animation: AniPlugIn2 0.4s linear;
+  -ms-animation: AniPlugIn2 0.4s linear;
+  animation: AniPlugIn2 0.4s linear;
+}
+.Powerup.updating.hide .PowerupSprite {
+}
+.Powerup.updating .PowerupLabel {
+  display:none;
+}
+.Powerup.updating.hide .PowerupPerp {
+  -webkit-animation: AniPlugOut2 0.2s ease;
+  -moz-animation: AniPlugOut2 0.2s ease;
+  -ms-animation: AniPlugOut2 0.2s ease;
+  animation: AniPlugOut2 0.2s ease;
+  opacity:0;
+}
+
+.Powerup.free:hover .PowerupBackground .RenderSprite {
+  background-position-x: -616px !important;
+}
+
+.PerpLabel,
+.PowerupLabel {
+  position: absolute;
+  top: 95px;
+  left: 0px;
+  height: 28px;
+  width: 100px;
+  text-align: center;
+  border-radius: 0px 0px 12px 12px;
+  padding-top: 5px;
+}
+.PerpLabelData,
+.PowerupLabelData {
+  position: absolute;
+  top: 126px;
+  left: 0px;
+  width: 100px;
+  text-align: center;
+  padding-top: 5px;
+  height: 65px;
+  line-height: 15px;
+}
+.PerpLabelData.SubpopLabelData,
+.PowerupLabelData.SubpopLabelData {
+  position:static;
+  top: inherit;
+  left: inherit;
+  width:auto;
+  text-align:left;
+  padding:0px;
+  height:auto;
+  font-family:Bowlby;
+  font-size:15px;
+  line-height:16px;
+}
+.PerpLabelData.SubpopLabelData .BonusWrap,
+.PowerupLabelData.SubpopLabelData .BonusWrap {
+ margin-bottom:6px;
+}
+.PerpLabelData.SubpopLabelData .BonusValues,
+.PowerupLabelData.SubpopLabelData .BonusValues,
+.PowerupLabelData.SubpopLabelData .BonusTokens {
+  margin: 2px 6px 2px 0px;
+  color: #fff;
+  background: #009FD9;
+  padding: 1px 2px 1px 2px;
+  border-radius: 6px;
+  line-height: 20px;
+  display: inline-block;
+  position: relative;
+  font-size: 14px;
+}
+.PerpLabelData.SubpopLabelData .BonusValues,
+.PowerupLabelData.SubpopLabelData .BonusValues {
+  background: rgba(0,159,217,0.2);
+}
+
+.BonusTokenAmount {
+  color: #E48931;
+  font-size:12px;
+  position:relative;
+  top: -0.1em;
+}
+
+.SubpopLabelData .Bonus {
+  display: inline-block;
+  padding: 0 5px;
+  margin: 1px 0;
+  border-radius: 6px;
+  background: #FFF;
+}
+
+.SubpopLabelData .Bonus.Invest {
+  color:#5CA443;
+}
+.PerpLabelData .Price,
+.PowerupLabelData .Price {
+  background: #5CA443;
+  color: #060;
+  padding: 0px 4px;
+  background: #B6D7A8;
+  background: #FFF;
+  border-top: 2px solid #B6D7A8;
+  border-bottom: 2px solid #B6D7A8;
+  margin-bottom: 4px;
+  line-height: 16px;
+}
+.locked .PerpLabelData .Price,
+.locked .PowerupLabelData .Price {
+  color: #666;
+  border-color: #999;
+  opacity: .5;
+}
+
+.Slots {
+  color:#009FD9;
+}
+
+.Buy.Cash {
+  display:inline-block;
+  width: 22px;
+  height: 16px;
+  background: url(../img/MainSprites.png) no-repeat;
+  background-position: -414px -616px;
+  margin-bottom: -2px;
+  margin-right:2px;
+}
+.locked .Buy.Cash {
+  background-position: -257px -668px;
+}
+
+.Buy.Token {
+  display:inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(../img/MainSprites.png) no-repeat;
+  background-position: -436px -616px;
+  margin-bottom: -4px;
+  margin-right:2px;
+}
+.consumed .Buy.Token {
+ background-position: -452px -616px;
+}
+.Up .Buy.Risk {
+  display:inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(../img/MainSprites.png) no-repeat;
+  background-position: -460px -584px;
+  margin-bottom: -2px;
+  margin-right:2px;
+}
+.Down .Buy.Risk {
+  display:inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(../img/MainSprites.png) no-repeat;
+  background-position: -460px -600px;
+  margin-bottom: -5px;
+  margin-right:2px;
+}
+.BuySlotsWrap {
+  margin-top:24px;
+}
+.BuySlotsNumWrap {
+  float:left;
+  position:relative;
+  display: inline-block;
+  font-family: Bowlby;
+  font-size: 33px;
+  line-height: 36px;
+  width: 120px;
+  text-align: center;
+  color: #009fd9;
+  background: #FFF;
+  padding: 6px 0px;
+  margin: 0px;
+  border-radius: 12px;
+  border: 3px solid #009fd9;
+  z-index:1;
+  text-align:center;
+  white-space:nowrap;
+  box-shadow:0px 0px 12px #009fd9;
+}
+.BuySlotsNum, .BuySlotsNumLeft {
+  display:inline-block;
+  line-heigth:22px;
+}
+.BuySlotsWrap .ButtonInc,
+.BuySlotsWrap .ButtonDec {
+  position:relative;
+  float:left;
+  margin:10px -4px 0px -4px;
+}
+
+.Invest,
+.PowerupLabelData .Invest {
+  color: #060;
+}
+.PerpLabelData .Risk.Down,
+.PowerupLabelData .Risk.Down {
+  color: #cd495d;
+}
+.PerpLabelData .Risk.Up,
+.PowerupLabelData .Risk.Up {
+  color: #31B6A2;
+}
+.PerpLabelData .Profiles,
+.PowerupLabelData .Profiles {
+  color: #009FD9;
+}
+.PerpLabelData .Profiles.consumed,
+.PowerupLabelData .Profiles.consumed {
+  color:#E48931;
+}
+
+.MissionBody {
+  background: #FFF;
+}
+.MissionContent {
+  border: 0px solid rgba(0,0,0,0.2);
+  border-radius: 14px;
+  background: #FFF;
+  margin: -6px;
+  /* height: 520px; */
+  box-shadow: 0px 3px 12px rgba(0,0,0,0.3);
+}
+
+.NotificationBody {
+  background:#FFF;
+  height:440px;
+}
+
+.NotificationHeader {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+}
+
+.NotificationContent {
+  border: 0px solid rgba(0,0,0,0.2);
+  border-radius: 14px;
+  background: #FFF;
+  margin: -6px;
+  height: 452px;
+  box-shadow: 0px 3px 12px rgba(0,0,0,0.3);
+}
+
+.NotificationItem {
+  height:290px;
+}
+.NotificationItem .Subpop {
+  height: 230px;
+  top: 20px;
+  left: 19px;
+  width: 550px;
+  z-index: 10;
+  background: #FFF;
+  border: 6px solid #BFE7F5;
+  box-shadow: 0px 0px 64px #BDE7F5 inset, 0px 0px 6px #009FD9;
+}
+
+.NotificationButtons {
+  bottom:36px;
+  position:relative;
+}
+
+.TutorialButtons {
+  bottom:36px;
+  position:relative;
+}
+
+.MissionDecorator {
+  font-family: Bowlby;
+  text-align: center;
+  font-size: 32px;
+  color: #FFF;
+  height: auto;
+  text-shadow: 2px 2px 0px #009FD9, -2px 2px 0px #009FD9, 2px -2px 0px #009FD9, -2px -2px 0px #009FD9, 3px 3px 3px rgba(0,0,0,0.5);
+  line-height: 24px;
+  margin-top: -8px;
+  position: absolute;
+  top: -6px;
+  left: 0px;
+  width: 600px;
+  z-index: 100;
+  -webkit-transform: rotate(1deg);
+  -webkit-animation: AniNew 0.3s linear infinite alternate;
+  -moz-transform: rotate(1deg);
+  -moz-animation: AniNew 0.3s linear infinite alternate;
+  -ms-transform: rotate(1deg);
+  -ms-animation: AniNew 0.3s linear infinite alternate;
+  transform: rotate(1deg);
+  animation: AniNew 0.3s linear infinite alternate;
+}
+
+.NotificationTitle {
+  font-family: Bowlby;
+  text-align: center;
+  font-size: 32px;
+  color: #FF0;
+  color: #FFF;
+  height: auto;
+  background: none;
+  text-shadow: 2px 2px 0px #f00, -2px 2px 0px #f00, 2px -2px 0px #f00, -2px -2px 0px #f00, 3px 3px 3px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 0px #009FD9, -2px 2px 0px #009FD9, 2px -2px 0px #009FD9, -2px -2px 0px #009FD9, 3px 3px 3px rgba(0,0,0,0.5);
+  line-height: 24px;
+  margin-top: -12px;
+  position:absolute;
+  top:-11px;
+  left:-11px;
+  width:100px;
+  z-index:100;
+  -webkit-transform:rotate(-16deg);
+  -webkit-animation: AniNewRot 0.3s linear infinite alternate;
+  -moz-transform:rotate(-16deg);
+  -moz-animation: AniNewRot 0.3s linear infinite alternate;
+  -ms-transform:rotate(-16deg);
+  -ms-animation: AniNewRot 0.3s linear infinite alternate;
+  transform:rotate(-16deg);
+  animation: AniNewRot 0.3s linear infinite alternate;
+}
+
+.NotificationSays {
+  position: absolute;
+  top: 0px;
+  left: 120px;
+  font-family: Bowlby;
+  font-size: 15px;
+  line-height: 30px;
+  color: #E5892F;
+  width:200px;
+}
+.NotificationText {
+  position: absolute;
+  top: 24px;
+  left: 112px;
+  background: #009fd9;
+  background: -moz-linear-gradient(-45deg, #009fd9 0%, #00739e 100%);
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#009fd9), color-stop(100%,#00739e));
+  background: -webkit-linear-gradient(-45deg, #009fd9 0%,#00739e 100%);
+  background: -o-linear-gradient(-45deg, #009fd9 0%,#00739e 100%);
+  background: -ms-linear-gradient(-45deg, #009fd9 0%,#00739e 100%);
+  background: linear-gradient(135deg, #009fd9 0%,#00739e 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#009fd9', endColorstr='#00739e',GradientType=1 );
+  border-radius: 12px;
+  padding: 4px 8px 8px 8px;
+  font-family: SourceSansBlack;
+  line-height: 22px;
+  font-size: 19px;
+  color: #FFF;
+  height: 119px;
+  width: 440px;
+}
+.NotificationText .highlight {
+  color:#FF0;
+}
+.NotificationText .level,
+.NotificationText .xp {
+  color:#FF0;
+}
+.NotificationText .ap {
+  color:#ffd800;
+}
+
+
+.NotificationText .Title {
+  font-size:24px;
+}
+
+.NotificationBubble {
+  height: 160px;
+  position: relative;
+  left: 14px;
+  bottom: 14px;
+  width:100%;
+}
+.Tutorial .NotificationBubble {
+  left:6px;
+  top:0px;
+}
+.NotificationAvatar {
+  background: url(../img/MainSprites.png) no-repeat;
+  background-position:-840px -763px;
+  width:120px;
+  height:160px;
+  position:relative;
+  top:10px;
+}
+
+.warn {
+  color: #c00;
+  font-size: 16px;
+  line-height: 20px;
+  font-family: SourceSansBlack;
+  background: #FF0;
+  text-align: center;
+  display: block;
+  padding: 6px 8px;
+  border-radius: 10px;
+  margin: 4px 0px;
+}
+
+.Popup.LevelUp,
+.Popup.Mission,
+.Popup.Tutorial,
+.Popup.NewItems {
+  border: none;
+  margin: 6px;
+}
+.Popup.Mission {
+  /* height:520px !important; */
+}
+
+.PopupBody.Status .PopupHeader {
+  height:260px;
+}
+.PopupBody.TutorialBody {
+  background: #FFF;
+  box-shadow: 0px 3px 12px rgba(0,0,0,0.3);
+  -webkit-animation: AniScaleOpacity 0.2s reverse;
+  -moz-animation: AniScaleOpacity 0.2s reverse;
+  -ms-animation: AniScaleOpacity 0.2s reverse;
+  animation: AniScaleOpacity 0.2s reverse;
+  height: 174px;
+  padding:0px;
+}
+
+.PopupBody a {
+  color: #009fd9;
+  font-family: Bowlby;
+  text-decoration: none;
+  cursor: pointer!important;
+  cursor: hand!important;
+}
+.PopupBody a:hover {
+  color: #E48931;
+}
+
+.Button, .inset-button, .ButtonInc, .ButtonDec {
+  font-family:Bowlby;
+  color:#009FD9;
+  border:3px solid #009FD9;
+  border-radius:12px;
+  display:inline-block;
+  padding:0 36px;
+  font-size:20px;
+  line-height:36px;
+  text-decoration:none;
+  background:#BFE7F5;
+  box-shadow:3px 3px 0px #009FD9, 3px 3px 8px rgba(0,0,0,0.5);
+  text-align:center;
+  /*text-shadow:2px 2px 1px white,-2px -2px 1px white,2px -2px 1px white,-2px 2px 1px white;*/
+  -webkit-transition: color 0.2s, background 0.2s, border 0.2s, box-shadow 0.2s;
+  -moz-transition: color 0.2s, background 0.2s, border 0.2s, box-shadow 0.2s;
+  -ms-transition: color 0.2s, background 0.2s, border 0.2s, box-shadow 0.2s;
+  transition: color 0.2s, background 0.2s, border 0.2s, box-shadow 0.2s;
+  text-shadow:0px 0px 0px white, 1px 1px 0px white, 2px 2px 0px white, 3px 3px 0px white;
+}
+
+.Button:hover,
+.ButtonInc:hover,
+.ButtonDec:hover {
+  -webkit-transform:scale(1.08,1.08);
+  -moz-transform:scale(1.08,1.08);
+  -ms-transform:scale(1.08,1.08);
+  transform:scale(1.08,1.08);
+  background:#C6EFFF;
+}
+
+.ButtonInc, .ButtonDec {
+  font-size: 28px;
+  line-height: 26px;
+  padding: 0px 12px 3px 12px;
+}
+.ButtonInc {
+  border-radius:12px 0px 0px 12px;
+}
+.ButtonDec {
+  border-radius:0px 12px 12px 0px;
+}
+
+.button-fx:hover {
+  box-shadow:3px 3px 10px #009FD9;
+}
+.Button.active {
+  box-shadow:3px 3px 10px #009FD9, 0px 0px 16px #009FD9;
+  background:#FFF;
+  -webkit-transition: none;
+  -webkit-transform:scale(1.08,1.08);
+  -webkit-animation: AniPulsate 0.3s linear infinite alternate;
+  -moz-transition: none;
+  -moz-transform:scale(1.08,1.08);
+  -moz-animation: AniPulsate 0.3s linear infinite alternate;
+  -ms-transition: none;
+  -ms-transform:scale(1.08,1.08);
+  -ms-animation: AniPulsate 0.3s linear infinite alternate;
+  transition: none;
+  transform:scale(1.08,1.08);
+  animation: AniPulsate 0.3s linear infinite alternate;
+
+}
+.Button.disabled {
+  background:#EDEDED;
+  border-color:#999;
+  color:#999;
+  box-shadow:3px 3px 0px #999, 3px 3px 8px rgba(0,0,0,0.5);
+  text-shadow:none;
+}
+.MainMenuButton.disabled,
+.UserButton.disabled,
+.MainMenuButton.disabled:hover,
+.UserButton.disabled:hover {
+  -webkit-transform:inherit;
+  -moz-transform:inherit;
+  -ms-transform:inherit;
+  transform:inherit;
+  opacity:0.5;
+}
+.MainMenuButton.disabled:hover {
+  background: #B7DDED;
+}
+.MainMenuButton.active.disabled:hover {
+  background:#ECF8FC;
+}
+.Button.no_cash {
+  background:#EDCCCC;
+  border-color:#900;
+  color:#900;
+  box-shadow:3px 3px 0px #900, 3px 3px 8px rgba(0,0,0,0.5);
+}
+.Button.sell {
+  background: #c00;
+  border-color: #900;
+  color: #FFF;
+  box-shadow: 2px 3px 0px #700, 3px 3px 8px rgba(0,0,0,0.5);
+  text-shadow: 3px 3px 0px #600;
+}
+
+.Button.small {
+  font-size: 14px;
+  line-height: 22px;
+  padding: 1px 8px;
+  border-radius: 10px;
+  top: -4px;
+  position: relative;
+  left: -4px;
+}
+.Button.DatabaseButton {
+  font-size: 14px;
+  line-height: 20px;
+  padding: 1px 8px;
+  border-radius: 10px;
+  bottom: 6px;
+  position: absolute;
+  left: 23px;
+}
+
+.DatabaseQueue .NewBuyableTraits {
+  display: none;
+}
+.DatabaseQueue.NewBuyable .NewBuyableTraits {
+  display: block !important;
+}
+
+.Button.disabled:hover {
+  -webkit-transform:none;
+  -moz-transform:none;
+  -ms-transform:none;
+  transform:none;
+}
+
+.ButtonDecorator .RenderSprite {
+  position:absolute;
+  top:0;
+  left:0;
+}
+.ButtonDecorator {
+  position:relative;
+  font-family:Bowlby;
+  font-size:15px;
+  width:auto;
+  display:inline-block;
+  height:22px;
+  line-height:22px;
+  color:#FFF;
+  text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  z-index:0;
+}
+.ButtonDecorator.Cash {
+  color:#5CA443;
+  background:#B6D7A8;
+  color: #5CA443;
+  margin-right: 10px;
+  padding: 0px 20px 0px 42px;
+  border:3px solid #5CA443;
+  border-radius: 18px 8px 8px 18px;
+  z-index:0;
+}
+
+.ButtonDecorator.Cash:after {
+  content: ' ';
+  position: absolute;
+  right: -26px;
+  height: 0;
+  width: 0;
+  border: 13px solid transparent;
+  border-left-color: #5CA443;
+  z-index: 0;
+  top: -2px;
+}
+
+.ButtonDecorator.Time {
+  color:#FFF;
+  background:#7F3187;
+  color:#7F3187;
+  background:#F8E6F2;
+  border:3px solid #7F3187;
+  margin-left: 12px;
+  padding: 0px 36px 0px 18px;
+  border-radius: 8px 18px 18px 8px;
+  z-index:0;
+  margin-right: -10px;
+}
+.ButtonDecorator.Time:after {
+  content: ' ';
+  position: absolute;
+  left: -26px;
+  height: 0;
+  width: 0;
+  border: 13px solid transparent;
+  border-right-color: #7F3187;
+  z-index: 0;
+  top: -2px;
+}
+
+.ButtonDecorator.AP {
+  background:#ffd800;
+  color: #e58930;
+  margin-right: 10px;
+  padding: 0px 20px 0px 38px;
+  border:3px solid #e58930;
+  border-radius: 18px 8px 8px 18px;
+  z-index:0;
+}
+
+.ButtonDecorator.AP:after {
+  content: ' ';
+  position: absolute;
+  right: -26px;
+  height: 0;
+  width: 0;
+  border: 13px solid transparent;
+  border-left-color: #e58930;
+  z-index: 0;
+  top: -2px;
+}
+
+@-webkit-keyframes AniRotate {
+  0% {
+    -webkit-transform:rotate(0deg) scale(1);
+  }
+  50% {
+    -webkit-transform: rotate(180deg) scale(0.6);
+  }
+  100% {
+    -webkit-transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes AniRotate {
+  0% {
+    -moz-transform:rotate(0deg) scale(1);
+    -ms-transform:rotate(0deg) scale(1);
+    transform:rotate(0deg) scale(1);
+  }
+  50% {
+    -moz-transform: rotate(180deg) scale(0.6);
+    -ms-transform: rotate(180deg) scale(0.6);
+    transform: rotate(180deg) scale(0.6);
+  }
+  100% {
+    -moz-transform: rotate(360deg) scale(1);
+    -ms-transform: rotate(360deg) scale(1);
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+
+@-webkit-keyframes AniScaleOpacity {
+  0% {
+    -webkit-transform: scale(1); opacity:1;
+  }
+  100% {
+    -webkit-transform: scale(2,0); opacity:0;
+  }
+}
+
+@keyframes AniScaleOpacity {
+  0% {
+    -moz-transform: scale(1); opacity:1;
+    -ms-transform: scale(1); opacity:1;
+    transform: scale(1); opacity:1;
+  }
+  100% {
+    -moz-transform: scale(2,0); opacity:0;
+    -ms-transform: scale(2,0); opacity:0;
+    transform: scale(2,0); opacity:0;
+  }
+}
+
+
+@-webkit-keyframes AniPulsate {
+  0% {
+    -webkit-transform:scale(1.08,1.08);
+  }
+  100% {
+    -webkit-transform:scale(1.02,1.02);
+  }
+}
+
+@keyframes AniPulsate {
+  0% {
+    -moz-transform:scale(1.08,1.08);
+    -ms-transform:scale(1.08,1.08);
+    transform:scale(1.08,1.08);
+  }
+  100% {
+    -moz-transform:scale(1.02,1.02);
+    -ms-transform:scale(1.02,1.02);
+    transform:scale(1.02,1.02);
+  }
+}
+
+
+@-webkit-keyframes AniNewRot {
+  0% {
+    -webkit-transform:scale(1.08,1.08) rotate(-16deg);
+  }
+  100% {
+    -webkit-transform:scale(1.02,1.02) rotate(-16deg);
+  }
+}
+
+@keyframes AniNewRot {
+  0% {
+    -moz-transform:scale(1.08,1.08) rotate(-16deg);
+    -ms-transform:scale(1.08,1.08) rotate(-16deg);
+    transform:scale(1.08,1.08) rotate(-16deg);
+  }
+  100% {
+    -moz-transform:scale(1.02,1.02) rotate(-16deg);
+    -ms-transform:scale(1.02,1.02) rotate(-16deg);
+    transform:scale(1.02,1.02) rotate(-16deg);
+  }
+}
+
+@-webkit-keyframes AniErrorText {
+  0% {
+    color:#F00;
+    border-color:#F00;
+    box-shadow:0px 0px 14px #f00;
+  }
+  100% {
+    color:inherit;
+  }
+}
+
+@keyframes AniErrorText {
+  0% {
+    color:#F00;
+    border-color:#F00;
+    box-shadow:0px 0px 14px #f00;
+  }
+  100% {
+    color:inherit;
+  }
+}
+
+@-webkit-keyframes AniNew {
+  0% {
+    -webkit-transform:scale(1.06,1.06);
+  }
+  100% {
+    -webkit-transform:scale(1,1);
+  }
+}
+
+@keyframes AniNew {
+  0% {
+    -moz-transform:scale(1.06,1.06);
+    -ms-transform:scale(1.06,1.06);
+    transform:scale(1.06,1.06);
+  }
+  100% {
+    -moz-transform:scale(1,1);
+    -ms-transform:scale(1,1);
+    transform:scale(1,1);
+  }
+}
+
+
+@-webkit-keyframes AniJump {
+  0% {
+    -webkit-transform: translateY(0px);
+  }
+  2% {
+    -webkit-transform: translateY(-10px);
+  }
+  4% {
+    -webkit-transform: translateY(0px);
+  }
+  6% {
+    -webkit-transform: translateY(-7px);
+  }
+  8% {
+    -webkit-transform: translateY(0px);
+  }
+}
+
+@keyframes AniJump {
+  0% {
+    -moz-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+  2% {
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+  4% {
+    -moz-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+  6% {
+    -moz-transform: translateY(-7px);
+    -ms-transform: translateY(-7px);
+    transform: translateY(-7px);
+  }
+  8% {
+    -moz-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+}
+
+
+@-webkit-keyframes AniPlugIn2 {
+  0% {
+    -webkit-transform:scale(0,0); opacity:0;
+  }
+  60% {
+    -webkit-transform:scale(1.2,1.2); opacity:1;
+  }
+  70% {
+    -webkit-transform:scale(1,1);
+  }
+  80% {
+    -webkit-transform:scale(1.1,1.1);
+  }
+  90% {
+    -webkit-transform:scale(1,1);
+  }
+  95% {
+    -webkit-transform:scale(1.05,1.05);
+  }
+  100% {
+    -webkit-transform:scale(1,1); opacity:1;
+  }
+}
+
+@keyframes AniPlugIn2 {
+  0% {
+    -moz-transform:scale(0,0); opacity:0;
+    -ms-transform:scale(0,0); opacity:0;
+    transform:scale(0,0); opacity:0;
+  }
+  60% {
+    -moz-transform:scale(1.2,1.2); opacity:1;
+    -ms-transform:scale(1.2,1.2); opacity:1;
+    transform:scale(1.2,1.2); opacity:1;
+  }
+  70% {
+    -moz-transform:scale(1,1);
+    -ms-transform:scale(1,1);
+    transform:scale(1,1);
+  }
+  80% {
+    -moz-transform:scale(1.1,1.1);
+    -ms-transform:scale(1.1,1.1);
+    transform:scale(1.1,1.1);
+  }
+  90% {
+    -moz-transform:scale(1,1);
+    -ms-transform:scale(1,1);
+    transform:scale(1,1);
+  }
+  95% {
+    -moz-transform:scale(1.05,1.05);
+    -ms-transform:scale(1.05,1.05);
+    transform:scale(1.05,1.05);
+  }
+  100% {
+    -moz-transform:scale(1,1); opacity:1;
+    -ms-transform:scale(1,1); opacity:1;
+    transform:scale(1,1); opacity:1;
+  }
+}
+
+@-webkit-keyframes AniPlugOut2 {
+  0% {
+    -webkit-transform: scale(1,1); opacity:1;
+  }
+  15% {
+    -webkit-transform: scale(1.2,1.2); opacity:1;
+  }
+  100% {
+    -webkit-transform: scale(0,0); opactiy:0;
+  }
+}
+
+@keyframes AniPlugOut2 {
+  0% {
+    -moz-transform: scale(1,1); opacity:1;
+    -ms-transform: scale(1,1); opacity:1;
+    transform: scale(1,1); opacity:1;
+  }
+  15% {
+    -moz-transform: scale(1.2,1.2); opacity:1;
+    -ms-transform: scale(1.2,1.2); opacity:1;
+    transform: scale(1.2,1.2); opacity:1;
+  }
+  100% {
+    -moz-transform: scale(0,0); opactiy:0;
+    -ms-transform: scale(0,0); opactiy:0;
+    transform: scale(0,0); opactiy:0;
+  }
+}
+
+.PopupLogo .MainSpritesPopup {
+  background:url(../img/MainSpritesPopup.png) no-repeat;
+  width:180px;
+  height:180px;
+}
+.PopupLogo .MainSpritesPopup.Profiles {
+  background-position:0px 0px;
+}
+.PopupLogo .MainSpritesPopup.Cash {
+  background-position:-180px 0px;
+}
+.PopupLogo .MainSpritesPopup.AP {
+  background-position:-360px 0px;
+}
+.PopupLogo .MainSpritesPopup.karma {
+  background-position:-540px 0px;
+}
+.PopupLogo .MainSpritesPopup.XP {
+  background-position:-720px 0px;
+}
+.PopupLogo .MainSpritesPopup.User {
+  background-position:-180px -180px;
+}
+.PopupLogo .MainSpritesPopup.Error {
+  background-position:0px -180px;
+}
+.PopupLogo .MainSpritesPopup.DBUpgrade {
+  background-position:-900px 0px;
+}
+
+
+
+/* Tobi classes :) */
+
+.PopupSummaryItem.Profiles .RenderSprite.Tobi {
+  width: 38px;
+  height: 38px;
+  left: -18px;
+  top: -7px;
+  background-position: -331px -616px;
+}
+.PopupSummaryItem.Risk .RenderSprite.Tobi {
+  width: 34px;
+  height: 34px;
+  left: -16px;
+  top: -4px;
+  background-position: -374px -655px;
+}
+.PopupSummaryItem.Risk.Up .RenderSprite.Tobi {
+  width: 34px;
+  height: 34px;
+  left: -17px;
+  top: -8px;
+  background-position: -374px -689px;
+}
+.PopupSummaryItem.Cash .RenderSprite.Tobi {
+  width: 56px;
+  height: 43px;
+  left: -33px;
+  top: -10px;
+  background-position: -145px -616px;
+}
+.PopupSummaryItem.Penalty .RenderSprite.Tobi {
+  width: 46px;
+  height: 32px;
+  left: -22px;
+  top: -4px;
+  background-position: -414px -584px;
+}
+.PopupSummaryItem.XP .RenderSprite.Tobi {
+  width: 47px;
+  height: 46px;
+  left: -27px;
+  top: -12px;
+  background-position: -325px -655px;
+}
+
+.ButtonDecorator.Cash .RenderSprite.Tobi {
+  width: 56px;
+  height: 43px;
+  left: -26px;
+  top: -10px;
+  background-position: -145px -616px;
+}
+
+.ButtonDecorator.AP .RenderSprite.Tobi {
+  width: 38px;
+  height: 50px;
+  left: -10px;
+  top: -14px;
+  background-position: -203px -615px;
+}
+
+.ButtonDecorator.Time .RenderSprite.Tobi {
+  width: 48px;
+  height: 48px;
+  top: -13px;
+  background-position: 0px -616px;
+  right: -14px;
+  left: inherit;
+}

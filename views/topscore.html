@@ -1,0 +1,18 @@
+<%
+  var parentdata = D.gameNode.parentNode.data || {};
+  var data = D.gameNode.data || {};
+  var type = D.gameNode.scoretype || 'cash';
+  var type_headline = data.type_headlines[type];
+%>
+
+<div class="TopscoreInline">
+  <div class="TopscoreLabel"><% print(type_headline); %></div>
+  <div class="LoadingSpinner"></div>
+  <div class="TopscoreRank">
+    <% print(_.renderView('topscore_rank.html', { data: data, parentdata: parentdata, type:type })); %>
+  </div>
+  <div class="TopscoreList">
+    <% print(_.renderView('topscore_list.html', { data: data, parentdata: parentdata, type:type })); %>
+  </div>
+</div>
+

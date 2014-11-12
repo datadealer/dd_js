@@ -1,0 +1,10 @@
+<%
+var wordings = D.data.powerup_slot_texts[D.typelower] || {};
+%>
+<div class="Powerup" data-subpop-id="buyslots" data-button-data="1">
+
+  <div class="PowerupPerp">
+    <div class="PowerupBackground"><% print(_.RenderSprite(D.slot_background, 'locked')); %></div>
+  </div>
+  <div class="PowerupLabel"><%= wordings.add_slots_label %></div>
+</div>

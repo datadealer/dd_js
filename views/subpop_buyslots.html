@@ -1,0 +1,29 @@
+<%
+var button = _._('Buy');
+var tab = D.typelower || 'upgrades';
+var data = D.data || {};
+var wordings = data.powerup_slot_texts[tab] || {};
+%>
+<div class="Subpop" data-subpop-id="buyslots">
+  <div class="SubpopClose" data-button-id="CloseSubpop">X</div>
+  <div class="SubpopLogo"><div class="BuySlotsLogo"></div></div>
+  <div class="SubpopTitle"><%= wordings.title %></div>
+  <div class="SubpopSubTitle"><%= wordings.subtitle %></div>
+  <div class="SubpopText">
+    <%= wordings.description %>
+    <div class="BuySlotsWrap">
+      <div class="BuySlotsDec ButtonInc">-</div>
+      <div class="BuySlotsNumWrap">
+        <div class="BuySlotsNum">1</div>/<div class="BuySlotsNumLeft"><%= D.slots_left %></div>
+      </div>
+      <div class="BuySlotsInc ButtonDec">+</div>
+    </div>
+  </div>
+  <div class="SubpopButtons">
+    <div class="ButtonDecorator Cash">
+      <div class='RenderSprite Tobi'></div>
+      <span class="SlotCost" data-slot-cost="<%= data.slot_cost %>"><% print(_.toKSNum(data.slot_cost)); %></span></div>
+    <div class="Button" data-button-id="PowerupBuySlotsButton" data-button-gestalt="buyslots:<%= D.pkey %>" data-button-data="1"><%= wordings.slot_button_text %></div>
+  </div>
+
+</div>

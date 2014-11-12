@@ -1,0 +1,65 @@
+<%
+var data = D.data || {};
+var perp = D.perp || {};
+var game = _.game();
+%>
+
+<% if ( _.contains(['ProjectPerp','ContactPerp','ClientPerp','ProxyPerp'], game.getTypeFromGestalt(perp.gestalt)) ) {  %>
+
+<div class="BonusWrap">
+<div class="BonusValues">
+
+<% if (data.consumed_tokens && data.consumed_tokens.length) { %>
+  <div class="Bonus Profiles consumed"><div class="Buy Token"></div>×<%= data.consumed_tokens.length %></div>
+<% } %>
+<% if (data.tokens && data.tokens.length) { %>
+  <div class="Bonus Profiles"><div class="Buy Token"></div>×<%= data.tokens.length %></div>
+<% } %>
+<% if (data.collect_amount_modifier) { %>
+  <div class="Bonus Profiles">+<% print(_.sprintf(_._('%s Profiles'), data.collect_amount_modifier));  %></div>
+<% } %>
+
+<% if (data.collect_amount) { %>
+  <div class="Bonus Profiles"><% print(_.sprintf(_._('%s Profiles'), data.collect_amount)); %></div>
+<% } %>
+
+<% if (data.max_slots) { %>
+  <div class="Bonus Slots"><% print(_.sprintf(_._('proxy_buy can host %s projects'), data.max_slots)); %></div>
+<% } %>
+
+<% if (data.charge_cost_modifier) { %>
+  <div class="Bonus Invest">+$<% print(_.toKSNum(data.charge_cost_modifier)); %> <% print(_._('Invest')); %></div>
+<% } %>
+
+<% if (data.charge_cost) { %>
+  <div class="Bonus Invest">$<% print(_.toKSNum(data.charge_cost)); %> <% print(_._('per deal')); %></div>
+<% } %>
+<% if (data.income_base) { %>
+  <div class="Bonus Invest">$<% print(_.toKSNum(data.income_base)); %> <% print(_._('income')); %></div>
+<% } %>
+
+<% if (data.collect_risk) { %>
+  <div class="Bonus Risk <%= (data.collect_risk < 0) ? 'Up' : 'Down' %>"><div class="Buy Risk"></div><% print(_.toKSNum(Math.abs(data.collect_risk))); %> <% print(_._('Risk')); %></div>
+<% } %>
+
+<% if (data.collect_risk_modifier) { %>
+  <div class="Bonus Risk <%= (data.collect_risk_modifier < 0) ? 'Up' : 'Down' %>"><div class="Buy Risk"></div><% print(_.toKSNum(Math.abs(data.collect_risk_modifier))); %> 
+  <% print(_._('Risk')); %></div>
+<% } %>
+<% if (data.karma_points) { %>
+  <div class="Bonus Risk <%= (data.karma_points > 0) ? 'Up' : 'Down' %>"><div class="Buy Risk"></div><% print(_.toKSNum(Math.abs(data.karma_points))); %> 
+  <% print(_._('Risk')); %></div>
+<% } %>
+
+<% 
+  if (data.provided_perps && data.provided_perps_text) {
+%>
+  <div class="Bonus ProvidedPerps"><% print(_.sprintf(data.provided_perps_text, data.provided_perps.length)); %></div>
+<% 
+  } 
+%>
+
+</div>
+</div>
+
+<% } %>

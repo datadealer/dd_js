@@ -1,0 +1,88 @@
+<%
+  var data = D.data || {};
+  var sprite = data.popup_sprite || {};
+  var states = D.states || {};
+  var button = data.button ||  _._('Close');
+  var game = _.game();
+  var user = game.data.user;
+  var date_joined = new Date(user.auth_date_joined.$date).toLocaleDateString(game.setup.localeShort);
+  var date_last = new Date(user.auth_last_login.$date).toLocaleDateString(game.setup.localeShort);
+
+  /* var text = 'Joined on >Last login: %s<br />Email: %s'), new Date(user.auth_date_joined.$date), new Date(user.auth_last_login.$date), user.auth_email); */
+%>
+<div class="PopupBody User">
+  <div class="PopupHeader">
+    <div class="PopupClose">X</div>
+    <div class="PopupLogo"><div class="MainSpritesPopup User"></div></div>
+    <div class="PopupTitle"><%= data.title %></div>
+    <div class="PopupText"><%= data.description %></div>
+    <div class="PopupMenu">
+      <div class="PopupMenuButton active" data-tab="settings"><% print(_._('user Account')); %></div>
+      <% if (game.setup.userdebug) { %>
+      <div class="PopupMenuButton" data-tab="debug"><% print(_._('userdebug tab')); %></div>
+      <% } %>
+    </div>
+  </div>
+  <div class="PopupContent">
+    <div class="PopupTab" data-tab="settings">
+      <div class="SubpopContainer">
+      </div>
+      <div class="PopupContentText">
+        <div class="PopupTitle"><% print(_._('user Dein Account')); %></div>
+        <div class="PopupParagraph"><% print(_._('user Folgende Daten haben wir ueber dich gesammelt:')); %></div>
+        <div class="PopupList">
+          <% print(_._('user Email-Adresse:')); %>
+          <% print(_.span(user.auth_email)); %>
+        </div>
+        <div class="PopupList">
+          <% print(_._('user Angemeldet am:'));  %>
+          <% print(_.span(date_joined)); %>
+        </div>
+        <div class="PopupList">
+          <% print(_._('user Letzter Login:'));  %>
+          <% print(_.span(date_last)); %>
+        </div>
+        
+        <% if (user.social_data.google) { %>
+        <div class="PopupList">
+          Via: <% print(_.span('Google')); %>
+        </div>
+        <% } %>
+        <% if (user.social_data.facebook) { %>
+        <div class="PopupList">
+          Via: <% print(_.span('Facebook')); %>
+        </div>
+        <% } %>
+        <div class="PopupList">
+        <%
+            print(_.renderView('form_displayname.html', {
+              D: D
+            }));
+        %>
+        </div>
+      </div>
+      <div class="PopupContentText">
+        <div class="PopupParagraph"><% print(_._('user text below'));  %></div>
+      </div>
+      <div class="PopupButtons">
+        <div class="Button" data-button-id="MainButton"><%= button %></div>
+      </div>
+    </div>
+    <% if (game.setup.userdebug) { %>
+    <div class="PopupTab hidden" data-tab="debug">
+      <div class="SubpopContainer">
+      </div>
+      <div class="PopupContentText">
+        <div class="PopupTitle"><% print(_._("userdebug reset game headline")); %></div>
+        <div class="PopupParagraph">
+          <% print(_._("userdebug reset game text")); %>  
+        </div>
+      </div>
+      <div class="PopupButtons">
+        <div class="Button sell" data-button-id="ResetButton"><% print(_._('Reset Game')); %></div>
+      </div>
+    </div>
+    <% } %>
+
+  </div>
+</div>

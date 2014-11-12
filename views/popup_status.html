@@ -1,0 +1,21 @@
+<%
+  var data = D.data || {};
+  var sprite = data.mainsprites_class;
+  var states = D.states || {};
+  var button = data.button ||  _._('Close');
+  var title = data.title;
+  var subtitle = data.subtitle;
+  var description = data.description;
+%>
+<div class="PopupBody Status">
+  <div class="PopupHeader">
+    <div class="PopupClose">X</div>
+    <div class="PopupLogo"><div class="MainSpritesPopup <%= sprite %>"></div></div>
+    <div class="PopupTitle"><%= title %></div>
+    <div class="PopupSubTitle"><%= subtitle || "" %></div>
+    <div class="PopupText"><%= description %></div>
+    <div class="PopupButtons">
+      <div class="Button" data-button-id="MainButton"><%= button %></div>
+    </div>
+  </div>
+</div>

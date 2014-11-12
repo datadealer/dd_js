@@ -1,0 +1,62 @@
+<%
+  var data = D.data || {};
+  var sprite = data.popup_sprite || {};
+  var amount = _.toKSNum(data.absoluteAmount);
+  var states = D.states || {};
+  var button = _._('Close');
+  var button2 = _._('Compute');
+  var isSuper = (data.contained_tokens.length);
+  data.knowledge_text = data.knowledge_text || data.origin_stats_text; // FIXME: Remove after next export
+%>
+<div class="PopupBody TokenPerp <%= (isSuper) ? 'SuperToken' : '' %>">
+  <div class="PopupHeader">
+    <div class="PopupClose">X</div>
+    <div class="PopupLogo"><%= sprite.html %></div>
+    <div class="PopupTitle"><%= data.title %></div>
+    <div class="PopupSubTitle"><% print(_.sprintf(data.knowledge_text, amount)); %></div>
+    <div class="PopupText"><%= data.description %></div>
+    <% if (!isSuper) { %>
+    <div class="PopupButtons">
+      <div class="Button" data-button-id="MainButton"><%= button %></div>
+    </div>
+    <% } %>
+
+  </div>
+
+<% if (isSuper) {  %>
+  <div class="PopupContent">
+    <div class="PopupTab">
+    <%
+          print(_.renderView('profileset_token.html', D));
+    %>
+
+    <div class="Debug"><% _.each(data,function(v,k){ print(k,':',v,'<br />') }); %></div>
+
+
+    <% if (!states.idle && !states.chargeRunning) { %>
+      <div class="PopupButtons">
+        <div class="ButtonDecorator AP">
+          <div class='RenderSprite Tobi'></div>
+          1
+        </div>
+        <div class="Button" data-button-id="CollectButton"><%= _._('Update') %></div>
+      </div>
+    <% } else { %>
+      <div class="PopupButtons">
+        <div class="ButtonDecorator AP">
+          <div class='RenderSprite Tobi'></div>
+          1
+        </div>
+        <div class="Button <% if (!states.idle || states.zeroresult) print('disabled'); %>" data-button-id="ChargeButton"><%= button2 %></div>
+        <div class="ButtonDecorator Time">
+          <div class='RenderSprite Tobi'></div>
+          <% print(_.toTime(data.charge_time)) %>
+        </div>
+      </div>
+    <% }  %>
+
+<% } else { %>
+
+<% } %>
+
+</div>

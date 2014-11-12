@@ -1,0 +1,103 @@
+<%
+  var data = D.data || {};
+  var loading = D.loading || false;
+  var sprite = data.popup_sprite || {};
+  var states = D.states || {};
+  var button = D.button || _._('Close');
+  var wordings = {};
+  wordings.AgentPerp = _._('Buy an Agent');
+  wordings.PusherPerp = _._('Buy a Pusher');
+  wordings.ProxyPerp = _._('Buy a Proxy');
+  wordings.CityPerp = _._('city_buy selector');
+%>
+<div class="PopupBody">
+  <div class="PopupHeader">
+    <div class="PopupClose">X</div>
+    <div class="PopupLogo"><%= sprite.html %></div>
+    <div class="PopupTitle"><%= data.title %></div>
+    <div class="PopupSubTitle"><%= data.subtitle %></div>
+    <div class="PopupText"><%= data.description %></div>
+    <div class="PopupMenu">
+      <% /* %>
+      <div class="PopupMenuButton active" data-tab="data"><%= _._('Data') %></div>
+      <% */ %>
+      <div class="PopupMenuButton active" data-tab="AgentPerp"><%= _._('Agents') %></div>
+      <div class="PopupMenuButton" data-tab="PusherPerp"><%= _._('Pushers') %></div>
+      <div class="PopupMenuButton" data-tab="ProxyPerp"><%= _._('Bogus Companies') %></div>
+      <div class="PopupMenuButton" data-tab="CityPerp"><%= _._('city_buy tab') %></div>
+    </div>
+
+  </div>
+  <div class="PopupContent">
+
+  <% /* %>
+  <div class="PopupTab data" data-tab="data">
+    <div class="PopupSummary">
+      <div class="PopupSummaryItem Profiles">
+        FIXME Summary/Statistics?
+      </div>
+      <div class="PopupSummaryContent">
+        <div class="PopupSummaryItem">
+          Collected Profiles: <%= _.toKSNum(data.profilesCollected) %>
+          / Max Profiles: <%= _.toKSNum(data.profiles_max) %></div>
+      </div>
+    </div>
+    <div class="PopupButtons">
+      <div class="Button" data-button-id="MainButton"><%= button %></div>
+    </div>
+    
+  </div>
+  <% */ %>
+  <% 
+    _.each(data.providedTabs,function(tab,k) {
+       var perp_template = 'perp.html';
+       if (k==='AgentPerp') {
+         perp_template = 'agent.html';
+       } else if (k==='PusherPerp') {
+         perp_template = 'pusher.html';
+       } else if (k==='ProxyPerp') {
+         perp_template = 'perp.html';
+       }
+  %>
+    <div class="PopupTab <%= (k!=='AgentPerp') ? 'hidden' :'' %>" data-tab="<%= k %>">
+      <div class="SubpopContainer">
+         <%
+            _.each(tab, function(perp, key){
+              print(_.renderView('subpop_perp_provided.html', {
+                perp: perp,
+                key: key
+              }));
+            });
+        %>
+      </div>
+      <div class="Pagination Selector standalone">
+      <div class="SubpopHeader">
+        <div class="SubpopHeaderTitle"><%= wordings[k] %></div>
+      </div>
+        <div class="PopupSelector">
+          <div class="PopupPageWrap">
+            <div class="PopupPage PerpPage">
+              <%
+              if (tab.length) {
+                _.each(tab,function(perp,key){
+                  print(_.renderView(perp_template, {
+                    perp: perp,
+                    key: key
+                  }));
+                });
+              } else {
+                print(_.renderView('noitems.html', {loading:loading}));
+              }
+              %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="PopupButtons">
+        <div class="Button" data-button-id="MainButton"><%= button %></div>
+      </div>
+    </div>
+ <% });  %>
+
+  </div>
+</div>

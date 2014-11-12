@@ -1,0 +1,31 @@
+<%
+var token = D.token || {};
+var data = token.data || {};
+if (data.perp_background && data.perp_background.frameMap && data.perp_background.frameMap.normal) {
+  // FIXME: normalize backgrounds in Game!!
+  var background = data.perp_background;
+  if (data.is_supertoken) {
+    background = data.perp_background2;
+  }
+  offsetX = 38 - background.frameMap.normal.pivotx;
+  offsetY = 38 - background.frameMap.normal.pivoty;
+  width = background.frameMap.normal.width;
+  height = background.frameMap.normal.height;
+}
+%>
+<div class="PopupToken<%= (token.locked) ? ' locked' : '' %>" data-subpop-id="token<%= token.gestalt %>">
+  <div class="PopupTokenPerp" style="position:absolute; top:<%= offsetY %>px; left:<%= offsetX %>px; width:<%= width %>px; height:<%= height %>px;">
+    <%
+      if (data.is_supertoken) {
+        print(_.RenderSprite(data.perp_background2, 'consumed'));
+      } else {
+        print(_.RenderSprite(data.perp_background, 'consumed'));
+      }
+      print(_.RenderSprite(data.perp_sprite)); 
+      if (token.database_amount && !token.locked) { print(_.RenderAmount(token.database_amount,'consumed')); } 
+    %>
+  </div>
+  <div class="PopupTokenLabel"><% 
+    print(_.crlf2html(data.label)); 
+  %></div>
+</div>

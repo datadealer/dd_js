@@ -1,0 +1,19 @@
+<%
+var p = D.perp || {};
+var data = p.data || {};
+%>
+<div class="Subpop open">
+  <div class="SubpopLogo"><% print(_.RenderSprite(data.popup_sprite)); %></div>
+  <div class="SubpopTitle"><%= data.title %></div>
+  <div class="SubpopSubTitle"><%= data.subtitle %></div>
+  <% 
+    /* FIXME BROKEN, also doesn't work for multiple powerups
+  %>
+  <div class="PowerupLabelData SubpopLabelData">
+    <% 
+     print(_.renderView('values_details_powerup.html', { data: data })); 
+    %>
+  </div>
+  <% */ %>
+  <div class="SubpopText"><%= data.description %></div>
+</div>

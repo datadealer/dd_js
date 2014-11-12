@@ -1,0 +1,165 @@
+<%
+  var data = D.data || {};
+  var game_values = D.game_values || {};
+  var sprite = data.popup_sprite || {};
+  var states = D.states || {};
+  var button = data.button_text;
+%>
+<div class="PopupBody">
+  <div class="PopupHeader">
+    <div class="PopupClose">X</div>
+    <div class="PopupLogo"><%= sprite.html %></div>
+    <div class="PopupTitle"><%= data.title %></div>
+    <div class="PopupText TabText" data-tab="data"><%= data.description %></div>
+    <div class="PopupText TabText hidden" data-tab="UpgradePowerup"><%= data.upgrade_tab_text %></div>
+    <div class="PopupText TabText hidden" data-tab="AdPowerup"><%= data.ad_tab_text %></div>
+    <div class="PopupText TabText hidden" data-tab="TeamMemberPowerup"><%= data.teammember_tab_text %></div>
+    <div class="PopupMenu">
+      <div class="PopupMenuButton active" data-tab="data"><%= _._('Data') %></div>
+      <div class="PopupMenuButton" data-tab="UpgradePowerup"><%= _._('Upgrades') %></div>
+      <% 
+        if (data.provided_ads && data.provided_ads.length) {
+          if (data.rename_ads_tab) {
+      %>
+        <div class="PopupMenuButton" data-tab="AdPowerup"><%= _._('Server') %></div>
+      <% 
+          } else {
+      %>
+        <div class="PopupMenuButton" data-tab="AdPowerup"><%= _._('Ads') %></div>
+      <% 
+          }
+        } 
+      %>
+      <div class="PopupMenuButton" data-tab="TeamMemberPowerup"><%= _._('Team') %></div>
+    </div>
+  </div>
+  <div class="PopupContent">
+    <div class="Debug"><% _.each(data,function(v,k){ print(k,':',v,'<br />') }); %></div>
+    <div class="PopupTab data" data-tab="data">
+    <%
+         print(_.renderView('profileset.html', D));
+    %>
+    <%
+         print(_.renderView('buttons_project.html', D));
+    %>
+    </div>
+
+    <%
+    if (D.cached && D.status_icons) {
+      var powerups = data.powerups_compiled;
+
+      _.each(powerups, function(pcat,pkey) {
+        %>
+        <div class="PopupTab Powerups <%= pkey %>" data-tab="<%= pkey %>" style="display: none;">
+        <div class="SubpopContainer">
+        <%
+        _.each(pcat.slots, function(powerup, key){
+          if (powerup.data) {
+            print(_.renderView('subpop_powerup.html', {
+              powerup: powerup,
+              typelower : pcat.typelower,
+              data:D.data,
+              status_icons: D.status_icons,
+              key: pkey + key
+            }));
+          }
+        });
+        %>
+        <% 
+           print(_.renderView('selector_powerups.html', {
+             D:D,
+             game_values:game_values,
+             data:D.data,
+             typelower : pcat.typelower,
+             pcat : pcat,
+             pkey : pkey
+           })); 
+           
+        %>
+
+        <%
+        /*
+        _.each(pcat.provided, function(powerup, key){
+          if (powerup && powerup.data) {
+            print(_.renderView('subpop_powerup_provided.html', {
+              powerup: powerup,
+              key: key,
+              pkey:pkey,
+              data:D.data,
+              typelower : pcat.typelower,
+              status_icons: D.status_icons,
+              key: 'Provided' + pkey + key
+            }));
+          }
+        });
+        */
+        %>
+
+        <% 
+           print(_.renderView('subpop_buyslots.html', {
+             typelower : pcat.typelower,
+             slots_left : pcat.slots_left,
+             tab : pkey,
+             pkey : pkey,
+             data: D.data
+           })); 
+        %>
+
+
+        </div>
+        <div class="Pagination">
+        <div class="PowerupsPage">
+        <div class="PopupPageWrap">
+        <%
+          /* TODO: Pagination, maybe make this _.mixin */
+          var pagesize = 10;
+          var pages = _.range(pcat.slots.length/pagesize);
+          _.each(pages,function(page,k){
+            var pagekeys = _.range(page*pagesize,((page*pagesize)+pagesize > pcat.slots.length) ? pcat.slots.length : (page*pagesize)+pagesize);
+            if (k > 0) {
+              print('<div class="PopupPage PowerupPage hidden" data-page-id="'+page+'">');
+            }
+            else {
+              print('<div class="PopupPage PowerupPage" data-page-id="'+page+'">');
+            }
+
+            _.each(pagekeys, function(key) {
+              var powerup = pcat.slots[key];
+              if (powerup === 'free') {
+                print(_.renderView('powerup_free.html', { slot:key, slot_background: data.slot_background, pkey: pkey, typelower : pcat.typelower, data: D.data }));
+              }
+              else if (powerup === 'locked') {
+                print(_.renderView('powerup_locked.html', { slot_background: data.slot_background, typelower : pcat.typelower, data: D.data }));
+              }
+              else {
+                if (powerup.data) {
+                  powerup.status_icons = D.status_icons;
+                  print(_.renderView('powerup.html', {
+                    powerup: powerup,
+                    key: pkey + key,
+                    slot: key
+                  }));
+                }
+              }
+            });
+            print('</div>');
+          });
+          print('</div>');
+          print('</div>');
+          if (pages.length > 1) {
+        %>
+        <div class='PopupPageArrowR'></div>
+        <div class='PopupPageArrowL hidden'></div>
+        <%
+          }
+        %>
+        </div>
+        </div>
+        <%
+      });
+    } else {
+      print('<div class="PopupContentLoading"><div class="LoadingSpinner"></div>' + _._('Loading...') + '</div>');
+    }
+    %>
+  </div>
+</div>

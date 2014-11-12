@@ -1,0 +1,1040 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Cuteacute Media OG <hq@cuteacute.com>
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: dd_js 0.0.0\n"
+"Report-Msgid-Bugs-To: inout@datadealer.com\n"
+"POT-Creation-Date: 2014-04-28 23:34+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: scripts/Game.js:858 scripts/Game.js:868
+msgid "lostsocket title"
+msgstr ""
+
+#: scripts/Game.js:859 scripts/Game.js:869
+msgid "lostsocket subtitle"
+msgstr ""
+
+#: scripts/Game.js:860 scripts/Game.js:870
+msgid "lostsocket sorry, bla bla will retry or refresh"
+msgstr ""
+
+#: scripts/Game.js:991
+msgid "user description"
+msgstr ""
+
+#: scripts/Game.js:1005
+msgid "karma_popup title"
+msgstr ""
+
+#: scripts/Game.js:1006
+msgid "karma_popup description"
+msgstr ""
+
+#: scripts/Game.js:1007
+msgid "karma_popup selector title"
+msgstr ""
+
+#: scripts/Game.js:1018
+msgid "sb_profiles title"
+msgstr ""
+
+#: scripts/Game.js:1019
+#, python-format
+msgid "sb_profiles subtitle %s from %s profiles"
+msgstr ""
+
+#: scripts/Game.js:1020
+msgid "sb_profiles description"
+msgstr ""
+
+#: scripts/Game.js:1030
+msgid "sb_cash title"
+msgstr ""
+
+#: scripts/Game.js:1031
+#, python-format
+msgid "sb_cash subtitle <span class=\"highlight\">$%s</span>"
+msgstr ""
+
+#: scripts/Game.js:1032
+msgid "sb_cash description"
+msgstr ""
+
+#: scripts/Game.js:1042
+msgid "sb_AP title"
+msgstr ""
+
+#: scripts/Game.js:1043
+#, python-format
+msgid "sb_AP subtitle %s/%s"
+msgstr ""
+
+#: scripts/Game.js:1044
+msgid "sb_AP description"
+msgstr ""
+
+#: scripts/Game.js:1054
+msgid "sb_XP title"
+msgstr ""
+
+#: scripts/Game.js:1055
+#, python-format
+msgid "sb_XP subtitle Level %s"
+msgstr ""
+
+#: scripts/Game.js:1056
+#, python-format
+msgid "sb_XP description %s XP until next level"
+msgstr ""
+
+#: scripts/Game.js:1130
+msgid "Mission complete!"
+msgstr ""
+
+#: scripts/Game.js:1149
+msgid "New Mission!"
+msgstr ""
+
+#: scripts/Game.js:1198 scripts/Game.js:1265 scripts/Game.js:1298
+#: scripts/Game.js:1314 scripts/Game.js:1332
+msgid "Mark says:"
+msgstr ""
+
+#: scripts/Game.js:1278
+msgid "Choose your counter measures"
+msgstr ""
+
+#: scripts/Game.js:1280
+msgid "Do nothing"
+msgstr ""
+
+#: scripts/Game.js:1296 scripts/Game.js:1312 scripts/Game.js:1331
+msgid "Next"
+msgstr ""
+
+#: scripts/Game.js:2225
+msgid "My Empire"
+msgstr ""
+
+#: scripts/Game.js:2306
+msgid "database_buytokens title"
+msgstr ""
+
+#: scripts/Game.js:2307
+msgid "database_buytokens subtitle"
+msgstr ""
+
+#: scripts/Game.js:2308
+msgid "database_buytokens description"
+msgstr ""
+
+#: scripts/Game.js:2309
+msgid "database_buytokens selector title"
+msgstr ""
+
+#: scripts/Game.js:2385 scripts/Game.js:2574 scripts/Game.js:3136
+#: scripts/Game.js:3779 views/powerup_provided.html:13 views/token.html:21
+msgid "New!"
+msgstr ""
+
+#: scripts/Game.js:2406 scripts/type_settings.js:317
+msgid "Database"
+msgstr ""
+
+#: scripts/Game.js:2963 scripts/Game.js:3043
+msgid ""
+"Do you really want to delete and reset your game? (all your progress will be "
+"lost, forever!)"
+msgstr ""
+
+#: scripts/Game.js:2987
+msgid "user Displayname saved."
+msgstr ""
+
+#: scripts/Game.js:3015 scripts/Game.js:3022 views/form_displayname.html:7
+msgid "user Save"
+msgstr ""
+
+#: scripts/Game.js:3093
+msgid "projectbuy_proxyslotsfull"
+msgstr ""
+
+#: scripts/Game.js:3207
+msgid "Topscores"
+msgstr ""
+
+#: scripts/Game.js:3344
+msgid "Missions"
+msgstr ""
+
+#: scripts/Game.js:3826 scripts/Game.js:4008
+msgid "New Items!"
+msgstr ""
+
+#: scripts/Game.js:3976
+msgid "New Contacts!"
+msgstr ""
+
+#: scripts/Game.js:4313
+msgid "New Clients!"
+msgstr ""
+
+#: scripts/Game.js:4634
+msgid "New Ventures!"
+msgstr ""
+
+#: scripts/Game.js:4691
+msgid "New Powerups!"
+msgstr ""
+
+#: scripts/Render.js:2645
+msgid "Collect!"
+msgstr ""
+
+#: scripts/Render.js:2646
+msgid "Update!"
+msgstr ""
+
+#: scripts/Render.js:2647
+msgid "Cash up!"
+msgstr ""
+
+#: scripts/Render.js:2930
+msgid "Ready in"
+msgstr ""
+
+#: scripts/Render.js:4281
+msgid "More Energy in"
+msgstr ""
+
+#: scripts/Render.js:4385
+#, python-format
+msgid "%s New"
+msgstr ""
+
+#: scripts/Render.js:4386
+#, python-format
+msgid "%s Updated"
+msgstr ""
+
+#: scripts/type_settings.js:260
+#, python-format
+msgid "goal Buy Perp %s"
+msgstr ""
+
+#: scripts/type_settings.js:261
+#, python-format
+msgid "goal Buy %s in Project %s"
+msgstr ""
+
+#: scripts/type_settings.js:262
+#, python-format
+msgid "goal Collect $%s from %s"
+msgstr ""
+
+#: scripts/type_settings.js:263
+#, python-format
+msgid "goal Collect %s Profiles from %s"
+msgstr ""
+
+#: scripts/type_settings.js:264
+#, python-format
+msgid "goal Integrate %s x %s"
+msgstr ""
+
+#: scripts/type_settings.js:265
+#, python-format
+msgid "goal Upgrade %s"
+msgstr ""
+
+#: scripts/type_settings.js:279
+msgid "topscore cash headline"
+msgstr ""
+
+#: scripts/type_settings.js:280
+msgid "topscore profiles headline"
+msgstr ""
+
+#: scripts/type_settings.js:281
+msgid "topscore xp headline"
+msgstr ""
+
+#: scripts/type_settings.js:282
+msgid "topscore spent headline"
+msgstr ""
+
+#: scripts/type_settings.js:285
+#, python-format
+msgid "topscore cash text %s"
+msgstr ""
+
+#: scripts/type_settings.js:286
+#, python-format
+msgid "topscore profiles text %s"
+msgstr ""
+
+#: scripts/type_settings.js:287
+#, python-format
+msgid "topscore xp text %s"
+msgstr ""
+
+#: scripts/type_settings.js:288
+#, python-format
+msgid "topscore spent text %s"
+msgstr ""
+
+#: scripts/type_settings.js:291
+msgid "topscore cash inranking"
+msgstr ""
+
+#: scripts/type_settings.js:292
+msgid "topscore profiles inranking"
+msgstr ""
+
+#: scripts/type_settings.js:293
+msgid "topscore xp text inranking"
+msgstr ""
+
+#: scripts/type_settings.js:294
+msgid "topscore spent text inranking"
+msgstr ""
+
+#: scripts/type_settings.js:302
+msgid "topscore Cash"
+msgstr ""
+
+#: scripts/type_settings.js:303
+msgid "topscore Profiles"
+msgstr ""
+
+#: scripts/type_settings.js:304
+msgid "topscore XP"
+msgstr ""
+
+#: scripts/type_settings.js:305
+msgid "topscore Investor"
+msgstr ""
+
+#: scripts/type_settings.js:312
+msgid "karma_buy Do it!"
+msgstr ""
+
+#: scripts/type_settings.js:407
+#, python-format
+msgid "goal_upgrade %s in project %s"
+msgstr ""
+
+#: scripts/type_settings.js:408
+msgid "New Upgrade!"
+msgstr ""
+
+#: scripts/type_settings.js:409
+#, python-format
+msgid "ntext_upgrade Upgrade is now available in projects: %s"
+msgstr ""
+
+#: scripts/type_settings.js:451
+#, python-format
+msgid "goal_ad %s in project %s"
+msgstr ""
+
+#: scripts/type_settings.js:452
+msgid "New Ad!"
+msgstr ""
+
+#: scripts/type_settings.js:453
+#, python-format
+msgid "ntext_ad Ad is now available in projects: %s"
+msgstr ""
+
+#: scripts/type_settings.js:454
+#, python-format
+msgid "ntext_server Ad is now available in projects: %s"
+msgstr ""
+
+#: scripts/type_settings.js:488
+#, python-format
+msgid "goal_teammember %s in project %s"
+msgstr ""
+
+#: scripts/type_settings.js:489
+msgid "New Teammember!"
+msgstr ""
+
+#: scripts/type_settings.js:490
+#, python-format
+msgid "ntext_teammember teammember is now available in projects: %s"
+msgstr ""
+
+#: scripts/type_settings.js:535
+#, python-format
+msgid "goal_agent %s"
+msgstr ""
+
+#: scripts/type_settings.js:536
+msgid "New Agent!"
+msgstr ""
+
+#: scripts/type_settings.js:537
+#, python-format
+msgid "ntext_agent click on %s"
+msgstr ""
+
+#: scripts/type_settings.js:538
+msgid "agent buy_button"
+msgstr ""
+
+#: scripts/type_settings.js:539
+#, python-format
+msgid "contact_buy Knows %s contacts"
+msgstr ""
+
+#: scripts/type_settings.js:540
+msgid "pusher buy_contact_button"
+msgstr ""
+
+#: scripts/type_settings.js:582
+#, python-format
+msgid "goal_contact %s"
+msgstr ""
+
+#: scripts/type_settings.js:583
+#, python-format
+msgid "goal_contact Charge %s"
+msgstr ""
+
+#: scripts/type_settings.js:584
+msgid "New Contact!"
+msgstr ""
+
+#: scripts/type_settings.js:585
+#, python-format
+msgid "ntext_contact click on %s"
+msgstr ""
+
+#: scripts/type_settings.js:586
+msgid "contact Make a Deal"
+msgstr ""
+
+#: scripts/type_settings.js:587
+msgid "contact buy_button"
+msgstr ""
+
+#: scripts/type_settings.js:629
+#, python-format
+msgid "goal_pusher %s"
+msgstr ""
+
+#: scripts/type_settings.js:630
+msgid "New Pusher!"
+msgstr ""
+
+#: scripts/type_settings.js:631
+#, python-format
+msgid "ntext_pusher click on %s"
+msgstr ""
+
+#: scripts/type_settings.js:632
+#, python-format
+msgid "pusher_buy Knows %s clients"
+msgstr ""
+
+#: scripts/type_settings.js:633
+msgid "pusher buy_button"
+msgstr ""
+
+#: scripts/type_settings.js:675
+#, python-format
+msgid "goal_client %s"
+msgstr ""
+
+#: scripts/type_settings.js:676
+#, python-format
+msgid "goal_client Charge %s"
+msgstr ""
+
+#: scripts/type_settings.js:677
+msgid "New Client!"
+msgstr ""
+
+#: scripts/type_settings.js:678
+#, python-format
+msgid "ntext_client click on %s"
+msgstr ""
+
+#: scripts/type_settings.js:679
+msgid "client Make a Deal"
+msgstr ""
+
+#: scripts/type_settings.js:680
+msgid "client buy_button"
+msgstr ""
+
+#: scripts/type_settings.js:722
+msgid "goal_proxy"
+msgstr ""
+
+#: scripts/type_settings.js:723
+msgid "New Proxy!"
+msgstr ""
+
+#: scripts/type_settings.js:724
+#, python-format
+msgid "ntext_proxy click on %s"
+msgstr ""
+
+#: scripts/type_settings.js:725
+msgid "proxy buy_button"
+msgstr ""
+
+#: scripts/type_settings.js:767
+#, python-format
+msgid "goal_city %s"
+msgstr ""
+
+#: scripts/type_settings.js:768
+msgid "New City!"
+msgstr ""
+
+#: scripts/type_settings.js:769
+msgid "ntext_city click on"
+msgstr ""
+
+#: scripts/type_settings.js:770
+msgid "city buy_button"
+msgstr ""
+
+#: scripts/type_settings.js:812
+#, python-format
+msgid "goal_token %s"
+msgstr ""
+
+#: scripts/type_settings.js:813
+#, python-format
+msgid "goal_token Charge %s"
+msgstr ""
+
+#: scripts/type_settings.js:814
+#, python-format
+msgid "goal_token Integrate %s"
+msgstr ""
+
+#: scripts/type_settings.js:815
+msgid "New Token!"
+msgstr ""
+
+#: scripts/type_settings.js:816
+#, python-format
+msgid "ntext_token click on upgrade in the database to get %s"
+msgstr ""
+
+#: scripts/type_settings.js:817
+msgid "token buy_button"
+msgstr ""
+
+#: scripts/type_settings.js:906
+#, python-format
+msgid "goal_project %s"
+msgstr ""
+
+#: scripts/type_settings.js:907
+#, python-format
+msgid "goal_project Charge %s"
+msgstr ""
+
+#: scripts/type_settings.js:908
+msgid "New Project!"
+msgstr ""
+
+#: scripts/type_settings.js:909
+#, python-format
+msgid "ntext_project click on %s"
+msgstr ""
+
+#: scripts/type_settings.js:910
+msgid "project Invest"
+msgstr ""
+
+#: scripts/type_settings.js:911
+msgid "project buy_button"
+msgstr ""
+
+#: scripts/type_settings.js:912
+msgid "upgrade_tab text"
+msgstr ""
+
+#: scripts/type_settings.js:913
+msgid "ad_tab text"
+msgstr ""
+
+#: scripts/type_settings.js:914
+msgid "server_tab text"
+msgstr ""
+
+#: scripts/type_settings.js:915
+msgid "teammember_tab text"
+msgstr ""
+
+#: scripts/type_settings.js:918
+msgid "upgrade buy_button"
+msgstr ""
+
+#: scripts/type_settings.js:919
+msgid "upgrade empty_slot"
+msgstr ""
+
+#: scripts/type_settings.js:920
+msgid "upgrade add_slots label"
+msgstr ""
+
+#: scripts/type_settings.js:921
+msgid "upgrade_slotbuy title"
+msgstr ""
+
+#: scripts/type_settings.js:922
+msgid "upgrade_slotbuy subtitle"
+msgstr ""
+
+#: scripts/type_settings.js:923
+msgid "upgrade_slotbuy description"
+msgstr ""
+
+#: scripts/type_settings.js:924
+msgid "upgrade_slotbuy buttontext"
+msgstr ""
+
+#: scripts/type_settings.js:927
+msgid "ad buy_button"
+msgstr ""
+
+#: scripts/type_settings.js:928
+msgid "ad empty_slot"
+msgstr ""
+
+#: scripts/type_settings.js:929
+msgid "ad add_slots label"
+msgstr ""
+
+#: scripts/type_settings.js:930
+msgid "ad_slotbuy title"
+msgstr ""
+
+#: scripts/type_settings.js:931
+msgid "ad_slotbuy subtitle"
+msgstr ""
+
+#: scripts/type_settings.js:932
+msgid "ad_slotbuy description"
+msgstr ""
+
+#: scripts/type_settings.js:933
+msgid "ad_slotbuy buttontext"
+msgstr ""
+
+#: scripts/type_settings.js:936
+msgid "server buy_button"
+msgstr ""
+
+#: scripts/type_settings.js:937
+msgid "server empty_slot"
+msgstr ""
+
+#: scripts/type_settings.js:938
+msgid "server add_slots label"
+msgstr ""
+
+#: scripts/type_settings.js:939
+msgid "server_slotbuy title"
+msgstr ""
+
+#: scripts/type_settings.js:940
+msgid "server_slotbuy subtitle"
+msgstr ""
+
+#: scripts/type_settings.js:941
+msgid "server_slotbuy description"
+msgstr ""
+
+#: scripts/type_settings.js:942
+msgid "server_slotbuy buttontext"
+msgstr ""
+
+#: scripts/type_settings.js:945
+msgid "teammember buy_button"
+msgstr ""
+
+#: scripts/type_settings.js:946
+msgid "teammember empty_slot"
+msgstr ""
+
+#: scripts/type_settings.js:947
+msgid "teammember add_slots label"
+msgstr ""
+
+#: scripts/type_settings.js:948
+msgid "teammember_slotbuy title"
+msgstr ""
+
+#: scripts/type_settings.js:949
+msgid "teammember_slotbuy subtitle"
+msgstr ""
+
+#: scripts/type_settings.js:950
+msgid "teammember_slotbuy description"
+msgstr ""
+
+#: scripts/type_settings.js:951
+msgid "teammember_slotbuy buttontext"
+msgstr ""
+
+#: views/agent.html:29 views/perp.html:53 views/powerup_provided.html:28
+#, python-format
+msgid "Requires <div class=\"RequiresLevel\">Level %s</div>"
+msgstr ""
+
+#: views/buttons_project.html:4 views/selector_powerups.html:5
+#: views/values.html:24 views/values_details.html:31
+#: views/values_details_powerup.html:24
+msgid "Invest"
+msgstr ""
+
+#: views/buttons_project.html:13 views/popup_client.html:27
+#: views/popup_contact.html:26
+msgid "Collect"
+msgstr ""
+
+#: views/client.html:29 views/perp.html:40
+msgid "Requires"
+msgstr ""
+
+#: views/db_queue.html:12
+msgid "New Traits available!"
+msgstr ""
+
+#: views/db_queue.html:16
+msgid "Upgrade"
+msgstr ""
+
+#: views/form_displayname.html:5
+msgid "user display name:"
+msgstr ""
+
+#: views/levelup.html:4
+msgid "levelup button"
+msgstr ""
+
+#: views/levelup.html:5 views/mission.html:3 views/notification.html:3
+#: views/notification_tutorial.html:4 views/popup_mission.html:3
+#: views/popup_mission_complete.html:3
+msgid "Mark sagt:"
+msgstr ""
+
+#: views/levelup.html:6
+#, python-format
+msgid "levelup level %s! %s XP to level %s. %s energy"
+msgstr ""
+
+#: views/lost_socket.html:16
+msgid "lostsocket Refresh!"
+msgstr ""
+
+#: views/mainmenu.html:8
+msgid "Log Out"
+msgstr ""
+
+#: views/mission.html:20 views/popup_mission.html:18
+#: views/popup_mission_complete.html:16
+msgid "Mission Goals"
+msgstr ""
+
+#: views/mission.html:28 views/popup_mission.html:28
+#: views/popup_mission_complete.html:24
+msgid "Rewards"
+msgstr ""
+
+#: views/noitems.html:2
+msgid "Currently no items available"
+msgstr ""
+
+#: views/noitems.html:3
+msgid "Loading items"
+msgstr ""
+
+#: views/notification.html:30 views/notification_tutorial.html:3
+msgid "OK"
+msgstr ""
+
+#: views/popup.html:5 views/popup_agent.html:5 views/popup_cities.html:5
+#: views/popup_city.html:6 views/popup_karma.html:5 views/popup_mission.html:7
+#: views/popup_proxy.html:5 views/popup_pusher.html:5
+#: views/popup_status.html:5 views/popup_token.html:6
+#: views/popup_user_data.html:5 views/subpop_token.html:8
+#: views/subpop_token_upgrade.html:8
+msgid "Close"
+msgstr ""
+
+#: views/popup_agent.html:31
+msgid "agent_popup selector title"
+msgstr ""
+
+#: views/popup_agent.html:66
+msgid "Sorry, currently I have<br />no new contacts for you."
+msgstr ""
+
+#: views/popup_agent.html:67
+msgid "agent_loading_contacts"
+msgstr ""
+
+#: views/popup_city.html:8
+msgid "Buy an Agent"
+msgstr ""
+
+#: views/popup_city.html:9
+msgid "Buy a Pusher"
+msgstr ""
+
+#: views/popup_city.html:10
+msgid "Buy a Proxy"
+msgstr ""
+
+#: views/popup_city.html:11
+msgid "city_buy selector"
+msgstr ""
+
+#: views/popup_city.html:22 views/popup_project.html:18
+msgid "Data"
+msgstr ""
+
+#: views/popup_city.html:24
+msgid "Agents"
+msgstr ""
+
+#: views/popup_city.html:25
+msgid "Pushers"
+msgstr ""
+
+#: views/popup_city.html:26
+msgid "Bogus Companies"
+msgstr ""
+
+#: views/popup_city.html:27
+msgid "city_buy tab"
+msgstr ""
+
+#: views/popup_karma.html:12
+msgid "karma Problem!"
+msgstr ""
+
+#: views/popup_mission.html:7
+msgid "mission button"
+msgstr ""
+
+#: views/popup_mission_complete.html:4
+msgid "mission_done text"
+msgstr ""
+
+#: views/popup_mission_complete.html:37
+msgid "mission_done button"
+msgstr ""
+
+#: views/popup_profileset.html:6
+msgid "Import"
+msgstr ""
+
+#: views/popup_profileset.html:12 views/values.html:16 views/values.html:20
+#: views/values_details.html:19 views/values_details.html:23
+#: views/values_details_powerup.html:20
+#, python-format
+msgid "%s Profiles"
+msgstr ""
+
+#: views/popup_profileset.html:13
+#, python-format
+msgid "Source: %s"
+msgstr ""
+
+#: views/popup_profileset.html:14
+msgid ""
+"All these new profiles need to be integrated into your main database. If you "
+"already have information on some of these people, your database will try to "
+"identify and update existing profiles using complicated mathematical methods."
+msgstr ""
+
+#: views/popup_project.html:19
+msgid "Upgrades"
+msgstr ""
+
+#: views/popup_project.html:24
+msgid "Server"
+msgstr ""
+
+#: views/popup_project.html:28
+msgid "Ads"
+msgstr ""
+
+#: views/popup_project.html:33
+msgid "Team"
+msgstr ""
+
+#: views/popup_project.html:161
+msgid "Loading..."
+msgstr ""
+
+#: views/popup_proxy.html:13
+msgid "Daughter companies:"
+msgstr ""
+
+#: views/popup_proxy.html:31
+msgid "proxy_popup selector title"
+msgstr ""
+
+#: views/popup_proxy.html:67
+msgid "Sorry, currently there are <br />no new business opportunities."
+msgstr ""
+
+#: views/popup_proxy.html:68
+msgid "Looking for new ventures..."
+msgstr ""
+
+#: views/popup_pusher.html:31
+msgid "pusher_popup selector title"
+msgstr ""
+
+#: views/popup_token.html:7
+msgid "Compute"
+msgstr ""
+
+#: views/popup_token.html:42
+msgid "Update"
+msgstr ""
+
+#: views/popup_user_data.html:20
+msgid "user Account"
+msgstr ""
+
+#: views/popup_user_data.html:22
+msgid "userdebug tab"
+msgstr ""
+
+#: views/popup_user_data.html:31
+msgid "user Dein Account"
+msgstr ""
+
+#: views/popup_user_data.html:32
+msgid "user Folgende Daten haben wir ueber dich gesammelt:"
+msgstr ""
+
+#: views/popup_user_data.html:34
+msgid "user Email-Adresse:"
+msgstr ""
+
+#: views/popup_user_data.html:38
+msgid "user Angemeldet am:"
+msgstr ""
+
+#: views/popup_user_data.html:42
+msgid "user Letzter Login:"
+msgstr ""
+
+#: views/popup_user_data.html:65
+msgid "user text below"
+msgstr ""
+
+#: views/popup_user_data.html:76
+msgid "userdebug reset game headline"
+msgstr ""
+
+#: views/popup_user_data.html:78
+msgid "userdebug reset game text"
+msgstr ""
+
+#: views/popup_user_data.html:82
+msgid "Reset Game"
+msgstr ""
+
+#: views/profileset_token.html:58
+msgid "Data that can be analyzed"
+msgstr ""
+
+#: views/pusher.html:27
+msgid "Requires either"
+msgstr ""
+
+#: views/pusher.html:32
+msgid "or<br/>"
+msgstr ""
+
+#: views/selector_powerups.html:10
+msgid "Buy Upgrade"
+msgstr ""
+
+#: views/selector_powerups.html:12
+msgid "Buy Ad"
+msgstr ""
+
+#: views/selector_powerups.html:14
+msgid "Hire Team Member"
+msgstr ""
+
+#: views/subpop_buyslots.html:2 views/subpop_perp_provided.html:4
+msgid "Buy"
+msgstr ""
+
+#: views/subpop_powerup.html:4
+msgid "Sell"
+msgstr ""
+
+#: views/subpop_token_upgrade.html:16
+msgid "subpopup_token Data not yet analyzed:"
+msgstr ""
+
+#: views/subpop_token_upgrade.html:17
+msgid "subpopup_token Data already analyzed:"
+msgstr ""
+
+#: views/subpop_token_upgrade.html:19
+msgid "subpopup_token description"
+msgstr ""
+
+#: views/topscores.html:13
+msgid "Setting your Nickname?"
+msgstr ""
+
+#: views/topscores.html:14
+msgid ""
+"Please choose a Nickname under which you will be know to other Data Dealers"
+msgstr ""
+
+#: views/values.html:31 views/values_details.html:38
+msgid "income"
+msgstr ""
+
+#: views/values.html:35 views/values.html:38 views/values_details.html:42
+#: views/values_details.html:47 views/values_details.html:51
+#: views/values_details_powerup.html:28
+msgid "Risk"
+msgstr ""
+
+#: views/values.html:42
+msgid "karma_image"
+msgstr ""
+
+#: views/values.html:46 views/values_details.html:27
+#, python-format
+msgid "proxy_buy can host %s projects"
+msgstr ""
+
+#: views/values_details.html:35
+msgid "per deal"
+msgstr ""

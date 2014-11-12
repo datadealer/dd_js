@@ -1,0 +1,66 @@
+<%
+  var data = D.data || {};
+  var ps = data.ProfileSet || {tokens_set: []};
+  var sprite = data.popup_sprite || {};
+%>
+      <div class="SubpopContainer">
+         <%
+          _.each(ps.tokens_set, function(token, key){
+            print(_.renderView('subpop_token.html', {
+              token: token,
+              key: key,
+              collect_amount: data.collect_amount
+            }));
+          });
+        %>
+      </div>
+
+      <div class="Pagination">
+      <div class="PopupTokens">
+        <div class="PopupPageWrap">
+        <%
+          /* TODO: Pagination, maybe make this _.mixin */
+          var pagesize = 12;
+          var pages = _.range(ps.tokens_set.length/pagesize);
+          _.each(pages,function(page,k){
+            var pagetokenkeys = _.range(page*pagesize,((page*pagesize)+pagesize > ps.tokens_set.length) ? ps.tokens_set.length : (page*pagesize)+pagesize);
+            if (k > 0) {
+              print('<div class="PopupPage hidden" data-page-id="'+page+'">');
+            }
+            else {
+              print('<div class="PopupPage" data-page-id="'+page+'">');
+            }
+            _.each(pagetokenkeys, function(key) {
+              var token = ps.tokens_set[key];
+              print(_.renderView('token.html', {
+                token: token,
+                key: key
+              }));
+            });
+            print('</div>');
+          });
+        %>
+        </div>
+      </div>
+        <%
+          if (pages.length > 1) {
+        %>
+        <div class='PopupPageArrowR'></div>
+        <div class='PopupPageArrowL hidden'></div>
+        <%
+          }
+        %>
+      </div>
+
+      <div class="PopupSummary">
+        <div class="PopupSummaryItem Profiles">
+          <div class='RenderSprite Tobi'></div>
+          <% print(_.toKSNum(data.collect_amount)); %>
+        </div>
+        <div class="PopupSummaryItem Risk <%= (data.collect_risk < 1) ? 'Up' : 'Down' %>">
+          <div class='RenderSprite Tobi'></div>
+          <% print(_.toKSNum(Math.abs(data.collect_risk))); %>
+        </div>
+      </div>
+
+

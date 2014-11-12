@@ -1,0 +1,11 @@
+<%
+var powerup = D.powerup || {};
+var data = powerup.data || {};
+%>
+<div class="Powerup <%= (D.updating) ? 'updating' : 'taken' %>" data-subpop-id="<%= D.key %>" data-button-data="<%= D.slot %>">
+  <div class="PowerupPerp">
+    <div class="PowerupBackground"><% print(_.RenderSprite(data.slot_background)); %></div>
+    <div class="PowerupSprite"><% print(_.RenderSprite(data.slot_sprite)); %></div>
+  </div>
+  <div class="PowerupLabel"><%= data.label %></div>
+</div>

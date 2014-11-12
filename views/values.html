@@ -1,0 +1,57 @@
+<%
+var data = D.data || {};
+var perp = D.perp || {};
+var game = _.game();
+var xp_level = D.xp_level || 1;
+var checklevel = data.required_level && data.required_level > 1 && xp_level < data.required_level;
+%>
+<% if (data.tokens && data.tokens.length) { %>
+  <div class="Profiles"><div class="Buy Token"></div> ×<%= data.tokens.length %></div>
+<% } %>
+<% if (data.consumed_tokens && data.consumed_tokens.length) { %>
+  <div class="Profiles consumed"><div class="Buy Token"></div> ×<%= data.consumed_tokens.length %></div>
+<% } %>
+
+<% if (data.collect_amount_modifier) { %>
+  <div class="Profiles">+<% print(_.sprintf(_._('%s Profiles'), data.collect_amount_modifier)); %></div>
+<% } %>
+
+<% if (data.collect_amount) { %>
+  <div class="Profiles"><% print(_.sprintf(_._('%s Profiles'), data.collect_amount)); %></div>
+<% } %>
+
+<% if (data.charge_cost_modifier) { %>
+  <div class="Invest">+$<% print(_.toKSNum(data.charge_cost_modifier)); %> <% print(_._('Invest')); %></div>
+<% } %>
+
+<% if (data.charge_cost) { %>
+  <div class="Invest">$<% print(_.toKSNum(data.charge_cost)); %> <% print(data.button_text); %></div>
+<% } %>
+<% if (data.income_base) { %>
+  <div class="Invest">$<% print(_.toKSNum(data.income_base)); %> <% print(_._('income')); %></div>
+<% } %>
+
+<% if (data.collect_risk) { %>
+  <div class="Risk <%= (data.collect_risk < 0) ? 'Up' : 'Down' %>"><div class="Buy Risk"></div><% print(_.toKSNum(Math.abs(data.collect_risk))); %> <% print(_._('Risk')); %></div>
+<% } %>
+<% if (data.collect_risk_modifier) { %>
+  <div class="Risk <%= (data.collect_risk_modifier < 0) ? 'Up' : 'Down' %>"><div class="Buy Risk"></div><% print(_.toKSNum(Math.abs(data.collect_risk_modifier))); %> <% print(_._('Risk')); %></div>
+<% } %>
+
+<% if (data.karma_points) { %>
+  <div class="Risk Up"><div class="Buy Risk"></div><% print(_.toKSNum(Math.abs(data.karma_points))); %> <% print(_._('karma_image')) %></div>
+<% } %>
+
+<% if (data.max_slots) { %>
+  <div class="Slots"><% print(_.sprintf(_._('proxy_buy can host %s projects'), data.max_slots)); %></div>
+<% } %>
+
+<% 
+  if (data.provided_perps) {
+%>
+  <div class="ProvidedPerps"><% print(_.sprintf(data.provided_perps_text, data.provided_perps.length)); %></div>
+<% 
+  } 
+%>
+
+

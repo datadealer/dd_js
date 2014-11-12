@@ -1,0 +1,61 @@
+{
+  "name": "dd_js",
+  "preferGlobal": "false",
+  "version": "0.2.0",
+  "author": "Cuteacute Media OG <hq@cuteacute.com>",
+  "description": "Data Dealer Frontend Application",
+  "contributors": [
+    {
+      "name": "Tobi Schäfer",
+      "email": "mail@tobischaefer.com"
+    },
+    {
+      "name": "Ralf Traunsteiner",
+      "email": "tr@datadealer.com"
+    },
+    {
+      "name": "Ivan Averintsev",
+      "email": "ai@datadealer.com"
+    },
+    {
+      "name": "Wolfie Christl",
+      "email": "cw@datadealer.com"
+    },
+    {
+      "name": "Pascale Osterwalder",
+      "email": "pascale@elaxa.ch"
+    }
+  ],
+  "devDependencies": {
+    "bower": "1.3.x",
+    "execSync": "1.0.x",
+    "grunt": "0.4.x",
+    "grunt-bower": "0.5.x",
+    "grunt-cli": "0.1.x",
+    "grunt-contrib-clean": "0.5.x",
+    "grunt-contrib-concat": "0.1.x",
+    "grunt-contrib-connect": "0.2.x",
+    "grunt-contrib-copy": "0.4.x",
+    "grunt-contrib-jshint": "0.3.x",
+    "grunt-contrib-jst": "0.5.x",
+    "grunt-contrib-less": "0.5.x",
+    "grunt-contrib-cssmin": "0.4.x",
+    "grunt-contrib-nodeunit": "0.1.x",
+    "grunt-contrib-qunit": "0.2.x",
+    "grunt-contrib-requirejs": "0.4.x",
+    "grunt-contrib-uglify": "0.2.x",
+    "grunt-contrib-watch": "0.3.x",
+    "grunt-contrib-yuidoc": "0.4.x",
+    "grunt-devtools": "0.1.x",
+    "grunt-docco": "0.2.x",
+    "grunt-git-describe": "2.0.x",
+    "grunt-init": "0.2.x",
+    "grunt-lib-contrib": "0.6.x",
+    "grunt-po2json": "git://github.com/rockykitamura/grunt-po2json.git",
+    "grunt-preload-assets": "~0.2.1",
+    "grunt-shell": "0.6.x",
+    "grunt-string-replace": "0.2.x",
+    "po2json": "latest"
+  },
+  "license": ""
+}

@@ -1,0 +1,36 @@
+<%
+  var data = D.gameNode.data || {};
+  var says = data.says || _._('Mark sagt:');
+  var text = data.description || "";
+  var title = data.title;
+  var perp = data.perp || undefined;
+%>
+
+<div class="MissionInline">
+  <div class="MissionLabel"><% print(data.title); %></div>
+    <% 
+      _.each(data.goals,function(goal){
+        print(_.renderView('mission_goal_small.html', { goal: goal, data:data }));
+      });
+    %>
+
+  <!--
+  <div class="MissionWrap">
+    <div class="MissionGoals">
+      <div class="MissionGoalsTitle"><% print(_._("Mission Goals"));  %></div>
+      <% 
+        _.each(data.goals,function(goal){
+          print(_.renderView('mission_goal.html', { goal: goal, data:data }));
+        });
+      %>
+    </div>
+    <div class="MissionRewards"> 
+      <div class="MissionRewardsTitle"><% print(_._("Rewards"));  %></div>
+      <% 
+        print(_.renderView('mission_rewards.html', { rewards: data.rewards, provided_tokens: data.provided_tokens, data:data }));
+      %>
+    </div>
+  </div>
+  -->
+</div>
+

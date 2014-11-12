@@ -1,0 +1,23 @@
+<%
+  var data = D.data || {};
+  var type = D.type || 'cash';
+  var icon_map = {
+    cash: '<div class="Buy Cash"></div>',
+    profiles: '<div class="Buy Token"></div>',
+    xp: '★',
+    spent: '<div class="Buy Cash"></div>',
+  }
+%>
+
+    <% 
+      _.each(data.top, function(score, k){
+        var is_user = (score.self === true);
+        %>
+        <div class="TopscoreRow<%= (is_user) ? " user" : "" %>">
+          <div class="TopscoreNum"><%= k+1 %></div>
+          <div class="TopscoreDisplayname"><%= score.display_name %></div>
+          <div class="TopscoreValue"><%= icon_map[D.type] %><%= _.toKSNum(score.value) %></div>
+        </div>
+        <%
+      });
+    %>

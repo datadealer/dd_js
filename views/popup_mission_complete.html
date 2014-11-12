@@ -1,0 +1,41 @@
+<%
+  var data = D.data || {};
+  var says = data.says || _._('Mark sagt:');
+  var text = _._("mission_done text");
+  var title = data.title;
+%>
+<div class="PopupBody MissionBody Complete">
+  <div class="NotificationHeader">
+    <div class="PopupClose">X</div>
+    <div class="MissionDecorator"><%= data.mission_decorator %></div>
+  </div>
+  <div class="MissionContent">
+        <div class="PopupTitle"><%= data.title %></div>
+        <div class="MissionWrap">
+          <div class="MissionGoals">
+            <div class="MissionGoalsTitle"><% print(_._("Mission Goals"));  %></div>
+            <% 
+              _.each(data.goals,function(goal){
+                print(_.renderView('mission_goal.html', { goal: goal, data:data }));
+              });
+            %>
+          </div>
+          <div class="MissionRewards"> 
+            <div class="MissionRewardsTitle"><% print(_._("Rewards"));  %></div>
+            <% 
+              print(_.renderView('mission_rewards.html', { rewards: data.rewards, provided_tokens: data.provided_tokens, data:data }));
+            %>
+          </div>
+        </div>
+    <div class="NotificationBubble">
+      <div class="NotificationAvatar"></div>
+      <div class="NotificationSays"><%= says %></div>
+      <div class="NotificationText">
+        <%= text  %>
+      </div>
+      <div class="PopupButtons NotificationButtons">
+        <div class="Button" data-button-id="MainButton"><% print(_._('mission_done button')); %></div>
+      </div>
+    </div>
+  </div>
+</div>

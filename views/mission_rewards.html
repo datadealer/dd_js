@@ -1,0 +1,28 @@
+<%
+  var rewards = D.rewards || {};
+  var tokens = D.provided_tokens;
+  var classMap = {
+   cash_value: "Cash",
+   karma_value: "Risk Up",
+   collect_amount: "Profiles",
+   xp_value: "XP"
+  };
+%>
+
+<% 
+  _.each(rewards, function(reward,k){
+%>
+  <div class="MissionReward PopupSummaryItem <%= classMap[reward.target] %>"> 
+    <div class="RenderSprite Tobi"></div>
+    <% print(reward.amount); %>
+  </div>
+<% 
+  });
+  /* FIXME: display tokens
+  if (tokens) {
+    _.each(tokens, function(tgestalt){
+      print(tgestalt);
+    });
+  }
+  */
+%>

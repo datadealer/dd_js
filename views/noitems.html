@@ -1,0 +1,16 @@
+<%
+  var text_noitems = D.text_noitems || _._('Currently no items available');
+  var text_loading = D.text_loading || _._('Loading items');
+  var loading = D.loading || false;
+%>
+
+<% 
+  if (loading) {
+%>
+<div class="SelectorNoItems loading">
+  <div class="LoadingSpinner"></div>
+  <%= text_loading %>
+</div>
+<% } else { %>
+<div class="SelectorNoItems"><%= text_noitems %></div>
+<% } %>

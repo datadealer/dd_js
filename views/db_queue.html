@@ -1,0 +1,42 @@
+<% 
+  var data = D.data || {};
+  var queue = D.queue || {};
+  var game = _.game();
+  var buyToken_xp_level_min = data.buyToken_xp_level_min || 0;
+  var wrapwidth = 8 + (queue.length * 100);
+  wrapwidth = (wrapwidth > 666) ? 666 : wrapwidth;
+%>
+
+<div class="DatabaseQueueConveyor">
+  <div class="DatabaseQueuePipe">
+    <div class="DecoratorNew NewBuyableTraits" style="position: relative;top: -18px;"><%= _._('New Traits available!') + '<br /><div class="DecoratorNewArrow"></div>' %></div>
+    <%  
+       if (game.xp_level.number >= buyToken_xp_level_min) { 
+    %>
+    <div class="Button DatabaseButton" data-button-id="DatabaseUpgrades"><%= _._('Upgrade') %></div>
+    <% }  %>
+  </div>
+  <div class="DatabaseQueueWrap" style="width:<%= wrapwidth %>px;">
+    <%
+      var index = 0;
+      queue.each(function(ps){
+    %>
+      <div class="DatabaseQueueItem" data-psid="<%= ps.psid %>" style="left:<%= 8 + index * 100 %>px;">
+        <div class="DatabaseQueueItemAmount"><% print(_.toKSNum(ps.profiles_value)); %></div>
+        <div class="DatabaseQueueItemOrigin"><% 
+          var txt = ps.origin.data.label || ps.origin.data.title;
+          if (txt.length > 22) {
+            print(txt.substring(0,18)+"...");
+          } else {
+            print(txt);
+          }
+        %>
+        </div>
+      </div>
+    <%
+      index+=1;
+      });
+    %>
+  </div>
+  <div class="DatabaseQueuePipeBack"></div>
+</div>

@@ -1,0 +1,24 @@
+<%
+var token = D.token || {};
+var data = token.data || {};
+var collect_amount = D.collect_amount || token.collect_amount;
+var database_amount = token.database_amount;
+var absoluteAmount = _.toKSNum(token.database_absoluteAmount);
+var collectAmount = _.toKSNum(collect_amount * (token.amount / 100));
+var button = _._('Close');
+data.findings_text = data.findings_text || data.stats_text; // FIXME: Remove after next export
+%>
+<div class="Subpop" data-subpop-id="token<%= token.gestalt %>">
+  <div class="SubpopClose" data-button-id="CloseSubpop">X</div>
+  <div class="SubpopLogo"><% print(_.RenderSprite(data.popup_sprite)); %></div>
+  <div class="SubpopTitle"><%= data.title %></div>
+  <% if (collect_amount) { %>
+    <div class="SubpopSubTitle"><% print(_.sprintf(data.findings_text, collectAmount)); %></div>
+  <% } else if (database_amount) { %>
+    <div class="SubpopSubTitle"><% print(_.sprintf(data.knowledge_text, absoluteAmount)); %></div>
+  <% } %>
+  <div class="SubpopText"><%= data.description %></div>
+  <div class="SubpopButtons">
+    <div class="Button" data-button-id="OKButton"><%= button %></div>
+  </div>
+</div>

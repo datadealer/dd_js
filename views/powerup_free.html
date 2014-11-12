@@ -1,0 +1,11 @@
+<%
+var wordings = D.data.powerup_slot_texts[D.typelower] || {};
+%>
+
+<div class="Powerup <%= (D.updating) ? 'updating' : 'free' %>" data-subpop-id="Provided<%= D.pkey %>" data-button-data="<%= D.slot %>">
+
+  <div class="PowerupPerp">
+    <div class="PowerupBackground"><% print(_.RenderSprite(D.slot_background,'free')); %></div>
+  </div>
+  <div class="PowerupLabel"><%= wordings.empty_slot_label %></div>
+</div>

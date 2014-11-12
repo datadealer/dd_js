@@ -1,0 +1,28 @@
+<%
+var powerup = D.powerup || {};
+var data = powerup.data || {};
+var button = _._('Sell');
+%>
+<div class="Subpop" data-subpop-id="<%= D.key %>">
+  <div class="SubpopClose" data-button-id="CloseSubpop">X</div>
+  <div class="SubpopLogo"><% print(_.RenderSprite(data.popup_sprite)); %></div>
+  <div class="SubpopTitle"><%= data.title %></div>
+  <div class="PowerupLabelData SubpopLabelData">
+    <% print(_.renderView('values_details_powerup.html', { data: powerup.data })); %>
+  </div>
+  <div class="SubpopText"><%= data.description %></div>
+  <div class="SubpopButtons">
+    <div class="ButtonDecorator Cash">
+      <div class='RenderSprite Tobi'></div>
+      <% print(_.toKSNum(parseInt(data.price * 0.75))); %></div>
+    <div class="Button sell" data-button-id="PowerupSellButton" data-button-gestalt="<%= powerup.gestalt %>"><%= button %></div>
+  </div>
+
+  <div class="Debug">
+  <%
+  _.each(data,function(v,k){
+    print('<div>',k,': ',v,'</div>');
+  });
+  %>
+  </div>
+</div>

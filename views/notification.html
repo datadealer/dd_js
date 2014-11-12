@@ -1,0 +1,34 @@
+<%
+  var data = D.data || {};
+  var says = data.says || _._('Mark sagt:');
+  var text = data.text || "";
+  var title = data.title || "Neuer Kontakt!";
+  var perp = data.perp || undefined;
+%>
+<div class="PopupBody NotificationBody">
+  <div class="NotificationHeader">
+    <div class="PopupClose">X</div>
+    <div class="NotificationTitle"><%= title %></div>
+  </div>
+  <div class="NotificationContent">
+    <% if (data.perp) { %>
+    <div class="NotificationItem">
+    <%
+       print(_.renderView('notification_item.html', {
+         perp: perp
+       }));
+    %>
+    </div>
+    <% } %>
+    <div class="NotificationBubble">
+      <div class="NotificationAvatar"></div>
+      <div class="NotificationSays"><%= says %></div>
+      <div class="NotificationText">
+        <%= text  %>
+      </div>
+      <div class="PopupButtons NotificationButtons">
+        <div class="Button" data-button-id="MainButton"><%= _._('OK') %></div>
+      </div>
+    </div>
+  </div>
+</div>

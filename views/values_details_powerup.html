@@ -1,0 +1,32 @@
+<%
+var data = D.data || {};
+%>
+
+
+<div class="BonusWrap">
+
+<% if (data.tokens && data.tokens.length) { %>
+<div class="BonusTokens">
+<% _.each(data.tokens, function(t,k){ %>
+   <div class="Bonus Profiles"><%= t.type_data.title %><% if (t.amount < 101) { %><span class="BonusTokenAmount"> +<%= t.amount %>%</span><% } %></div>
+<% }); %>
+</div>
+<% } %>
+
+
+<div class="BonusValues">
+
+<% if (data.collect_amount_modifier) { %>
+  <div class="Bonus Profiles">+<% print(_.sprintf(_._('%s Profiles'), data.collect_amount_modifier)); %></div>
+<% } %>
+
+<% if (data.charge_cost_modifier) { %>
+  <div class="Bonus Invest">+$<% print(_.toKSNum(data.charge_cost_modifier)); %> <% print(_._('Invest')); %></div>
+<% } %>
+
+<% if (data.collect_risk_modifier) { %>
+  <div class="Bonus Risk <%= (data.collect_risk_modifier < 0) ? 'Up' : 'Down' %>"><div class="Buy Risk"></div><% print(_.toKSNum(Math.abs(data.collect_risk_modifier))); %> <% print(_._('Risk')); %></div>
+<% } %>
+</div>
+
+</div>

@@ -1,0 +1,7 @@
+<%
+  var game = _.game();
+  var user = game.data.user;
+%>
+  <% print(_._('user display name:'));  %>
+  <input type="text" class="DisplayName" id="DisplayName" value="<%= user.display_name %>" />
+  <div class="Button small" data-button-id="SaveDisplayName"><% print(_._('user Save')); %></div>

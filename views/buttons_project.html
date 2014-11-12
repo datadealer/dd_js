@@ -1,0 +1,28 @@
+<%
+  var data = D.data || {};
+  var states = D.states || {};
+  var button = D.button || _._('Invest');
+%>
+
+    <% if (!states.idle && !states.chargeRunning) { %>
+      <div class="PopupButtons">
+        <div class="ButtonDecorator AP">
+          <div class='RenderSprite Tobi'></div>
+          1
+        </div>
+        <div class="Button" data-button-id="CollectButton"><%= _._('Collect') %></div>
+      </div>
+    <% } else { %>
+      <div class="PopupButtons">
+        <div class="ButtonDecorator Cash">
+          <div class='RenderSprite Tobi'></div>
+          <% print(_.toKSNum(data.charge_cost)); %>
+        </div>
+        <div class="Button <% if (!states.idle) print('disabled'); %>" data-button-id="ChargeButton"><%= button %></div>
+        <div class="ButtonDecorator Time">
+          <div class='RenderSprite Tobi'></div>
+          <% print(_.toTime(data.charge_time)) %>
+        </div>
+      </div>
+    <% }  %>
+

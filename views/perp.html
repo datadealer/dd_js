@@ -1,0 +1,58 @@
+<%
+var perp = D.perp || {};
+var data = perp.data || {};
+var DBTokens = _.game().DBTokens;
+var offsetX = 0;
+var offsetY = 0;
+var width = 100;
+var height = 100;
+var is_city = (perp.data.is_city) ? " CityPerpSpecial" : "";
+if (perp.data.perp_background && perp.data.perp_background.frameMap && perp.data.perp_background.frameMap.normal) {
+  /* FIXME: normalize backgrounds in Game!! */
+  var background = perp.data.perp_background;
+  if (data.is_supertoken) {
+    background = perp.data.perp_background2;
+  }
+  offsetX = 49 - background.frameMap.normal.pivotx;
+  offsetY = 49 - background.frameMap.normal.pivoty;
+  width = background.frameMap.normal.width;
+  height = background.frameMap.normal.height;
+} else  if (data.slot_background) {
+  var background = data.slot_background;
+}
+
+%>
+<div class="PopupPerp provided<%= (perp.locked) ? ' locked' : '' %><%= is_city %>" data-subpop-id="<%= D.key %>" data-gestalt="<%= perp.gestalt %>">
+  <div class="RenderPerp" style="position:absolute; top:<%= offsetY %>px; left:<%= offsetX %>px; width:<%= width %>px; height:<%= height %>px;">
+    <div class="PerpBackground"><% 
+      print(_.RenderSprite(background, 'normal'));
+    %></div>
+    <div class="PerpSprite"><% print(_.RenderSprite(data.perp_sprite||data.slot_sprite)); %></div>
+  </div>
+  <div class="PerpLabel"><% print(_.crlf2html(data.label)); %></div>
+  <div class="PerpLabelData">
+    <div class="Price"><div class="Buy Cash"></div><% print(_.toKSNum(data.price)); %></div>
+    <%
+      if (!perp.locked) {
+        print(_.renderView('values.html', { data: perp.data, perp:perp })); 
+      } else {
+        if (data.requiredTokens && data.requiredTokens.length && data.required_level <= D.Caller.groot.xp_level.number) {
+          print('<div class="Requires">'+ _._('Requires') + '<div class="RequiresProviders">');
+          var filteredRequiredTokens = _.filter(data.requiredTokens, function(token){
+            return !DBTokens.hasOwnProperty(token.gestalt);
+          });
+          _.each(filteredRequiredTokens,function(v,k){
+            if (k+1 < filteredRequiredTokens.length) {
+              print(v.type_data.title + ',<br />');
+            } else {
+              print(v.type_data.title);
+            }
+          });
+          print('</div></div>');
+        } else {
+          print('<div class="Requires">' + _.sprintf(_._('Requires <div class="RequiresLevel">Level %s</div>'), data.required_level) + '</div>');
+        }
+      }
+    %>
+  </div>
+</div>

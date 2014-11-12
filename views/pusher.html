@@ -1,0 +1,41 @@
+<%
+var perp = D.perp || {};
+var data = perp.data || {};
+var offsetX = 0;
+var offsetY = 0;
+if (perp.data.perp_background && perp.data.perp_background.frameMap && perp.data.perp_background.frameMap.normal) {
+  offsetX = 47 - perp.data.perp_background.frameMap.normal.pivotx;
+  offsetY = 47 - perp.data.perp_background.frameMap.normal.pivoty;
+  width = perp.data.perp_background.frameMap.normal.width;
+  height = perp.data.perp_background.frameMap.normal.height;
+}
+%>
+<div class="PopupPerp provided<%= (perp.locked) ? ' locked' : '' %>" data-subpop-id="<%= D.key %>" data-gestalt="<%= perp.gestalt %>">
+  <div class="RenderPerp" style="position:absolute; top:<%= offsetY %>px; left:<%= offsetX %>px; width:<%= width %>px; height:<%= height %>px;">
+    <div class="PowerupBackground"><% print(_.RenderSprite(data.perp_background, 'normal')); %></div>
+    <div class="PowerupSprite"><% print(_.RenderSprite(data.perp_sprite)); %></div>
+  </div>
+  <div class="PowerupLabel"><% print(_.crlf2html(data.label)); %></div>
+  <div class="PowerupLabelData">
+    
+    <div class="Price"><div class="Buy Cash"></div><% print(_.toKSNum(data.price)); %></div>
+   
+    <%
+      if (!perp.locked) {
+        print(_.renderView('values.html', { data: perp.data, perp:perp })); 
+      } else {
+        print('<div class="Requires">' + _._('Requires either') + '<div class="RequiresProviders">'); 
+        _.each(data.requiredProviders,function(v,k){
+          if (k+1 < data.requiredProviders.length) {
+            print(v + ',<br />');
+          } else {
+            print(_._('or<br/>') + v);
+          }
+        });
+        print('</div></div>');
+      }
+    %>
+
+
+  </div>
+</div>
